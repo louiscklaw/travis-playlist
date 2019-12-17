@@ -11,7 +11,7 @@ script:
   # test travis broascast
   - cd $TRAVIS_BUILD_DIR/travis-broadcast
   - pipenv sync
-  - pipenv run pipenv run python3 travis-broadcast.py \#travis-build-result "this is apple"
+  - pipenv run python3 travis-broadcast.py \#travis-build-result "this is apple"
 
 notifications:
   slack: louislabs:x4D51HjnR30LGpqZXrdbqUgB
