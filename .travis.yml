@@ -4,6 +4,5 @@ script:
   - cd $TRAVIS_BUILD_DIR/travis-build-merger
   - id
   - sudo apt update
-  - sudo apt install -y p7zip-full
-  - 7za -p1233211234567 a test.7z test.txt -mx=9
-  - curl --upload-file ./test.7z
+  - sudo apt install -y python3 python3-pip python3-dev p7zip-full curl
+  - python3 transfer.py test.txt
