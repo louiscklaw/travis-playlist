@@ -1,7 +1,7 @@
 dist: bionic
 
 script:
-  - cd $TRAVIS_BUILD_DIR/travis-build-merger
+  - cd $TRAVIS_BUILD_DIR/transfer-sh-tryout
   - id
   - sudo apt update
   - sudo apt install -y python3 python3-pip python3-dev p7zip-full curl
