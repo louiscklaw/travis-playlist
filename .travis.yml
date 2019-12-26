@@ -1,31 +1,27 @@
+# _config-examples/single-stage/.travis.yml
+# https://testdriven.io/blog/faster-ci-builds-with-docker-cache/
+
 sudo: required
 
 services:
   - docker
 
-language: generic
+env:
+  global:
+    CACHE_IMAGE: logickee/licheepi
+
+before_script:
+  - docker pull $CACHE_IMAGE:latest || true
+
+script:
+  - docker build --cache-from $CACHE_IMAGE:latest --tag $CACHE_IMAGE:latest .
+
+after_success:
+  - docker login -u logickee -p $REGISTRY_PASS
+  - docker push $CACHE_IMAGE:latest
+
 
 env:
   global:
-    - NAME=myprojectname
-    - CACHE_FOLDER=$HOME/docker-images
-    - CACHE_FILE=${CACHE_FOLDER}/${NAME}-${TRAVIS_COMMIT}.tgz
-
-jobs:
-  include:
-    - stage: build
-      script:
-        - docker build -t ${IMAGE} ${PWD}
-        - mkdir -p ${CACHE_FOLDER}
-        - docker save ${IMAGE} | gzip -c > ${CACHE_FILE}
-    - stage: push
-      script:
-        - ls -la ${CACHE_FOLDER}
-        - if [[ -f ${CACHE_FILE} ]]; then docker load -i ${CACHE_FILE}; fi
-        - docker images
-        - echo "now you should see your image in the next stage, you can do what you wanted"
-
-cache:
-  bundler: true
-  directories:
-    - ${CACHE_FOLDER}
+    # REGISTRY_PASS
+    secure: K6l4/cBuGTwWaoHNc0BZxmiCju69XbWP/qZGglmLEoPmfZUmerQHIcyhBN5LnO+3x9niQSCFl4dE/o1WODo9Vh0VNHLhsfeIWo+WWvEFBafbQ+TOPhA3YeLzBgOjL027eNBvilrEgxswdxxaD2ekeaaOlJPPdE2UhZYjNJpKLaaWi/GTBeXEmbuIMlEKwMn/FVdd/62MUrY0rYWFmdmmygh1eJRaX0GatSY/s3ATlFOOhtAehBN7okSllWpsk7VmN6HKvlK7DuhkjU2waweIHhMM6O+tJIkuT0wonSRxG4tlhBL3CxhDiHwBoFoq+woPqsN/cQBEv2yli90PMeW37E1SWCrKwGymLeq5jMu9ZKf5rJrATJx/IvbROm6ow7emYQA/a6PCXH02OuWsXmT+ANIjpIZ3KkkNMS5J98s0ySURDeFHemwZtaqJVqTWZGHeaATEBUfQyXYCuRwmT+LAIVRSGuuQ+0gByLYhUiA5PllgmWVs37MZQaN9SxhsLr+BcqhmdB9iiEBX4zTBOb7CDf8wmO0LH/C/UUFaB0YaY6jyEZp17Drw4M2XKVJXEee9L44aadzAjWM39wspyXtu7HzWGJkKkg0IpZLEljFJvsS2w1VNSwhyVm++bwTdrwQXXmg0QXgfQx9+PEBpROdLtMjgpiAe7s5RBlsAgtnYFwU=
