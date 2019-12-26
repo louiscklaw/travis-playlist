@@ -23,3 +23,13 @@ script:
 after_success:
   - docker login -u logickee -p $REGISTRY_PASS
   - docker push logickee/licheepi:latest
+
+cache:
+  directories:
+  - docker_images
+
+before_install:
+- docker load -i docker_images/images.tar || true
+
+before_cache:
+- docker save -o docker_images/images.tar $(docker images -a -q)
