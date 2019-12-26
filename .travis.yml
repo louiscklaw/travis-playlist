@@ -27,12 +27,12 @@ after_success:
 
 cache:
   directories:
-  - docker_images
+  - $TRAVIS_BUILD_DIR/docker_images
 
 before_install:
-- docker load -i docker_images/images.tar || true
+- docker load -i $TRAVIS_BUILD_DIR/docker_images/images.tar || true
 
 before_cache:
 - docker images -a
-- docker save -o docker_images/images.tar $(docker images -a -q)
-- ls -l docker_images
+- docker save -o $TRAVIS_BUILD_DIR/docker_images/images.tar $(docker images -a -q)
+- ls -l $TRAVIS_BUILD_DIR/docker_images
