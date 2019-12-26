@@ -1,0 +1,12 @@
+# https://docs.travis-ci.com/user/docker/
+
+dist: bionic
+
+services:
+  - docker
+
+before_install:
+  - docker pull ubuntu:18.04
+
+script:
+  - docker run ubuntu:18.04 hostname
