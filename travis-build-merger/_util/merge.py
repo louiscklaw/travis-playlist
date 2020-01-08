@@ -3,6 +3,7 @@
 # reference build https://travis-ci.org/louiscklaw/test_git_repo/builds/625335510
 # https://docs.travis-ci.com/user/environment-variables/
 
+import sys
 import os, re, subprocess
 import slack
 
@@ -58,7 +59,7 @@ for merge_from, merge_to in merge_direction.items():
     print('done ?')
     print(len(m.groups()))
 
-    if len(m.groups()) == 2:
+    if len(m.groups()) == 1:
       print('hitting new process')
       sys.exit()
       with lcd(TEMP_DIR), settings(warn_only=True):
