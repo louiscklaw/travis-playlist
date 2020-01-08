@@ -60,7 +60,7 @@ def merge_to_branch(commit_id, merge_to):
     else:
       slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-    push_commit(PUSH_URI)
+
 
 
 print('starting merger')
@@ -77,11 +77,13 @@ for merge_from, merge_to in merge_direction.items():
 
       print(f'try to merge {merge_from} -> {merge_to}')
 
-      with lcd(TEMP_DIR), settings(warn_only=True):
+      with lcd(TEMP_DIR):
         merge_to_branch(TRAVIS_COMMIT, merge_to)
+        push_commit(PUSH_URI)
 
     else:
       print(f'try to merge {merge_from} -> {merge_to}')
 
-      with lcd(TEMP_DIR), settings(warn_only=True):
+      with lcd(TEMP_DIR):
         merge_to_branch(TRAVIS_COMMIT, merge_to)
+        push_commit(PUSH_URI)
