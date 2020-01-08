@@ -55,6 +55,9 @@ for merge_from, merge_to in merge_direction.items():
     slack_message('skip merging for BUILD #{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
   else:
+    print('done ?')
+    print(len(m.groups()))
+
     if len(m.groups()) == 2:
       print('hitting new process')
       sys.exit()
@@ -74,6 +77,7 @@ for merge_from, merge_to in merge_direction.items():
           run_command("git push {} {}".format(PUSH_URI, merge_to))
 
     else:
+      sys.exit()
       with lcd(TEMP_DIR), settings(warn_only=True):
         with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
           print('checkout {} branch'.format(merge_to))
