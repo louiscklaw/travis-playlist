@@ -89,7 +89,6 @@ for merge_from, merge_to in merge_direction.items():
 
     else:
       print(f'try to merge {merge_from} -> {merge_to}')
-      sys.exit()
 
       with lcd(TEMP_DIR), settings(warn_only=True):
         merge_to_branch(TRAVIS_COMMIT, merge_to)
