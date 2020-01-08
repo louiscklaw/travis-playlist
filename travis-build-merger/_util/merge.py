@@ -60,9 +60,6 @@ def merge_to_branch(commit_id, merge_to):
     else:
       slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-
-
-
 print('starting merger')
 merge_found = False
 for merge_from, merge_to in merge_direction.items():
