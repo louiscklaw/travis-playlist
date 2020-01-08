@@ -13,7 +13,7 @@ SLACK_TOKEN = os.environ['SLACK_TOKEN']
 # BRANCH_TO_MERGE_INTO='develop'
 # BRANCH_TO_MERGE_REGEX='^feature'
 merge_direction = {
-  # '^test/(.+?)': 'feature',
+  '^test/(.+?)': 'feature',
   '^feature' : 'develop',
   # 'develop': 'master'
 }
