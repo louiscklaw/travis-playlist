@@ -65,7 +65,6 @@ def merge_to_branch(commit_id, merge_to):
 
 print('starting merger')
 for merge_from, merge_to in merge_direction.items():
-  # merge_from
 
   m = re.match(merge_from, TRAVIS_BRANCH)
   if (m == None ) :
