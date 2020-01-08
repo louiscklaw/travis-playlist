@@ -11,8 +11,6 @@ from fabric.api import local, shell_env, lcd, run, settings
 
 SLACK_TOKEN = os.environ['SLACK_TOKEN']
 
-# BRANCH_TO_MERGE_INTO='develop'
-# BRANCH_TO_MERGE_REGEX='^feature'
 merge_direction = {
   '^test/(.+?)$': 'feature',
   '^feature' : 'develop',
