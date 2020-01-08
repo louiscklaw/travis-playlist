@@ -65,16 +65,12 @@ def merge_to_branch(commit_id, merge_to):
 
 print('starting merger')
 for merge_from, merge_to in merge_direction.items():
-
   m = re.match(merge_from, TRAVIS_BRANCH)
   if (m == None ) :
     print('skipping merge for branch {}'.format(TRAVIS_BRANCH))
     slack_message('skip merging for BUILD #{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
   else:
-    print('done ?')
-    print(len(m.groups()))
-
     if len(m.groups()) == 1:
       sub_branch = m.group(1)
       merge_to = merge_to+'/'+sub_branch
