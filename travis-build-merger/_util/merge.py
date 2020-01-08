@@ -10,12 +10,12 @@ from fabric.api import local, shell_env, lcd, run, settings
 
 SLACK_TOKEN = os.environ['SLACK_TOKEN']
 
-BRANCH_TO_MERGE_INTO='develop'
-BRANCH_TO_MERGE_REGEX='^feature'
+# BRANCH_TO_MERGE_INTO='develop'
+# BRANCH_TO_MERGE_REGEX='^feature'
 merge_direction = {
-  '^test/(.+?)': 'feature',
+  # '^test/(.+?)': 'feature',
   '^feature' : 'develop',
-  'develop': 'master'
+  # 'develop': 'master'
 }
 
 TRAVIS_BRANCH = os.environ['TRAVIS_BRANCH']
@@ -44,42 +44,47 @@ def run_command(command_body):
   print(command_result)
   return command_result
 
-m = re.match(BRANCH_TO_MERGE_REGEX, TRAVIS_BRANCH)
-if (m == None ) :
-  print('skipping merge for branch {}'.format(TRAVIS_BRANCH))
-  slack_message('skip merging for BUILD #{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, BRANCH_TO_MERGE_INTO), '#travis-build-result')
 
-else:
-  if len(m.groups()) == 2:
-    print('hitting new process')
-    sys.exit()
-    with lcd(TEMP_DIR), settings(warn_only=True):
-      with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
-        print('checkout {} branch'.format(BRANCH_TO_MERGE_INTO))
-        run_command('git checkout {}'.format(BRANCH_TO_MERGE_INTO))
+print('starting merger')
+for merge_from, merge_to in merge_direction.items():
+  # merge_from
 
-        print('Merging "{}"'.format(TRAVIS_COMMIT))
-        result_to_check = run_command('git merge --ff-only "{}"'.format(TRAVIS_COMMIT))
-        if result_to_check.failed:
-          slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, BRANCH_TO_MERGE_INTO), '#travis-build-result')
-        else:
-          slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, BRANCH_TO_MERGE_INTO), '#travis-build-result')
-
-        print('push commit')
-        run_command("git push {} {}".format(PUSH_URI, BRANCH_TO_MERGE_INTO))
+  m = re.match(merge_from, TRAVIS_BRANCH)
+  if (m == None ) :
+    print('skipping merge for branch {}'.format(TRAVIS_BRANCH))
+    slack_message('skip merging for BUILD #{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
   else:
-    with lcd(TEMP_DIR), settings(warn_only=True):
-      with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
-        print('checkout {} branch'.format(BRANCH_TO_MERGE_INTO))
-        run_command('git checkout {}'.format(BRANCH_TO_MERGE_INTO))
+    if len(m.groups()) == 2:
+      print('hitting new process')
+      sys.exit()
+      with lcd(TEMP_DIR), settings(warn_only=True):
+        with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+          print('checkout {} branch'.format(merge_to))
+          run_command('git checkout {}'.format(merge_to))
 
-        print('Merging "{}"'.format(TRAVIS_COMMIT))
-        result_to_check = run_command('git merge --ff-only "{}"'.format(TRAVIS_COMMIT))
-        if result_to_check.failed:
-          slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, BRANCH_TO_MERGE_INTO), '#travis-build-result')
-        else:
-          slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, BRANCH_TO_MERGE_INTO), '#travis-build-result')
+          print('Merging "{}"'.format(TRAVIS_COMMIT))
+          result_to_check = run_command('git merge --ff-only "{}"'.format(TRAVIS_COMMIT))
+          if result_to_check.failed:
+            slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+          else:
+            slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-        print('push commit')
-        run_command("git push {} {}".format(PUSH_URI, BRANCH_TO_MERGE_INTO))
+          print('push commit')
+          run_command("git push {} {}".format(PUSH_URI, merge_to))
+
+    else:
+      with lcd(TEMP_DIR), settings(warn_only=True):
+        with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+          print('checkout {} branch'.format(merge_to))
+          run_command('git checkout {}'.format(merge_to))
+
+          print('Merging "{}"'.format(TRAVIS_COMMIT))
+          result_to_check = run_command('git merge --ff-only "{}"'.format(TRAVIS_COMMIT))
+          if result_to_check.failed:
+            slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+          else:
+            slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+
+          print('push commit')
+          run_command("git push {} {}".format(PUSH_URI, merge_to))
