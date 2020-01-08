@@ -65,6 +65,7 @@ for merge_from, merge_to in merge_direction.items():
 
       print('hitting new process')
       print(f'merge {merge_from} -> {merge_to}')
+      sys.exit()
 
       with lcd(TEMP_DIR), settings(warn_only=True):
         with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
@@ -82,8 +83,8 @@ for merge_from, merge_to in merge_direction.items():
           run_command("git push {} {}".format(PUSH_URI, merge_to))
 
     else:
-      print(f'merge {merge_from} -> {merge_to}')
       print('hitting old process')
+      print(f'merge {merge_from} -> {merge_to}')
       sys.exit()
       with lcd(TEMP_DIR), settings(warn_only=True):
         with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
