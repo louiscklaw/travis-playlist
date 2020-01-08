@@ -3,7 +3,7 @@ dist: bionic
 script:
   - hostname
 
-after_script:
+after_success:
   - cd travis-build-merger
   - cd _util
   - id
