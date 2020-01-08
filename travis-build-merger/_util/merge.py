@@ -45,6 +45,9 @@ def run_command(command_body):
   print(command_result)
   return command_result
 
+def push_commit(uri_to_push):
+    print('push commit')
+    run_command("git push {} {}".format(uri_to_push, merge_to))
 
 def merge_to_branch(commit_id, merge_to):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
@@ -59,8 +62,7 @@ def merge_to_branch(commit_id, merge_to):
     else:
       slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-    print('push commit')
-    run_command("git push {} {}".format(PUSH_URI, merge_to))
+    push_commit(PUSH_URI)
 
 
 print('starting merger')
