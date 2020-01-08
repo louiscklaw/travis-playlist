@@ -12,6 +12,12 @@ SLACK_TOKEN = os.environ['SLACK_TOKEN']
 
 BRANCH_TO_MERGE_INTO='develop'
 BRANCH_TO_MERGE_REGEX='^feature'
+merge_direction = {
+  '^test/(.+?)': 'feature',
+  '^feature' : 'develop',
+  'develop': 'master'
+}
+
 TRAVIS_BRANCH = os.environ['TRAVIS_BRANCH']
 TRAVIS_COMMIT = os.environ['TRAVIS_COMMIT']
 TRAVIS_BUILD_NUMBER = os.environ['TRAVIS_BUILD_NUMBER']
