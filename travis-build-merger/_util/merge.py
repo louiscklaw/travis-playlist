@@ -82,14 +82,13 @@ for merge_from, merge_to in merge_direction.items():
       sub_branch = m.group(1)
       merge_to = merge_to+'/'+sub_branch
 
-      print(f'merge {merge_from} -> {merge_to}')
+      print(f'try to merge {merge_from} -> {merge_to}')
 
       with lcd(TEMP_DIR), settings(warn_only=True):
         merge_to_branch(TRAVIS_COMMIT, merge_to)
 
     else:
-      print('hitting old process')
-      print(f'merge {merge_from} -> {merge_to}')
+      print(f'try to merge {merge_from} -> {merge_to}')
       sys.exit()
 
       with lcd(TEMP_DIR), settings(warn_only=True):
