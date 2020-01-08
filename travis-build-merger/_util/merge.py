@@ -60,7 +60,7 @@ for merge_from, merge_to in merge_direction.items():
     print(len(m.groups()))
 
     if len(m.groups()) == 1:
-      sub_branch = m[1]
+      sub_branch = m.group(1)
       merge_to = merge_to+'/'+sub_branch
 
       print('hitting new process')
