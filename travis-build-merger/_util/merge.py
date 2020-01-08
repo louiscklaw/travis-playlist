@@ -61,7 +61,10 @@ for merge_from, merge_to in merge_direction.items():
 
     if len(m.groups()) == 1:
       print('hitting new process')
-      sys.exit()
+      sub_branch = m[1]
+
+      merge_to = merge_to+'/'+sub_branch
+
       with lcd(TEMP_DIR), settings(warn_only=True):
         with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
           print('checkout {} branch'.format(merge_to))
