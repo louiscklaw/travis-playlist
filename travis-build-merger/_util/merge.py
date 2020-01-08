@@ -82,24 +82,10 @@ for merge_from, merge_to in merge_direction.items():
       sub_branch = m.group(1)
       merge_to = merge_to+'/'+sub_branch
 
-      print('hitting new process')
       print(f'merge {merge_from} -> {merge_to}')
 
-
       with lcd(TEMP_DIR), settings(warn_only=True):
-        with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
-          print('checkout {} branch'.format(merge_to))
-          run_command('git checkout {}'.format(merge_to))
-
-          print('Merging "{}"'.format(TRAVIS_COMMIT))
-          result_to_check = run_command('git merge --ff-only "{}"'.format(TRAVIS_COMMIT))
-          if result_to_check.failed:
-            slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
-          else:
-            slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
-
-          print('push commit')
-          run_command("git push {} {}".format(PUSH_URI, merge_to))
+        merge_to_branch(TRAVIS_COMMIT, merge_to)
 
     else:
       print('hitting old process')
