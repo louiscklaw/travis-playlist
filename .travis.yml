@@ -1,38 +1,41 @@
-# _config-examples/single-stage/.travis.yml
-# https://testdriven.io/blog/faster-ci-builds-with-docker-cache/
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/environment-variables/
+
+# You can import up to 25 other configs in total.
+
+version: ~> 1.0
+
+os: linux
+language: node_js
 
 sudo: required
 
 services:
   - docker
 
+import:
+  - helloworld/.travis.yml
+  # - build-stages-demo/.travis.yml
+  - transfer-sh-tryout/.travis.yml
+  - travis-yml-import/test.yml
+  - travis-kicad-build/.travis.yml
+  - travis-broadcast/.travis.yml
+  # - travis-docker-tryout/.travis.yml
+
+script: echo 0
+
+after_success:
+  - echo $TRAVIS_BUILD_STAGE_NAME
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Main" ]; then ./_travis/merge_if_success.sh; fi
+
+notifications:
+  slack:
+    secure: VFA8yH986TdadSmOWgS7jOlp6t0uuBlKG3ObYTBF2qpAtqGDRDlY/zVA2tkonzwZh3JqYMZD164So8r9dU508/KrkAEf1qFH+sPt1Tn5eTsVETlmHECOBfD5UwP5iTsVuDVv3DBwnumHYptUcKxp+DqhoBKdVt7toVah3rR0luXfh/hyLMZJvGUwZqdczJfvTQHRFYbQBTV6/CDaE7zlRjnapNcB25V/OuLe/Vukcaow3gzJsm59bkCkeFRyeO70s7lB0YeaHjwa4H4KXWClq4MPH71HLDPLD+5LFgyqdkYe9FwjE4nyPSGjOMebSQYLlE0cUNwZCClQIvVmM5ep4wu+nzPruiqsQa+khzrmNfk/evpwh29saePA7/wwfBm8zKMVeVIiTXqRbOcNnmMrznGGTIWHt9XW2tl32ax55UZUxLoGZIG+LOd7SK6XHSwCcuW0rI5aen2smyK6uVB1KUiEWm4Cj0ETaWbPi1SOkhXUcvEAJuPtMZdGNxDPD8DphP9Pl6f5Qp0zaUsCbIDif5OHi1J5Ch5ICmJB1+bZMyFMEw4mcmhVOcFC/NxHheVjtsjzt9oPiIbirhBIWfHM9VpRP6lLteQAdI0VEyKRUBbx4jjNhogeZcbSqyYmB1G58z+14Hmpw6t0LC0wtVwnCgphRLok1HAQveyLbCvZEEU=
 
 env:
   global:
-    - CACHE_IMAGE: logickee/licheepi
-    # REGISTRY_PASS
-    - secure: K6l4/cBuGTwWaoHNc0BZxmiCju69XbWP/qZGglmLEoPmfZUmerQHIcyhBN5LnO+3x9niQSCFl4dE/o1WODo9Vh0VNHLhsfeIWo+WWvEFBafbQ+TOPhA3YeLzBgOjL027eNBvilrEgxswdxxaD2ekeaaOlJPPdE2UhZYjNJpKLaaWi/GTBeXEmbuIMlEKwMn/FVdd/62MUrY0rYWFmdmmygh1eJRaX0GatSY/s3ATlFOOhtAehBN7okSllWpsk7VmN6HKvlK7DuhkjU2waweIHhMM6O+tJIkuT0wonSRxG4tlhBL3CxhDiHwBoFoq+woPqsN/cQBEv2yli90PMeW37E1SWCrKwGymLeq5jMu9ZKf5rJrATJx/IvbROm6ow7emYQA/a6PCXH02OuWsXmT+ANIjpIZ3KkkNMS5J98s0ySURDeFHemwZtaqJVqTWZGHeaATEBUfQyXYCuRwmT+LAIVRSGuuQ+0gByLYhUiA5PllgmWVs37MZQaN9SxhsLr+BcqhmdB9iiEBX4zTBOb7CDf8wmO0LH/C/UUFaB0YaY6jyEZp17Drw4M2XKVJXEee9L44aadzAjWM39wspyXtu7HzWGJkKkg0IpZLEljFJvsS2w1VNSwhyVm++bwTdrwQXXmg0QXgfQx9+PEBpROdLtMjgpiAe7s5RBlsAgtnYFwU=
+    # GITHUB_TOKEN
+    - secure: T5FMZIhIGap+LrNFrN4x1bDeUJ/LZWM/9tlDv0jbQ4V3iGob2FYYnBeOBTrXZrrft46/UZXZfLZ7rC4JqwbutTWxb5s79teFEe9OmhZGnVRldCpireKUrSFRNsjPTo4/vjkNI7x9/mmrF+SUKqtyJJy/vkbdVq97kzyBkH1OrsgoYTRtuSO2G4cbxT3Z10wq2PQrkjZp5rJNMdLT4Mw+MSgk/GcXnIbo3rVKLmUfmoTSkvy3232VDxycd6OB3/C+sdQsLRqCTkihe/pAosMQa28tmS+jL5Z6w1fkm7Yk2Ri4V+4ScX4xh3Vp6x12LoYMRLus7B1lkOc5auBe8ZuYmJAK6h3+9IooXXqL3dwZ+691F09TLmEUhfrRENLNe2DXbNiiyJPtabFnri1vlSXLSjzN4NWWeDYE6lwE65T9LjBAFibCRLrW5/TL0nCEoKRt4lftJNUZP3W3zcJK2l6MrbxVB2DN4W+yksHrwuhyL+dAZsxr+I42OcDGtDjbvfH6L6XjeawKVcLGdcK7x4dZLPyu2scpr1hntn4qs+Cf+yvqCYmBQRzPhM38vUhcakrypP/Iter/nsDhGXAamAtMrBY3CM4wYARkRBGvzm9+pbVYJUcBApnNhGi89UObv1syfzQ/MwEhWeHUGfxwNVsHbp1kRNe5m4gu+754do73AzE=
 
-
-before_script:
-  - docker pull logickee/licheepi:latest || true
-
-script:
-  - docker build --cache-from logickee/licheepi:latest --tag logickee/licheepi:latest .
-
-after_success:
-  - docker login -u logickee -p $REGISTRY_PASS
-  - docker push logickee/licheepi:latest
-  - hostname
-
-cache:
-  directories:
-  - $TRAVIS_BUILD_DIR/docker_images
-
-before_install:
-- docker load -i $TRAVIS_BUILD_DIR/docker_images/images.tar || true
-
-before_cache:
-- docker images -a
-- docker save -o $TRAVIS_BUILD_DIR/docker_images/images.tar $(docker images -a -q)
-- ls -l $TRAVIS_BUILD_DIR/docker_images
+    # SLACK_TOKEN
+    - secure: dCP2UJNEdIOtRJV7Psvh0Hoa9AnguYK8ZlEYQpVT7gqWXFbpt6/w5+YHs+tiAshVDYTAzwfVElGNP6+RD+L6wA7ruDooJsT038uYtpLyGZRAJfYfKHM05Lv4FbwcTnzq/6l07iPOXUryNw/cp+Q0XTXwxTjB0NbznyuwS1ygdMrRY12/HFBqQoPT7pFq8MgcP82TQOU5mRcRTo51nO3cyaFn0opKvp/SyzC4NY4+7orkcYAsWz4nr8VcmshH8Qd9MHCwhYDurINP4XvXarYP1XFdznSiMxCrQy+40WplBNt5s/NYntLn2EtNhGo1fQlcoJfscbMZaw6/6ezE/u4Na+Nf/qDobW1kP53aLBvCnGHx0y+Z+y624/wkPF+MUWcalNDI7XgXxVj5HSotj/6V8KwKuVNNFKJ6LZPUeqZ/HSB/uG+9Hh1bNhfvEEJo4f/pUgCd5iOTtqeZfpVQKLGJqRU4zjfUBaTT84SndudKFS/wtXIupzGIv67GEZA8LrTNfPuwgWlUiHjJWLQhoWngRnAbQy9pSoPN6lmpx4JBWwkjwMJhlg12lkS3icviDNFkwGCKEz3rVjpuuMB8kxdjIWiPqZSte6k+MoMqIects6pCYlxH957MrGtkk3rRF3ibz9ZrSWYD7X0idNEE7AOpcOYbyK/qcJ8PLuDZjIHXsr8=
