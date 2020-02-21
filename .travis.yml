@@ -11,10 +11,12 @@ jobs:
     - stage: unit tests travis-yml-import
       import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
       import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
+      script: echo 0
+
     - stage: unit tests helloworld
       import: louiscklaw/travis-playlist:helloworld/.travis.yml
-      script:
-        - hostname
+      script: echo 0
+
     - stage: main
       script: hostname
 
