@@ -8,11 +8,11 @@ services:
 jobs:
   include:
     - stage: unit test travis-yml-import
-      import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
+      import: travis-yml-import/test.yml
     - stage: unit test build-stages-demo
-      import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
+      import: build-stages-demo/.travis.yml
     - stage: unit test travis-kicad-build
-      import: louiscklaw/travis-playlist:travis-kicad-build/.travis.yml@feature/add-staged-build-for-main-travis-yml
+      import: travis-kicad-build/.travis.yml
     - stage: unit test myself
       script: hostname
 
