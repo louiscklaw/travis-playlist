@@ -10,7 +10,7 @@
 
 jobs:
   include:
-    - stage: travis-kicad-build
+    - stage: check markdown
       before_install:
         - npm install remark-cli remark-validate-links
       script:
