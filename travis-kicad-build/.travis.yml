@@ -1,2 +1,5 @@
-script:
-  - echo 'hello from travis-kicad-build'
+jobs:
+  include:
+    - stage: travis-kicad-build
+      script:
+        - echo 'hello from travis-kicad-build'
