@@ -1,40 +1,28 @@
 # _config-examples/single-stage/.travis.yml
 # https://testdriven.io/blog/faster-ci-builds-with-docker-cache/
-# https://docs.travis-ci.com/user/caching/
 
-sudo: required
+jobs:
+  include:
+    - stage: travis-broadcast
+      services:
+        - docker
+      before_script:
+        - docker pull logickee/licheepi:latest || true
+      script:
+        - docker build --cache-from logickee/licheepi:latest --tag logickee/licheepi:latest .
 
-services:
-  - docker
+      after_success:
+        - docker login -u logickee -p $REGISTRY_PASS
+        - docker push logickee/licheepi:latest
 
+      cache:
+        directories:
+        - docker_images
 
-env:
-  global:
-    - CACHE_IMAGE: logickee/licheepi
-    # REGISTRY_PASS
-    - secure: K6l4/cBuGTwWaoHNc0BZxmiCju69XbWP/qZGglmLEoPmfZUmerQHIcyhBN5LnO+3x9niQSCFl4dE/o1WODo9Vh0VNHLhsfeIWo+WWvEFBafbQ+TOPhA3YeLzBgOjL027eNBvilrEgxswdxxaD2ekeaaOlJPPdE2UhZYjNJpKLaaWi/GTBeXEmbuIMlEKwMn/FVdd/62MUrY0rYWFmdmmygh1eJRaX0GatSY/s3ATlFOOhtAehBN7okSllWpsk7VmN6HKvlK7DuhkjU2waweIHhMM6O+tJIkuT0wonSRxG4tlhBL3CxhDiHwBoFoq+woPqsN/cQBEv2yli90PMeW37E1SWCrKwGymLeq5jMu9ZKf5rJrATJx/IvbROm6ow7emYQA/a6PCXH02OuWsXmT+ANIjpIZ3KkkNMS5J98s0ySURDeFHemwZtaqJVqTWZGHeaATEBUfQyXYCuRwmT+LAIVRSGuuQ+0gByLYhUiA5PllgmWVs37MZQaN9SxhsLr+BcqhmdB9iiEBX4zTBOb7CDf8wmO0LH/C/UUFaB0YaY6jyEZp17Drw4M2XKVJXEee9L44aadzAjWM39wspyXtu7HzWGJkKkg0IpZLEljFJvsS2w1VNSwhyVm++bwTdrwQXXmg0QXgfQx9+PEBpROdLtMjgpiAe7s5RBlsAgtnYFwU=
+      before_install:
+        - docker load -i docker_images/images.tar || true
 
-
-before_script:
-  - docker pull logickee/licheepi:latest || true
-
-script:
-  - docker build --cache-from logickee/licheepi:latest --tag logickee/licheepi:latest .
-
-after_success:
-  - docker login -u logickee -p $REGISTRY_PASS
-  - docker push logickee/licheepi:latest
-  - hostname
-
-cache:
-  directories:
-  - $TRAVIS_BUILD_DIR/docker_images
-
-before_install:
-- docker load -i $TRAVIS_BUILD_DIR/docker_images/images.tar || true
-
-before_cache:
-- docker images -a
-# - docker save -o $TRAVIS_BUILD_DIR/docker_images/images.tar $(docker images -a -q)
-- docker save logickee/licheepi:latest | gzip > licheepi_latest.tar.gz
-- ls -l $TRAVIS_BUILD_DIR/docker_images
+      before_cache:
+        - docker images -a
+        - docker save -o docker_images/images.tar $(docker images -a -q)
+        - ls -l docker_images
