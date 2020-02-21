@@ -1,6 +1,8 @@
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/environment-variables/
 
+# You can import up to 25 other configs in total.
+
 version: ~> 1.0
 
 dist: bionic
@@ -14,7 +16,6 @@ jobs:
       import:
         - source: louiscklaw/travis-playlist:helloworld/.travis.yml
           mode: deep_merge_prepend
-      script: echo 0
 
     - stage: main
       script: hostname
