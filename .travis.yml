@@ -17,6 +17,7 @@ jobs:
 
 after_success:
   if: env(TRAVIS_BUILD_STAGE_NAME) = main
+  script:
     - cd travis-build-merger/_util
     - id
     - sudo apt update
