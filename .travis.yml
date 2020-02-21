@@ -17,7 +17,7 @@ import:
   - helloworld/.travis.yml
 
 
-script: hostname
+script: bundle exec rake
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
