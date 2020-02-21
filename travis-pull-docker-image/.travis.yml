@@ -3,7 +3,7 @@
 
 jobs:
   include:
-    - stage: travis-broadcast
+    - stage: travis-pull-docker-image
       services:
         - docker
       before_script:
