@@ -17,10 +17,8 @@ import:
   - source: louiscklaw/travis-playlist:helloworld/.travis.yml
     mode: deep_merge_prepend
 
-jobs:
-  include:
-    - stage: main
-      script: hostname
+
+script: hostname
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
