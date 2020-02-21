@@ -8,8 +8,8 @@ services:
 jobs:
   include:
     - stage: unit tests travis-yml-import
-      import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/travis-yml-import
-      import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/build-stages-demo
+      import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
+      import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
       script:
         - hostname
 
