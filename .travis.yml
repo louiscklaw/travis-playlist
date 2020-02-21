@@ -10,9 +10,9 @@ jobs:
     # - stage: unit test travis-yml-import
     #   import: travis-yml-import/test.yml
     # - stage: unit test build-stages-demo
-    #   import: build-stages-demo/.travis.yml
-    - stage: unit test travis-kicad-build
-      import: travis-kicad-build/.travis.yml
+    - stage: unit test of travis-playlist scripts
+      import: build-stages-demo/.travis.yml
+      # import: travis-kicad-build/.travis.yml
     - stage: unit test myself
       script: hostname
 
