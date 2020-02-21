@@ -1,0 +1,29 @@
+{
+  "name": "travis-playlist",
+  "version": "1.0.0",
+  "description": "https://travis-ci.com/louiscklaw/travis-playlist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louiscklaw/travis-playlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/louiscklaw/travis-playlist/issues"
+  },
+  "homepage": "https://github.com/louiscklaw/travis-playlist#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^4.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
+  }
+}
