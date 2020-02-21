@@ -14,7 +14,7 @@ services:
   - docker
 
 import:
-  - source: louiscklaw/travis-playlist:helloworld/.travis.yml
+  - ./helloworld/.travis.yml
     mode: deep_merge_prepend
 
 
