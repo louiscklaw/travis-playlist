@@ -20,8 +20,7 @@ jobs:
 after_success:
   - |
     if [ $TRAVIS_BUILD_STAGE_NAME == "main" ]; then
-      pwd
-      echo $TRAVIS_BUILD_STAGE_NAME
+      ./_travis/merge_if_success.sh
     fi
     # cd travis-build-merger/_util
     # id
