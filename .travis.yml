@@ -12,6 +12,8 @@ jobs:
       import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
       script:
         - hostname
+    - stage: main
+      script: hostname
 
 after_success:
   - cd travis-build-merger
