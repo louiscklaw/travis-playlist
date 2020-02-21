@@ -17,7 +17,7 @@ import:
   - helloworld/.travis.yml
   # - build-stages-demo/.travis.yml
   - transfer-sh-tryout/.travis.yml
-
+  - travis-yml-import/test.yml
 
 script: echo 0
 

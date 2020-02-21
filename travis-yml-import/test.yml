@@ -1,2 +1,5 @@
-script:
-  - echo 'hello from travis-yml-import'
+jobs:
+  include:
+    - stage: travis-yml-import
+      script:
+        - echo 'hello from travis-yml-import'
