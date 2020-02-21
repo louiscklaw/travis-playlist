@@ -19,7 +19,7 @@ jobs:
 
 after_success:
   - |
-    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
+    if [ $TRAVIS_BUILD_STAGE_NAME == "main" ]; then
       pwd
     fi
     # cd travis-build-merger/_util
