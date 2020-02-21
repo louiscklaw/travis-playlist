@@ -16,7 +16,7 @@ jobs:
     - stage: unit test myself
       script: hostname
 
-after_script:
+after_success:
   - cd travis-build-merger/_util
   - id
   - sudo apt update
