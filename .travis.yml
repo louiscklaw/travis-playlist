@@ -16,7 +16,7 @@ jobs:
       script: hostname
 
 after_success:
-  if: TRAVIS_BUILD_STAGE_NAME = main
+  if: env(TRAVIS_BUILD_STAGE_NAME) = main
     script:
       - cd travis-build-merger/_util
       - id
