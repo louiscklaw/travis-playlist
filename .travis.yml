@@ -6,6 +6,7 @@ services:
   - docker
 
 import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/travis-yml-import
+import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/build-stages-demo
 script:
   - hostname
 
