@@ -9,7 +9,9 @@ services:
 jobs:
   include:
     - stage: unit tests helloworld
-      import: louiscklaw/travis-playlist:helloworld/.travis.yml
+      import:
+        - source: louiscklaw/travis-playlist:helloworld/.travis.yml
+          mode: deep_merge_prepend
 
 
     - stage: main
