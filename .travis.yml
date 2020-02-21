@@ -6,7 +6,7 @@
 version: ~> 1.0
 
 os: linux
-language: generic
+language: node_js
 
 dist: bionic
 
