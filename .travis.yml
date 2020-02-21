@@ -18,10 +18,7 @@ jobs:
       script: hostname
 
 after_success:
-  - |
-    if [ $TRAVIS_BUILD_STAGE_NAME == "main" ]; then
-      ./_travis/merge_if_success.sh
-    fi
+  - if [ $TRAVIS_BUILD_STAGE_NAME == "main" ]; then pwd; fi
     # cd travis-build-merger/_util
     # id
     # sudo apt update
