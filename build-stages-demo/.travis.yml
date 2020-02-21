@@ -1,5 +1,3 @@
-sudo: false
-
 jobs:
   include:
     - stage: unit tests
@@ -7,18 +5,10 @@ jobs:
     - stage: unit tests
       script: echo two
     - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: sf-stages-staging
-        api_key: $HEROKU_AUTH_TOKEN
-        on: sf-stages-demo
+      script: echo one
     - stage: test staging
-      script: 'curl http://sf-stages-staging.herokuapp.com'
+      script: echo one
     - stage: deploy to production
-      script: /bin/true
-      deploy:
-        <<: *heroku
-        app: sf-stages-production
+      script: echo one
     - stage: test production
-      script: 'curl http://sf-stages-production.herokuapp.com'
+      script: echo one
