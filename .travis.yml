@@ -4,7 +4,10 @@
 # You can import up to 25 other configs in total.
 
 version: ~> 1.0
+
 os: linux
+language: generic
+
 dist: bionic
 
 services:
