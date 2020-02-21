@@ -12,7 +12,7 @@ jobs:
       import:
         - source: louiscklaw/travis-playlist:helloworld/.travis.yml
           mode: deep_merge_prepend
-
+      script: echo 0
 
     - stage: main
       script: hostname
