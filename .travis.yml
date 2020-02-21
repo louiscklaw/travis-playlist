@@ -15,7 +15,6 @@ services:
 
 import:
   - helloworld/.travis.yml
-    mode: deep_merge_prepend
 
 
 script: hostname
