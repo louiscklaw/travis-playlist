@@ -11,15 +11,19 @@ language: node_js
 
 import:
   - helloworld/.travis.yml
-  - travis-broadcast/.travis.yml
+  # - travis-broadcast/.travis.yml
+  # - transfer-sh-tryout/.travis.yml
+  # - travis-yml-import/test.yml
+  # - travis-kicad-build/.travis.yml
   # - build-stages-demo/.travis.yml
-  - transfer-sh-tryout/.travis.yml
-  - travis-yml-import/test.yml
-  - travis-kicad-build/.travis.yml
   # - travis-docker-tryout/.travis.yml
   - cache-docker-image/.travis.yml
 
-script: echo 0
+jobs:
+  include:
+    - stage: Main
+      script:
+        - echo "helloworld"
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
