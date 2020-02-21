@@ -9,10 +9,9 @@ jobs:
   include:
     - stage: unit tests travis-yml-import
       import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
+    - stage: unit tests build-stages-demo
       import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
-      script:
-        - hostname
-    - stage: main
+    - stage: unit test myself
       script: hostname
 
 after_success:
