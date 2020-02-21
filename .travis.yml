@@ -19,6 +19,7 @@ import:
   - transfer-sh-tryout/.travis.yml
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
+  - travis-broadcast/.travis.yml
 
 script: echo 0
 
