@@ -1,5 +1,6 @@
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/environment-variables/
+# https://docs.travis-ci.com/user/job-lifecycle/
 
 # You can import up to 25 other configs in total.
 
@@ -8,26 +9,26 @@ version: ~> 1.0
 os: linux
 language: node_js
 
-dist: bionic
-
-services:
-  - docker
-
 import:
   - helloworld/.travis.yml
-  # - build-stages-demo/.travis.yml
+  - travis-broadcast/.travis.yml
   - transfer-sh-tryout/.travis.yml
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
-  - travis-broadcast/.travis.yml
+  # - build-stages-demo/.travis.yml
   # - travis-docker-tryout/.travis.yml
   - check-markdown/.travis.yml
+  - cache-docker-image/.travis.yml
 
-script: echo 0
+jobs:
+  include:
+    - stage: Merge
+      script:
+        - echo "dummy job for merging"
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Main" ]; then ./_travis/merge_if_success.sh; fi
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./_travis/merge_if_success.sh; fi
 
 notifications:
   slack:
