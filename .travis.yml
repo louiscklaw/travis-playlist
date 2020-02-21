@@ -9,11 +9,6 @@ version: ~> 1.0
 os: linux
 language: node_js
 
-sudo: required
-
-services:
-  - docker
-
 import:
   - helloworld/.travis.yml
   # - build-stages-demo/.travis.yml
