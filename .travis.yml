@@ -19,7 +19,9 @@ jobs:
 
 after_success:
   - |
-    pwd
+    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
+      pwd
+    fi
     # cd travis-build-merger/_util
     # id
     # sudo apt update
