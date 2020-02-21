@@ -1,2 +1,3 @@
-script:
-  - echo 'travis.yml helloworld'
+rvm:
+  - 2.5
+  - 2.6
