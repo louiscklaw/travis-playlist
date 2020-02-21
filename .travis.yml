@@ -15,6 +15,7 @@ services:
 
 import:
   - helloworld/.travis.yml
+  - build-stages-demo/.travis.yml
 
 
 script: echo 0

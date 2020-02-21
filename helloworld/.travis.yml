@@ -1,6 +1,6 @@
 
 jobs:
   include:
-    - stage: gem release
+    - stage: test helloworld
       script:
         - echo "helloworld"
