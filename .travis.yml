@@ -18,7 +18,7 @@ jobs:
       script: hostname
 
 after_success:
-  - if ( $TRAVIS_BUILD_STAGE_NAME == "main" ); then ./_travis/merge_if_success.sh; fi
+  - if [ ! false ]; then pwd; fi
 
 notifications:
   slack:
