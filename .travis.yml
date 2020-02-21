@@ -10,6 +10,7 @@ jobs:
     - stage: unit tests travis-yml-import
       import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
       import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
+      import: louiscklaw/travis-playlist:helloworld/.travis.yml
       script:
         - hostname
     - stage: main
