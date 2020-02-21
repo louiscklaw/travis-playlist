@@ -7,9 +7,6 @@ services:
 
 jobs:
   include:
-    # - stage: unit test travis-yml-import
-    #   import: travis-yml-import/test.yml
-    # - stage: unit test build-stages-demo
     - stage: unit test of travis-playlist scripts
       import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/test-staged-build-for-main-travis-yml
       import: louiscklaw/travis-playlist:build-stages-demo/.travis.yml@test/test-staged-build-for-main-travis-yml
