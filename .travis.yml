@@ -20,7 +20,7 @@ jobs:
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
   - if [ ! false ]; then pwd; fi
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "main" ]; then ./_travis/merge_if_success.sh; fi
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Main" ]; then ./_travis/merge_if_success.sh; fi
 
 notifications:
   slack:
