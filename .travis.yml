@@ -8,6 +8,7 @@ services:
 before_install:
   - docker pull ubuntu:18.04
 
+import: louiscklaw/travis-playlist:travis-yml-import/test.yml@test/travis-yml-import
 script:
   - hostname
 
