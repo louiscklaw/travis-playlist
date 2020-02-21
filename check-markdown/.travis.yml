@@ -1,15 +1,17 @@
 # This is a travis-ci.org continuous integration configuration file.
-language: node_js
-node_js:
-  - 12
+# language: node_js
+# node_js:
+#   - 12
 
-cache:
-  npm: true
-  directories:
-  - travis_cache
+# cache:
+#   npm: true
+#   directories:
+#   - travis_cache
 
-before_install:
-  - npm install remark-cli remark-validate-links
-
-script:
-  - /bin/bash check-markdown/test_markdown.sh
+jobs:
+  include:
+    - stage: travis-kicad-build
+      before_install:
+        - npm install remark-cli remark-validate-links
+      script:
+        - /bin/bash check-markdown/test_markdown.sh

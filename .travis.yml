@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-# This is a travis-ci.org continuous integration configuration file.
-language: node_js
-node_js:
-  - 12
-
-cache:
-  npm: true
-  directories:
-  - travis_cache
-
-before_install:
-  - npm install remark-cli remark-validate-links
-
-script:
-  - /bin/bash check-markdown/test_markdown.sh
-=======
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/environment-variables/
 
@@ -38,6 +21,7 @@ import:
   - travis-kicad-build/.travis.yml
   - travis-broadcast/.travis.yml
   # - travis-docker-tryout/.travis.yml
+  - check-markdown/.travis.yml
 
 script: echo 0
 
@@ -56,4 +40,3 @@ env:
 
     # SLACK_TOKEN
     - secure: dCP2UJNEdIOtRJV7Psvh0Hoa9AnguYK8ZlEYQpVT7gqWXFbpt6/w5+YHs+tiAshVDYTAzwfVElGNP6+RD+L6wA7ruDooJsT038uYtpLyGZRAJfYfKHM05Lv4FbwcTnzq/6l07iPOXUryNw/cp+Q0XTXwxTjB0NbznyuwS1ygdMrRY12/HFBqQoPT7pFq8MgcP82TQOU5mRcRTo51nO3cyaFn0opKvp/SyzC4NY4+7orkcYAsWz4nr8VcmshH8Qd9MHCwhYDurINP4XvXarYP1XFdznSiMxCrQy+40WplBNt5s/NYntLn2EtNhGo1fQlcoJfscbMZaw6/6ezE/u4Na+Nf/qDobW1kP53aLBvCnGHx0y+Z+y624/wkPF+MUWcalNDI7XgXxVj5HSotj/6V8KwKuVNNFKJ6LZPUeqZ/HSB/uG+9Hh1bNhfvEEJo4f/pUgCd5iOTtqeZfpVQKLGJqRU4zjfUBaTT84SndudKFS/wtXIupzGIv67GEZA8LrTNfPuwgWlUiHjJWLQhoWngRnAbQy9pSoPN6lmpx4JBWwkjwMJhlg12lkS3icviDNFkwGCKEz3rVjpuuMB8kxdjIWiPqZSte6k+MoMqIects6pCYlxH957MrGtkk3rRF3ibz9ZrSWYD7X0idNEE7AOpcOYbyK/qcJ8PLuDZjIHXsr8=
->>>>>>> feature/ubuntu-tryout
