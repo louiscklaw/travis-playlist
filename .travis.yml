@@ -21,6 +21,7 @@ after_success:
   - |
     if [ $TRAVIS_BUILD_STAGE_NAME == "main" ]; then
       pwd
+      echo $TRAVIS_BUILD_STAGE_NAME
     fi
     # cd travis-build-merger/_util
     # id
@@ -29,7 +30,6 @@ after_success:
     # pip3 install --user pipenv
     # pipenv sync
     # pipenv run python3 ./merge.py
-    # echo $TRAVIS_BUILD_STAGE_NAME
 
 notifications:
   slack:
