@@ -7,7 +7,7 @@
 version: ~> 1.0
 
 os: linux
-language: node_js
+language: generic
 
 import:
   # - helloworld/.travis.yml
