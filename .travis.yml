@@ -16,7 +16,7 @@ import:
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
   # - build-stages-demo/.travis.yml
-  # - travis-docker-tryout/.travis.yml
+  - travis-docker-tryout/.travis.yml
   # - cache-docker-image/.travis.yml
   - merge/.travis.yml
 
