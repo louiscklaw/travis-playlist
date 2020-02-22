@@ -10,15 +10,16 @@ os: linux
 language: generic
 
 import:
-  - helloworld/.travis.yml
-  - travis-broadcast/.travis.yml
-  # - transfer-sh-tryout/.travis.yml
-  - travis-yml-import/test.yml
-  - travis-kicad-build/.travis.yml
-  # - build-stages-demo/.travis.yml
-  - travis-docker-tryout/.travis.yml
-  # - cache-docker-image/.travis.yml
-  - merge/.travis.yml
+  # - helloworld/.travis.yml
+  # - travis-broadcast/.travis.yml
+  # # - transfer-sh-tryout/.travis.yml
+  # - travis-yml-import/test.yml
+  # - travis-kicad-build/.travis.yml
+  # # - build-stages-demo/.travis.yml
+  # - travis-docker-tryout/.travis.yml
+  # # - cache-docker-image/.travis.yml
+  - travis-build-docker-image/.travis.yml
+  # - merge/.travis.yml
 
 notifications:
   slack:

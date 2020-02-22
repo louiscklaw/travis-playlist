@@ -3,7 +3,7 @@
 jobs:
   include:
     - stage: Test
-      name: travis-docker-tryout
+      name: Test travis-docker-tryout
 
       services:
         - docker
