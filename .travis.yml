@@ -18,16 +18,7 @@ import:
   # - build-stages-demo/.travis.yml
   # - travis-docker-tryout/.travis.yml
   # - cache-docker-image/.travis.yml
-
-jobs:
-  include:
-    - stage: Merge
-      script:
-        - echo "dummy job for merging"
-
-after_success:
-  - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./_travis/merge_if_success.sh; fi
+  - merge/.travis.yml
 
 notifications:
   slack:
