@@ -1,12 +1,19 @@
 # https://docs.travis-ci.com/user/docker/
 
-dist: bionic
+jobs:
+  include:
+    - stage: Test
+      name: Test travis-docker-tryout
 
-services:
-  - docker
-
-before_install:
-  - docker pull ubuntu:18:04
-
-script:
-  - docker run ubuntu:18:04 hostname
+      services:
+        - docker
+      before_install:
+        - docker pull ubuntu
+        - docker pull ubuntu:18.04
+        - docker pull ubuntu:20.04
+        - docker pull ubuntu:16.04
+      script:
+        - docker run ubuntu uname -ar
+        - docker run ubuntu:18.04 uname -ar
+        - docker run ubuntu:20.04 uname -ar
+        - docker run ubuntu:16.04 uname -ar
