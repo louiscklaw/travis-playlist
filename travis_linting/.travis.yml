@@ -10,8 +10,9 @@
 
 jobs:
   include:
-    - stage: check markdown
-      before_install:
+    - stage: Test
+      name: Test check markdown
+      install:
         - npm install remark-cli remark-validate-links
       script:
-        - /bin/bash check-markdown/test_markdown.sh
+        - travis_linting/test_markdown.sh
