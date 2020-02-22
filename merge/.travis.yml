@@ -1,7 +1,8 @@
 
 jobs:
   include:
-    - stage: Merge to main playlist
+    - stage: Merge
+      name: "Merge to main playlist"
       script:
         - echo "dummy job for merging"
 
