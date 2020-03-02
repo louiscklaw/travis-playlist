@@ -1,4 +1,6 @@
 
 **/.env
 main.py
-node_modules
+**/node_modules
+
+**/*.log
