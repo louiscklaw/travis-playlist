@@ -11,7 +11,7 @@ language: node_js
 
 import:
   - helloworld/.travis.yml
-  - travis-broadcast/.travis.yml
+  # - travis-broadcast/.travis.yml
   # - transfer-sh-tryout/.travis.yml
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
@@ -28,7 +28,7 @@ jobs:
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./_travis/merge_if_success.sh; fi
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./.travis/merge_if_success.sh; fi
 
 notifications:
   slack:
