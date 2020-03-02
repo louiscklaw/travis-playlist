@@ -1,5 +1,6 @@
 jobs:
   include:
-    - stage: travis-kicad-build
+    - stage: Test
+      name: Test travis-kicad-build
       script:
         - echo 'hello from travis-kicad-build'
