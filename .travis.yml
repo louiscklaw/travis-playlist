@@ -7,28 +7,20 @@
 version: ~> 1.0
 
 os: linux
-language: node_js
+language: generic
 
 import:
-  - helloworld/.travis.yml
+  # - helloworld/.travis.yml
   # - travis-broadcast/.travis.yml
-  # - transfer-sh-tryout/.travis.yml
-  - travis-yml-import/test.yml
-  - travis-kicad-build/.travis.yml
-  # - build-stages-demo/.travis.yml
+  # # - transfer-sh-tryout/.travis.yml
+  # - travis-yml-import/test.yml
+  # - travis-kicad-build/.travis.yml
+  # # - build-stages-demo/.travis.yml
   # - travis-docker-tryout/.travis.yml
-  - cache-docker-image/.travis.yml
-  - travis-pull-docker-image/.travis.yml
-
-jobs:
-  include:
-    - stage: Merge
-      script:
-        - echo "dummy job for merging"
-
-after_success:
-  - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./.travis/merge_if_success.sh; fi
+  # # - cache-docker-image/.travis.yml
+  # - travis-build-docker-image/.travis.yml
+  # - merge/.travis.yml
+  - travis-arm-build/.travis.yml
 
 notifications:
   slack:

@@ -1,0 +1,8 @@
+arch:
+  - arm64
+  - amd64
+
+os: linux
+
+script:
+  - hostname
