@@ -7,7 +7,11 @@
 version: ~> 1.0
 
 os: linux
+dist: bionic
+
 language: node_js
+node_js:
+  - 10
 
 import:
   - helloworld/.travis.yml
@@ -16,18 +20,10 @@ import:
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
   # - build-stages-demo/.travis.yml
-  # - travis-docker-tryout/.travis.yml
-  - cache-docker-image/.travis.yml
-
-jobs:
-  include:
-    - stage: Merge
-      script:
-        - echo "dummy job for merging"
-
-after_success:
-  - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./_travis/merge_if_success.sh; fi
+  - travis-docker-tryout/.travis.yml
+  # - cache-docker-image/.travis.yml
+  - travis-build-docker-image/.travis.yml
+  - merge/.travis.yml
 
 notifications:
   slack:
