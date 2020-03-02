@@ -1,5 +1,6 @@
 jobs:
   include:
-    - stage: travis-yml-import
+    - stage: Test
+      name: Test travis-yml-import
       script:
         - echo 'hello from travis-yml-import'
