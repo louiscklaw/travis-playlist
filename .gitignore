@@ -2,3 +2,5 @@
 **/.env
 main.py
 **/node_modules
+
+**/*.log
