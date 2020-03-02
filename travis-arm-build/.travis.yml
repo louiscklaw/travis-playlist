@@ -6,6 +6,11 @@ arch:
 
 os: linux
 
+services:
+  - docker
+
+before_install:
+  - docker pull ubuntu:18:04
+
 script:
-  - hostname
-  - cat /proc/cpuinfo
+  - docker run ubuntu:18:04 hostname
