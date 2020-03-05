@@ -7,11 +7,15 @@
 version: ~> 1.0
 
 os: linux
-language: generic
+dist: bionic
+
+language: node_js
+node_js:
+  - 12
 
 import:
   - helloworld/.travis.yml
-  - travis-broadcast/.travis.yml
+  # - travis-broadcast/.travis.yml
   # - transfer-sh-tryout/.travis.yml
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
@@ -19,6 +23,7 @@ import:
   - travis-docker-tryout/.travis.yml
   # - cache-docker-image/.travis.yml
   - travis-build-docker-image/.travis.yml
+  - travis-arm-build/.travis.yml
   - merge/.travis.yml
 
 notifications:
