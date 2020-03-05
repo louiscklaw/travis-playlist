@@ -25,5 +25,9 @@
     "hooks": {
       "commit-msg": "commitlint -e $GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "remark-cli": "^7.0.1",
+    "remark-validate-links": "^9.2.0"
   }
 }
