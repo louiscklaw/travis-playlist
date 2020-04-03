@@ -6,8 +6,8 @@ jobs:
     - stage: Test-travis-build-docker-image
       name: Test-travis-build-docker-image
       arch:
-        - amd64
         - arm64
+        # - amd64
 
       os: linux
 
