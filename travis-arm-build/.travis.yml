@@ -7,7 +7,6 @@ jobs:
       name: Test-travis-build-docker-image
       arch:
         - arm64
-        # - amd64
 
       os: linux
 
