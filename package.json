@@ -23,7 +23,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "npx commitlint -e $GIT_PARAMS"
+      "commit-msg": "npx commitlint -e $GIT_PARAMS",
+      "pre-push": "for l in $(find . -name .travis.yml); do travis lint $l; done"
     }
   },
   "dependencies": {
