@@ -1,0 +1,25 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "fe47fedcc1e639e6f073af6941fe0b8d7435ae5acc061f721bfce45eef27de71"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "pydrive": {
+            "git": "https://github.com/googledrive/PyDrive.git",
+            "ref": "cf58f81efa67cb30f7c9b3da7d304f214a9b6d3b"
+        }
+    },
+    "develop": {}
+}
