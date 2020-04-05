@@ -24,6 +24,7 @@ import:
   # - cache-docker-image/.travis.yml
   - travis-build-docker-image/.travis.yml
   - travis-arm-build/.travis.yml
+  - travis-pydrive-tryout/.travis.yml
   - merge/.travis.yml
 
 notifications:
