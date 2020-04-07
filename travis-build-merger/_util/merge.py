@@ -13,9 +13,9 @@ SLACK_TOKEN = os.environ['SLACK_TOKEN']
 
 merge_direction = {
   '^test/(.+?)$': 'feature',
-  '^feature' : 'develop',
-  '^fix' : 'pre-merge',
-  '^test' : 'feature',
+  '^feature/(.+?)$' : 'develop',
+  '^fix/(.+?)$' : 'pre-merge',
+  '^pre-merge/(.+?)$' : 'develop',
   # 'develop': 'master'
 }
 
@@ -62,6 +62,11 @@ def merge_to_branch(commit_id, merge_to):
     else:
       slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
+def create_new_branch(branch_name):
+  with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+    print('checkout new branch: {}'.format(branch_name))
+    run_command('git checkout -b {}'.format(branch_name))
+
 print('starting merger')
 merge_found = False
 for merge_from, merge_to in merge_direction.items():
@@ -74,14 +79,23 @@ for merge_from, merge_to in merge_direction.items():
   else:
     merge_found = True
     if len(m.groups()) == 1:
-      sub_branch = m.group(1)
-      merge_to = merge_to+'/'+sub_branch
-
-      print(f'try to merge {merge_from} -> {merge_to}')
-
-      with lcd(TEMP_DIR):
-        merge_to_branch(TRAVIS_COMMIT, merge_to)
+      # TODO: switch for pre-merge
+      if TRAVIS_BRANCH[0:4] == 'fix/':
+        # build success on fix branch, checkout new pre-merge and try merge from develop
+        create_new_branch('pre-merge/'+m.group(1))
+        # merge from develop
+        run_command('git merge develop')
         push_commit(PUSH_URI)
+
+      else:
+        sub_branch = m.group(1)
+        merge_to = merge_to+'/'+sub_branch
+
+        print(f'try to merge {merge_from} -> {merge_to}')
+
+        with lcd(TEMP_DIR):
+          merge_to_branch(TRAVIS_COMMIT, merge_to)
+          push_commit(PUSH_URI)
 
     # TEST: remove else from if loop
     # else:
