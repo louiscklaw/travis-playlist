@@ -109,10 +109,10 @@ for merge_from, merge_to in merge_direction.items():
           merge_to_branch(TRAVIS_COMMIT, expected_pre_merge_branch)
         else:
           create_new_branch(expected_pre_merge_branch)
-          push_commit(PUSH_URI)
+          push_commit(PUSH_URI, expected_pre_merge_branch)
         # merge from develop
         run_command('git merge develop')
-        push_commit(PUSH_URI)
+        push_commit(PUSH_URI, expected_pre_merge_branch)
 
         break
 
