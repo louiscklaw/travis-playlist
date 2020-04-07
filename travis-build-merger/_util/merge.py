@@ -101,6 +101,7 @@ for merge_from, merge_to in merge_direction.items():
     if len(m.groups()) == 1:
       # TODO: switch for pre-merge
       if TRAVIS_BRANCH[0:4] == 'fix/':
+        # handle fix/xxxxxx to pre-merge/xxxxxx
         current_branch = TRAVIS_BRANCH
         expected_pre_merge_branch = current_branch.replace('fix/','pre-merge/')
         # build success on fix branch, checkout new pre-merge and try merge from develop
@@ -116,7 +117,19 @@ for merge_from, merge_to in merge_direction.items():
 
         break
 
+      elif TRAVIS_BRANCH[0:9] == 'pre-merge/':
+        # handle pre-merge/xxxxxx to develop
+        current_branch = TRAVIS_BRANCH
+        print(f'try to merge {merge_from} -> {merge_to}')
+
+        with lcd(TEMP_DIR):
+          merge_to_branch(TRAVIS_COMMIT, merge_to)
+          push_commit(PUSH_URI, merge_to)
+
+        break
+
       else:
+        # handle feature/xxxxxx to develop
         sub_branch = m.group(1)
         merge_to = merge_to+'/'+sub_branch
 
