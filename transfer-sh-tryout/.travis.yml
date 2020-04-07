@@ -1,6 +1,7 @@
 jobs:
   include:
-    - stage: transfer-sh tryout
+    - stage: Test
+      name: transfer-sh tryout
       script:
         - cd $TRAVIS_BUILD_DIR/transfer-sh-tryout
         - id
