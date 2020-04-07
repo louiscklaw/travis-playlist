@@ -14,6 +14,8 @@ SLACK_TOKEN = os.environ['SLACK_TOKEN']
 merge_direction = {
   '^test/(.+?)$': 'feature',
   '^feature' : 'develop',
+  '^fix' : 'pre-merge',
+  '^test' : 'feature',
   # 'develop': 'master'
 }
 
