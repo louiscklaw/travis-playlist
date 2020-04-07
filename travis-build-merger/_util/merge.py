@@ -81,6 +81,7 @@ for merge_from, merge_to in merge_direction.items():
         merge_to_branch(TRAVIS_COMMIT, merge_to)
         push_commit(PUSH_URI)
 
+    # TEST: remove else from if loop
     # else:
     #   print(f'try to merge {merge_from} -> {merge_to}')
 
