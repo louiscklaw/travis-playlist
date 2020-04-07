@@ -81,12 +81,12 @@ for merge_from, merge_to in merge_direction.items():
         merge_to_branch(TRAVIS_COMMIT, merge_to)
         push_commit(PUSH_URI)
 
-    else:
-      print(f'try to merge {merge_from} -> {merge_to}')
+    # else:
+    #   print(f'try to merge {merge_from} -> {merge_to}')
 
-      with lcd(TEMP_DIR):
-        merge_to_branch(TRAVIS_COMMIT, merge_to)
-        push_commit(PUSH_URI)
+    #   with lcd(TEMP_DIR):
+    #     merge_to_branch(TRAVIS_COMMIT, merge_to)
+    #     push_commit(PUSH_URI)
 
 if not merge_found:
   print('no merge direction for this branch')
