@@ -10,5 +10,4 @@ pip3 install --user pipenv
 pipenv sync
 pipenv run python3 ./merge.py
 
-cd ../..
-pwd
+cd -
