@@ -67,6 +67,26 @@ def create_new_branch(branch_name):
     print('checkout new branch: {}'.format(branch_name))
     run_command('git checkout -b {}'.format(branch_name))
 
+def checkout_branch(branch_name):
+  with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+    print('checkout branch: {}'.format(branch_name))
+    run_command('git checkout {}'.format(branch_name))
+
+def check_branch_exist(branch_name):
+  with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+    print('check branch exist: {}'.format(branch_name))
+    result = [temp.replace('* ','').strip() for temp in run_command('git branch').split('\n')]
+    try:
+      from pprint import pprint
+      pprint(result)
+      result.index(branch_name)
+      print('branch found')
+      return True
+    except Exception as e:
+      print('branch not found')
+      return False
+      pass
+
 print('starting merger')
 merge_found = False
 for merge_from, merge_to in merge_direction.items():
@@ -81,11 +101,20 @@ for merge_from, merge_to in merge_direction.items():
     if len(m.groups()) == 1:
       # TODO: switch for pre-merge
       if TRAVIS_BRANCH[0:4] == 'fix/':
+        current_branch = TRAVIS_BRANCH
+        expected_pre_merge_branch = current_branch.replace('fix/','pre-merge/')
         # build success on fix branch, checkout new pre-merge and try merge from develop
-        create_new_branch('pre-merge/'+m.group(1))
+        if check_branch_exist(expected_pre_merge_branch):
+          checkout_branch(expected_pre_merge_branch)
+          merge_to_branch(TRAVIS_COMMIT, expected_pre_merge_branch)
+        else:
+          create_new_branch(expected_pre_merge_branch)
+          push_commit(PUSH_URI)
         # merge from develop
         run_command('git merge develop')
         push_commit(PUSH_URI)
+
+        break
 
       else:
         sub_branch = m.group(1)
@@ -96,6 +125,8 @@ for merge_from, merge_to in merge_direction.items():
         with lcd(TEMP_DIR):
           merge_to_branch(TRAVIS_COMMIT, merge_to)
           push_commit(PUSH_URI)
+
+        break
 
     # TEST: remove else from if loop
     # else:
