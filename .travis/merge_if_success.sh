@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-pwd
 cd travis-build-merger/_util
 
 id
