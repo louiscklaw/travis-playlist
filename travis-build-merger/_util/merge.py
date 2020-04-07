@@ -45,7 +45,7 @@ def run_command(command_body):
   print(command_result)
   return command_result
 
-def push_commit(uri_to_push):
+def push_commit(uri_to_push, merge_to):
     print('push commit')
     run_command("git push {} {}".format(uri_to_push, merge_to))
 
@@ -124,7 +124,7 @@ for merge_from, merge_to in merge_direction.items():
 
         with lcd(TEMP_DIR):
           merge_to_branch(TRAVIS_COMMIT, merge_to)
-          push_commit(PUSH_URI)
+          push_commit(PUSH_URI, merge_to)
 
         break
 
