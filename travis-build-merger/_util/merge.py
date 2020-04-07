@@ -131,8 +131,6 @@ for merge_from, merge_to in merge_direction.items():
       else:
         # handle feature/xxxxxx to develop
         sub_branch = m.group(1)
-        merge_to = merge_to+'/'+sub_branch
-
         print(f'try to merge {merge_from} -> {merge_to}')
 
         with lcd(TEMP_DIR):
