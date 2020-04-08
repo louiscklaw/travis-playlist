@@ -4,3 +4,6 @@
 [submodule "_dashboard/themes/ananke"]
 	path = _dashboard/themes/ananke
 	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "_dashboard/themes/minimal"]
+	path = _dashboard/themes/minimal
+	url = https://github.com/calintat/minimal.git
