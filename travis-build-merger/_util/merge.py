@@ -122,7 +122,7 @@ def categorize_branch(branch_to_test):
     return CONST_BRANCH_FEATURE
   elif branch_to_test[0:5] == 'test/':
     return CONST_BRANCH_TEST
-  elif branch_to_test[0:9] == 'pre-merge/':
+  elif branch_to_test[0:10] == 'pre-merge/':
     return CONST_BRANCH_PRE_MERGE
   else:
     return CONST_BRANCH_UNKNOWN
