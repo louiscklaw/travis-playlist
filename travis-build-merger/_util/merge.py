@@ -35,6 +35,7 @@ PUSH_URI="https://{}@github.com/{}".format(GITHUB_TOKEN, GITHUB_REPO)
 
 def create_temp_dir():
   TEMP_DIR = local('mktemp -d', capture=True)
+  print(f'create temp directory {TEMP_DIR}')
   return TEMP_DIR
 
 def git_clone_source(PUSH_URI, TEMP_DIR):
@@ -237,5 +238,5 @@ def main(PUSH_URI, TEMP_DIR):
 
 if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
-  git_clone_source(PUSH_URI, TEMP_DIR)
+  # git_clone_source(PUSH_URI, TEMP_DIR)
   main(PUSH_URI, TEMP_DIR)
