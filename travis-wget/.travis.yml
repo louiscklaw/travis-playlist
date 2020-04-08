@@ -2,7 +2,7 @@
 jobs:
   include:
     - stage: Test
-      name: Test helloworld
+      name: Test wget
       script:
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/Pipfile
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/Pipfile.lock
