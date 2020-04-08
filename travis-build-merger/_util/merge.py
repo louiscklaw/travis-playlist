@@ -156,7 +156,7 @@ def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
   feature_branch_name = 'feature/'+branch_name
 
   # CAUTION: using cwd inside run_command
-  run_command('git clone {} -b {}'.format(PUSH_URI, test_branch_name), cwd)
+  run_command('git clone  -b {} {}'.format(test_branch_name, PUSH_URI), cwd)
 
   merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
 
