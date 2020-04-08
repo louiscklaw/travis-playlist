@@ -16,6 +16,8 @@ CONST_BRANCH_FIX = 0
 CONST_BRANCH_FEATURE = 1
 CONST_BRANCH_TEST = 2
 CONST_BRANCH_PRE_MERGE = 3
+CONST_BRANCH_DEVELOP = 4
+CONST_BRANCH_PRE_MERGE_MASTER = 5
 
 merge_direction = {
   '^test/(.+?)$': 'feature',
@@ -118,6 +120,10 @@ def categorize_branch(branch_to_test):
 
   if branch_to_test[0:4] == 'fix/':
     return CONST_BRANCH_FIX
+  elif branch_to_test == 'develop':
+    return CONST_BRANCH_DEVELOP
+  elif branch_to_test == 'pre-merge-master':
+    return CONST_BRANCH_PRE_MERGE_MASTER
   elif branch_to_test[0:8] == 'feature/':
     return CONST_BRANCH_FEATURE
   elif branch_to_test[0:5] == 'test/':
@@ -142,11 +148,14 @@ def merge_to_pre_merge_branch(fix_branch_name, pre_merge_branch_name, cwd):
 def merge_to_develop_branch(branch_to_merge, cwd):
   checkout_branch('develop', cwd)
   run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
-  pass
 
 
-def merge_to_develop_branch(branch_to_merge, cwd):
-  run_command('git checkout develop', cwd)
+def merge_to_pre_merge_master_branch(branch_to_merge, cwd):
+  create_branch_if_not_exist('pre-merge-master', cwd)
+  run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
+
+def merge_to_master_branch(branch_to_merge, cwd):
+  checkout_branch('master', cwd)
   run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
 
 
@@ -208,6 +217,32 @@ def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = F
     push_commit(PUSH_URI, 'develop', cwd)
 
 
+def process_develop_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
+  'checkout master branch, create pre-merge-master'
+  'on pre-merge-master branch, merge develop and re-test'
+
+  run_command('git clone  -b {} {} .'.format('master', PUSH_URI), cwd)
+  merge_to_pre_merge_master_branch(pre_merge_branch_in, cwd)
+
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, 'develop', cwd)
+
+
+def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
+  'checkout pre-merge-master branch'
+  'on master branch, merge pre-merge-master and re-test'
+
+  run_command('git clone  -b {} {} .'.format(pre_merge_branch_in, PUSH_URI), cwd)
+  merge_to_master_branch(pre_merge_branch_in, cwd)
+
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, 'develop', cwd)
+
+
 def main(PUSH_URI, TEMP_DIR):
   print('starting merger')
   print(f'current branch {TRAVIS_BRANCH}')
@@ -231,6 +266,16 @@ def main(PUSH_URI, TEMP_DIR):
     # pre-merge branch will merge to develop branch
     print("this is pre-merge branch, will merge to develop branch")
     process_pre_merge_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
+
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEVELOP:
+    # develop branch will merge to pre-merge-master branch
+    print("this is develop branch, will merge to master branch")
+    process_develop_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
+
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_PRE_MERGE_MASTER:
+    # pre-merge-master branch will merge to master branch
+    print("this is pre-merge-master branch, will merge to master branch")
+    process_pre_merge_master_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   else:
     print('no merge direction for this branch')

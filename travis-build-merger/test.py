@@ -18,6 +18,12 @@ def test_feature_branch():
 def test_test_branch():
   assert categorize_branch('test/') == CONST_BRANCH_TEST
 
+def test_pre_merge_master_branch():
+  assert categorize_branch('pre-merge-master') == CONST_BRANCH_PRE_MERGE_MASTER
+
+def test_develop_branch():
+  assert categorize_branch('develop') == CONST_BRANCH_DEVELOP
+
 def test_create_temp_dir():
   TEMP_DIR = create_temp_dir()
 
@@ -66,6 +72,37 @@ def test_merge_to_develop_branch():
   run_command('git branch', temp_dir)
   assert check_branch_exist('develop', temp_dir)
 
+
+def test_merge_to_pre_merge_master_branch():
+  temp_dir = create_temp_dir()
+  run_command('git init', temp_dir)
+  run_command('touch test_dummy_file', temp_dir)
+  run_command('git add . && git commit . -m "test_commit,"', temp_dir)
+  run_command('git checkout master', temp_dir)
+  run_command('git checkout -b develop', temp_dir)
+  run_command('git checkout -b pre-merge-master', temp_dir)
+
+  merge_to_pre_merge_master_branch('develop', temp_dir)
+
+  run_command('git branch', temp_dir)
+  assert check_branch_exist('pre-merge-master', temp_dir)
+
+
+def test_merge_to_master_branch():
+  temp_dir = create_temp_dir()
+  run_command('git init', temp_dir)
+  run_command('touch test_dummy_file', temp_dir)
+  run_command('git add . && git commit . -m "test_commit,"', temp_dir)
+  run_command('git checkout master', temp_dir)
+  run_command('git checkout -b pre-merge-master', temp_dir)
+
+  merge_to_master_branch('pre-merge-master', temp_dir)
+
+  run_command('git branch', temp_dir)
+  assert check_branch_exist('pre-merge-master', temp_dir)
+
+
+
 def test_process_feature_branch():
   process_feature_branch('feature/new_feature_name')
 
@@ -76,6 +113,8 @@ def test_process_pre_merge_branch():
 test_fix_branch()
 test_feature_branch()
 test_test_branch()
+test_develop_branch()
+test_pre_merge_master_branch()
 
 # test to feature
 test_merge_to_feature_branch()
@@ -85,11 +124,11 @@ test_merge_to_pre_merge_branch()
 
 # pre-merge to develop
 test_merge_to_develop_branch()
+test_merge_to_pre_merge_master_branch()
+test_merge_to_master_branch()
 
 test_get_branch_name()
 test_create_temp_dir()
-
-
 
 # test_process_test_branch()
 # # test_process_feature_branch()
