@@ -180,7 +180,7 @@ def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, pre_merge_branch)
+    push_commit(PUSH_URI, pre_merge_branch, cwd)
 
 def process_fix_branch(PUSH_URI, fix_branch_in, cwd, no_push_uri = False):
   branch_name = get_branch_name(fix_branch_in)
@@ -194,7 +194,7 @@ def process_fix_branch(PUSH_URI, fix_branch_in, cwd, no_push_uri = False):
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, pre_merge_branch)
+    push_commit(PUSH_URI, pre_merge_branch, cwd)
 
 
 def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
@@ -205,7 +205,7 @@ def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = F
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, 'develop')
+    push_commit(PUSH_URI, 'develop', cwd)
 
 
 
