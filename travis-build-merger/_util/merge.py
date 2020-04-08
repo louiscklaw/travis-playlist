@@ -237,5 +237,4 @@ def main(PUSH_URI, TEMP_DIR):
 
 if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
-  # git_clone_source(PUSH_URI, TEMP_DIR)
   main(PUSH_URI, TEMP_DIR)
