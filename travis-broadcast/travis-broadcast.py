@@ -17,4 +17,17 @@ def slack_message(message, channel):
       icon_url=':sob:'
       )
 
-slack_message(sys.argv[2], sys.argv[1])
+def main(message, channel):
+  slack_message(message, channel)
+
+if __name__ == '__main__':
+  message = sys.argv[2]
+  channel = sys.argv[1]
+
+  if channel[0:1] == '#':
+    # \#travis-build-result
+    pass
+  elif channel == 'need_help':
+    channel = '#travis-need-help'
+
+  main(message, channel)
