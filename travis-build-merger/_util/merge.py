@@ -140,8 +140,8 @@ def merge_to_pre_merge_branch(fix_branch_name, pre_merge_branch_name, cwd):
   run_command('git merge --ff-only "{}"'.format(fix_branch_name), cwd)
 
 def merge_to_develop_branch(branch_to_merge, cwd):
-  create_branch_if_not_exist('develop', cwd)
-  run_command('git merge --ff-only "{}"'.format(fix_branch_name), cwd)
+  checkout_branch('develop', cwd)
+  run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
   pass
 
 
