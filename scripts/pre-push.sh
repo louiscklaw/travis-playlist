@@ -7,9 +7,6 @@ do
   travis lint $l &
 done;
 
-wait
-
-
 for VARIABLE in `find . -name "dockerfile"`;
 do
   dockerlint $VARIABLE &
