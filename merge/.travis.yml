@@ -8,4 +8,4 @@ jobs:
 
 after_success:
   - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./.travis/merge_if_success.sh; fi
+  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./.travis/merge_if_success_test.sh; fi
