@@ -73,13 +73,9 @@ def test_process_pre_merge_branch():
   process_pre_merge_branch('pre-merge/new_feature_name')
 
 
-# test_fix_branch()
-# test_feature_branch()
-# test_test_branch()
-
-# test_process_test_branch()
-# # test_process_feature_branch()
-# test_process_pre_merge_branch()
+test_fix_branch()
+test_feature_branch()
+test_test_branch()
 
 # test to feature
 test_merge_to_feature_branch()
@@ -90,5 +86,11 @@ test_merge_to_pre_merge_branch()
 # pre-merge to develop
 test_merge_to_develop_branch()
 
-# test_get_branch_name()
-# test_create_temp_dir()
+test_get_branch_name()
+test_create_temp_dir()
+
+
+
+# test_process_test_branch()
+# # test_process_feature_branch()
+# test_process_pre_merge_branch()
