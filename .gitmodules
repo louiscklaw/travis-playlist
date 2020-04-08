@@ -1,0 +1,6 @@
+[submodule "docs/quickstart/themes/ananke"]
+	path = docs/quickstart/themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "_dashboard/themes/ananke"]
+	path = _dashboard/themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
