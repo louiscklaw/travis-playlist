@@ -4,4 +4,4 @@ jobs:
     - stage: Test
       name: Test helloworld
       script:
-        - echo "helloworld"
+        - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/Pipfile
