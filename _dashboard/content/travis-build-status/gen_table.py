@@ -8,9 +8,12 @@ print("helloworld")
 temp=''
 
 travis_list = [
+  'portfolio-preact',
   'appium-playlist',
   'travis-playlist',
-  'portfolio-preact'
+  'freecad-playlist',
+  'Slic3r-settings',
+  'awesome-kicad'
 ]
 
 def get_travis_project_link(proj_name):
