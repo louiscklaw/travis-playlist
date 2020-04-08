@@ -199,7 +199,7 @@ def process_fix_branch(PUSH_URI, fix_branch_in, cwd, no_push_uri = False):
 
 def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
   branch_name = get_branch_name(pre_merge_branch_in)
-  run_command('git clone {} -b {}'.format(PUSH_URI, pre_merge_branch_in), cwd)
+  run_command('git clone  -b {} {} .'.format(pre_merge_branch_in, PUSH_URI), cwd)
   merge_to_develop_branch(pre_merge_branch_in, cwd)
 
   if no_push_uri:
