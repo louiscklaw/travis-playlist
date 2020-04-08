@@ -15,7 +15,7 @@ node_js:
 cache: npm
 
 import:
-  - helloworld/.travis.yml
+  # - helloworld/.travis.yml
   # # - travis-broadcast/.travis.yml
   # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
