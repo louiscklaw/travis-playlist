@@ -208,7 +208,6 @@ def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = F
     push_commit(PUSH_URI, 'develop', cwd)
 
 
-
 def main(PUSH_URI, TEMP_DIR):
   print('starting merger')
   print(f'current branch {TRAVIS_BRANCH}')
