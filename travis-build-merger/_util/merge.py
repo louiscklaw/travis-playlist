@@ -49,14 +49,14 @@ def slack_message(message, channel):
       icon_url=':sob:'
       )
 
-def run_command(command_body):
-  command_result = local(command_body, capture=True)
+def run_command(command_body, cwd):
+  command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
   print(command_result)
   return command_result
 
-def push_commit(uri_to_push, merge_to):
+def push_commit(uri_to_push, merge_to, cwd):
     print('push commit')
-    run_command("git push {} {}".format(uri_to_push, merge_to))
+    run_command("git push {} {}".format(uri_to_push, merge_to), cwd)
 
 def merge_to_branch(commit_id, merge_to):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
@@ -71,27 +71,27 @@ def merge_to_branch(commit_id, merge_to):
     else:
       slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-def create_new_branch(branch_name):
+def create_new_branch(branch_name, cwd):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
     print('checkout new branch: {}'.format(branch_name))
-    run_command('git checkout -b {}'.format(branch_name))
+    run_command('git checkout -b {}'.format(branch_name), cwd)
 
-def checkout_branch(branch_name):
+def checkout_branch(branch_name, cwd):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
     print('checkout branch: {}'.format(branch_name))
-    run_command('git checkout {}'.format(branch_name))
+    run_command('git checkout {}'.format(branch_name), cwd)
 
-def create_branch_if_not_exist(branch_name):
+def create_branch_if_not_exist(branch_name, cwd):
   'checkout branch if exist, create and checkout if not exist'
-  if check_branch_exist(branch_name):
-    checkout_branch(branch_name)
+  if check_branch_exist(branch_name, cwd):
+    checkout_branch(branch_name, cwd)
   else:
-    create_new_branch(branch_name)
+    create_new_branch(branch_name, cwd)
 
-def check_branch_exist(branch_name):
+def check_branch_exist(branch_name, cwd):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
     print('check branch exist: {}'.format(branch_name))
-    result = [temp.replace('* ','').strip() for temp in run_command('git branch').split('\n')]
+    result = [temp.replace('* ','').strip() for temp in run_command('git branch', cwd).split('\n')]
     try:
       from pprint import pprint
       pprint(result)
@@ -126,108 +126,113 @@ def categorize_branch(branch_to_test):
   else:
     return CONST_BRANCH_UNKNOWN
 
-def process_test_branch(test_branch_name):
-  'get feature branch name from test branch name'
-  print("this is test branch, will checkout to feature branch")
+def merge_to_feature_branch(test_branch_name, feature_branch_name, cwd):
+  create_branch_if_not_exist(feature_branch_name, cwd)
+  # currently in feature branch
+
+  run_command('git merge --ff-only "{}"'.format(test_branch_name), cwd)
+
+def merge_to_pre_merge_branch(fix_branch_name, pre_merge_branch_name, cwd):
+  create_branch_if_not_exist(pre_merge_branch_name, cwd)
+  # currently in feature branch
+
+  run_command('git merge --ff-only "{}"'.format(fix_branch_name), cwd)
+
+def merge_to_develop_branch(branch_to_merge, cwd):
+  create_branch_if_not_exist('develop', cwd)
+  run_command('git merge --ff-only "{}"'.format(fix_branch_name), cwd)
+  pass
+
+
+def merge_to_develop_branch(branch_to_merge, cwd):
+  run_command('git checkout develop', cwd)
+  run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
+
+
+def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
+
+
   branch_name = get_branch_name(test_branch_name)
   feature_branch_name = 'feature/'+branch_name
 
-  create_branch_if_not_exist(feature_branch_name)
+  # CAUTION: using cwd inside run_command
+  run_command('git clone {} -b {}'.format(PUSH_URI, test_branch_name), cwd)
 
-  # currently in feature branch
-  run_command('git merge --ff-only "{}"'.format(test_branch_name)
-  push_commit(PUSH_URI, feature_branch_name)
+  merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
 
-  pass
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, feature_branch_name)
 
-def process_feature_branch(feature_branch_in):
-  print("this is feature branch, will checkout into pre-merge branch")
+def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False):
+
+
   branch_name = get_branch_name(feature_branch_in)
-  pre_merge_branch_out = 'pre-merge/'+branch_name
+  pre_merge_branch = 'pre-merge/'+branch_name
 
-  print(pre_merge_branch_out)
+  # CAUTION: using cwd inside run_command
+  run_command('git clone {} -b {}'.format(PUSH_URI, feature_branch_in), cwd)
 
-  pass
+  merge_to_pre_merge_branch(feature_branch_in, pre_merge_branch, cwd)
 
-def process_pre_merge_branch(pre_merge_branch_in):
-  print("this is test branch")
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, pre_merge_branch)
+
+def process_fix_branch(PUSH_URI, fix_branch_in, cwd, no_push_uri = False):
+  branch_name = get_branch_name(fix_branch_in)
+  pre_merge_branch = 'pre-merge/'+branch_name
+
+  # CAUTION: using cwd inside run_command
+  run_command('git clone {} -b {}'.format(PUSH_URI, fix_branch_in), cwd)
+
+  merge_to_pre_merge_branch(fix_branch_in, pre_merge_branch, cwd)
+
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, pre_merge_branch)
+
+
+def process_pre_merge_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
   branch_name = get_branch_name(pre_merge_branch_in)
+  run_command('git clone {} -b {}'.format(PUSH_URI, pre_merge_branch_in), cwd)
+  merge_to_develop_branch(pre_merge_branch_in, cwd)
 
-  pass
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    push_commit(PUSH_URI, 'develop')
+
+
 
 def main(PUSH_URI, TEMP_DIR):
   print('starting merger')
   print(f'current branch {TRAVIS_BRANCH}')
 
-  merge_found = False
-  for merge_from, merge_to in merge_direction.items():
-    m = re.match(merge_from, TRAVIS_BRANCH)
-    if (m == None ) :
-      # print('skipping merge for branch {}'.format(TRAVIS_BRANCH))
-      # slack_message('skip merging for BUILD #{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
-      pass
+  if categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_TEST:
+    # test branch will merge to feature branch
+    print("this is test branch, will checkout to feature branch")
+    process_test_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
-    else:
-      merge_found = True
-      if len(m.groups()) == 1:
-        # TODO: switch for pre-merge
-        if categorize_branch(TRAVIS_BRANCH) == COSNT_BRANCH_FIX:
-          print('this is fix branch')
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_FEATURE:
+    # feature branch will merge to pre-merge branch
+    print("this is feature branch, will checkout to pre-merge branch")
+    process_feature_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
-        elif TRAVIS_BRANCH[0:4] == 'fix/':
-          # handle fix/xxxxxx to pre-merge/xxxxxx
-          current_branch = TRAVIS_BRANCH
-          expected_pre_merge_branch = current_branch.replace('fix/','pre-merge/')
-          # build success on fix branch, checkout new pre-merge and try merge from develop
-          if check_branch_exist(expected_pre_merge_branch):
-            checkout_branch(expected_pre_merge_branch)
-            merge_to_branch(TRAVIS_COMMIT, expected_pre_merge_branch)
-          else:
-            create_new_branch(expected_pre_merge_branch)
-            push_commit(PUSH_URI, expected_pre_merge_branch)
-          # merge from develop
-          run_command('git merge develop')
-          push_commit(PUSH_URI, expected_pre_merge_branch)
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_FIX:
+    # fix branch will merge to pre-merge branch
+    print("this is fix branch, will checkout to pre-merge branch")
+    process_fix_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
-          break
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_PRE_MERGE:
+    # pre-merge branch will merge to develop branch
+    print("this is pre-merge branch, will merge to develop branch")
+    process_pre_merge_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
-        elif TRAVIS_BRANCH[0:9] == 'pre-merge/':
-          # handle pre-merge/xxxxxx to develop
-          current_branch = TRAVIS_BRANCH
-          print(f'try to merge {merge_from} -> {merge_to}')
-
-          with lcd(TEMP_DIR):
-            merge_to_branch(TRAVIS_COMMIT, merge_to)
-            push_commit(PUSH_URI, merge_to)
-
-          break
-
-        elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_TEST:
-          process_test_branch(TRAVIS_BRANCH)
-
-
-          break
-
-        else:
-          # handle feature/xxxxxx to develop
-          sub_branch = m.group(1)
-          print(f'try to merge {merge_from} -> {merge_to}')
-
-          with lcd(TEMP_DIR):
-            merge_to_branch(TRAVIS_COMMIT, merge_to)
-            push_commit(PUSH_URI, merge_to)
-
-          break
-
-      # TEST: remove else from if loop
-      # else:
-      #   print(f'try to merge {merge_from} -> {merge_to}')
-
-      #   with lcd(TEMP_DIR):
-      #     merge_to_branch(TRAVIS_COMMIT, merge_to)
-      #     push_commit(PUSH_URI)
-
-  if not merge_found:
+  else:
     print('no merge direction for this branch')
 
 if __name__ == "__main__":

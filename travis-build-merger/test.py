@@ -29,8 +29,42 @@ def test_get_branch_name():
   assert 'develop' == get_branch_name('develop')
   assert 'master' == get_branch_name('master')
 
-def test_process_test_branch():
-  process_test_branch('test/new_feature_name')
+def test_merge_to_feature_branch():
+  temp_dir = create_temp_dir()
+  run_command('git init', temp_dir)
+  run_command('touch test_dummy_file', temp_dir)
+  run_command('git add . && git commit . -m "test_commit,"', temp_dir)
+  run_command('git checkout -b test/test1', temp_dir)
+
+  merge_to_feature_branch('test/test1', 'feature/test1', temp_dir)
+
+  run_command('git branch', temp_dir)
+
+def test_merge_to_pre_merge_branch():
+  temp_dir = create_temp_dir()
+  run_command('git init', temp_dir)
+  run_command('touch test_dummy_file', temp_dir)
+  run_command('git add . && git commit . -m "test_commit,"', temp_dir)
+  run_command('git checkout -b fix/test1', temp_dir)
+
+  merge_to_pre_merge_branch('fix/test1', 'pre-merge/test1', temp_dir)
+
+  run_command('git branch', temp_dir)
+  assert check_branch_exist('pre-merge/test1', temp_dir)
+
+
+def test_merge_to_develop_branch():
+  temp_dir = create_temp_dir()
+  run_command('git init', temp_dir)
+  run_command('touch test_dummy_file', temp_dir)
+  run_command('git add . && git commit . -m "test_commit,"', temp_dir)
+  run_command('git checkout -b develop', temp_dir)
+  run_command('git checkout -b fix/test1', temp_dir)
+
+  merge_to_develop_branch('fix/test1', temp_dir)
+
+  run_command('git branch', temp_dir)
+  assert check_branch_exist('develop', temp_dir)
 
 def test_process_feature_branch():
   process_feature_branch('feature/new_feature_name')
@@ -38,13 +72,23 @@ def test_process_feature_branch():
 def test_process_pre_merge_branch():
   process_pre_merge_branch('pre-merge/new_feature_name')
 
-test_fix_branch()
-test_feature_branch()
-test_test_branch()
 
-test_process_test_branch()
-test_process_feature_branch()
-test_process_pre_merge_branch()
+# test_fix_branch()
+# test_feature_branch()
+# test_test_branch()
 
-test_get_branch_name()
-test_create_temp_dir()
+# test_process_test_branch()
+# # test_process_feature_branch()
+# test_process_pre_merge_branch()
+
+# test to feature
+test_merge_to_feature_branch()
+
+# feature to pre_merge
+test_merge_to_pre_merge_branch()
+
+# pre-merge to develop
+test_merge_to_develop_branch()
+
+# test_get_branch_name()
+# test_create_temp_dir()
