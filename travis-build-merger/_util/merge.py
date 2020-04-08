@@ -173,7 +173,7 @@ def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False
   pre_merge_branch = 'pre-merge/'+branch_name
 
   # CAUTION: using cwd inside run_command
-  run_command('git clone {} -b {}'.format(PUSH_URI, feature_branch_in), cwd)
+  run_command('git clone  -b {} {} .'.format(feature_branch_in, PUSH_URI), cwd)
 
   merge_to_pre_merge_branch(feature_branch_in, pre_merge_branch, cwd)
 
