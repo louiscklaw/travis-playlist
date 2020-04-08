@@ -164,7 +164,7 @@ def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, feature_branch_name)
+    push_commit(PUSH_URI, feature_branch_name, cwd)
 
 def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False):
 
