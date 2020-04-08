@@ -24,6 +24,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "npx commitlint -e $GIT_PARAMS",
+      "pre-commit": "./scripts/pre-commit.sh",
       "pre-push": "./scripts/pre-push.sh"
     }
   },
