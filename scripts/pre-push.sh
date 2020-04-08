@@ -16,3 +16,8 @@ do
 done
 
 wait
+
+cd travis-build-merger
+  pipenv sync
+  pipenv run python3 test.py
+cd -
