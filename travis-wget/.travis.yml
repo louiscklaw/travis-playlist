@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Test
+      name: Test helloworld
+      script:
+        - echo "helloworld"
