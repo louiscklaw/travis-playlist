@@ -4,15 +4,16 @@
   
   <url>
     <loc>http://example.com/</loc>
-    <priority>0</priority>
+    <lastmod>2020-04-08T20:30:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.com/travis-build-status/</loc>
+    <lastmod>2020-04-08T20:30:31+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://example.com/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.com/</loc>
   </url>
   
   <url>

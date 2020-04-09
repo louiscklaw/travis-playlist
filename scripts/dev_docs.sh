@@ -2,6 +2,12 @@
 
 set -ex
 
+echo "helloworld"
+
+cd _dashboard/content/travis-build-status
+  ./gen_table.py
+cd -
+
 cd _dashboard
-  hugo server -D
+  hugo server -D --disableFastRender
 cd -

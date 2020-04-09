@@ -2,9 +2,6 @@
 
 import os,sys,re
 
-print("helloworld")
-
-
 temp=''
 
 travis_list = [
@@ -13,7 +10,8 @@ travis_list = [
   'travis-playlist',
   'freecad-playlist',
   'Slic3r-settings',
-  'awesome-kicad'
+  'awesome-kicad',
+  'kicad-playlist'
 ]
 
 def get_travis_project_link(proj_name):
