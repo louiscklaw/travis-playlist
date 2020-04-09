@@ -14,6 +14,7 @@ done
 
 wait
 
-cd _dashboard
-  hugo -D -d ../docs
+cd travis-build-merger
+  pipenv sync
+  pipenv run python3 test.py
 cd -
