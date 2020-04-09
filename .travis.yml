@@ -29,7 +29,10 @@ import:
   - travis-arm-build/.travis.yml
   - travis-pydrive-tryout/.travis.yml
   - travis-wget/.travis.yml
-  - merge/.travis.yml
+  # - merge/.travis.yml
+
+after_success:
+  - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee merge.log
 
 notifications:
   slack:
