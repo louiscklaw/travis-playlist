@@ -4,11 +4,7 @@ jobs:
     - stage: Merge
       name: "Merge to main playlist"
       script:
-        - echo "dummy job for merging"
-
-after_success:
-  - echo $TRAVIS_BUILD_STAGE_NAME
-  - if [ "$TRAVIS_BUILD_STAGE_NAME" = "Merge" ]; then ./.travis/merge_if_success_test.sh |tee merge.log; fi
+        - travis_wait 30 wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
 
 after_failure:
   - cat merge.log

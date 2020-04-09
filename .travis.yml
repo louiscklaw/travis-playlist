@@ -29,14 +29,8 @@ import:
   - travis-arm-build/.travis.yml
   - travis-pydrive-tryout/.travis.yml
   - travis-wget/.travis.yml
-  # - merge/.travis.yml
+  - merge/.travis.yml
 
-jobs:
-  include:
-    - stage: Merge
-      name: Merge
-      script:
-        - travis_wait 30 wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
 
 notifications:
   slack:
