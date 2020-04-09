@@ -17,7 +17,7 @@ cache:
   - pip
 
 import:
-  - helloworld/.travis.yml
+  # - helloworld/.travis.yml
   # - travis-broadcast/.travis.yml
   # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
@@ -29,7 +29,14 @@ import:
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
-  - merge/.travis.yml
+  # - merge/.travis.yml
+
+script:
+  - hostname
+  - cd .travis
+  - wget  https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh
+  - bash merge_if_success.sh
+  - cd -
 
 
 notifications:
