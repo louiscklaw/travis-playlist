@@ -4,3 +4,4 @@ jobs:
       name: Test travis-broadcast
       script:
         - broadcast_test.sh
+        - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-broadcast/broadcast.sh | bash - | tee broadcast.log
