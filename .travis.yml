@@ -31,8 +31,12 @@ import:
   - travis-wget/.travis.yml
   # - merge/.travis.yml
 
-after_success:
-  - travis_wait 30 wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
+jobs:
+  include:
+    - stage: Merge
+      name: Merge
+      script:
+        - travis_wait 30 wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
 
 notifications:
   slack:
