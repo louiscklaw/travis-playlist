@@ -4,7 +4,7 @@ jobs:
     - stage: Merge
       name: "Merge to main playlist"
       script:
-        - travis_wait 30 wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
+        -  wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | travis_wait 30 bash - | tee /tmp/merge.log
 
 after_failure:
   - cat merge.log
