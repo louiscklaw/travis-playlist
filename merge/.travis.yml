@@ -6,7 +6,7 @@ jobs:
       script:
         - cd .travis
         - wget  https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh
-        - travis_wait 30 bash merge_if_success.sh
+        - bash merge_if_success.sh
         - cd -
 
 after_failure:
