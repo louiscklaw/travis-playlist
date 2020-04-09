@@ -32,7 +32,7 @@ import:
   # - merge/.travis.yml
 
 after_success:
-  - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee merge.log
+  - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh | bash - | tee /tmp/merge.log
 
 notifications:
   slack:
