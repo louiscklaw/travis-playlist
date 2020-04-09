@@ -4,7 +4,7 @@
 jobs:
   include:
     - stage: Test
-      name: Test-travis-build-docker-image
+      name: Test travis run docker image
       arch:
         - arm64
         - amd64
