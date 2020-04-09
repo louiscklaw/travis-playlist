@@ -6,6 +6,6 @@ jobs:
         - cd $TRAVIS_BUILD_DIR/travis-broadcast
         - broadcast_test.sh
         - cd -
-        - cd .travis
-        - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-broadcast/broadcast.sh | bash - | tee broadcast.log
-        - cd -
+        # - cd .travis
+        # - wget -O- https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-broadcast/broadcast.sh | bash - | tee broadcast.log
+        # - cd -
