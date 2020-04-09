@@ -221,7 +221,7 @@ def process_develop_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = Fal
   'checkout master branch, create pre-merge-master'
   'on pre-merge-master branch, merge develop and re-test'
 
-  run_command('git clone  -b {} {} .'.format('master', PUSH_URI), cwd)
+  run_command('git clone {} .'.format(PUSH_URI), cwd)
   merge_to_pre_merge_master_branch(pre_merge_branch_in, cwd)
 
   if no_push_uri:
