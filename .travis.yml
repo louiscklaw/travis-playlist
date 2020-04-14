@@ -18,7 +18,7 @@ cache:
 
 import:
   - helloworld/.travis.yml
-  # - travis-broadcast/.travis.yml
+  - travis-broadcast/.travis.yml
   # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
   # - travis-kicad-build/.travis.yml
