@@ -29,7 +29,7 @@ import:
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
-  - merge/.travis.yml
+  - travis-build-merger/.travis.yml
 
 
 notifications:

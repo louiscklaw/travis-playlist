@@ -2,10 +2,14 @@
 jobs:
   include:
     - stage: Merge
-      name: "travis-build-merger"
       script:
-        - echo "dummy job for merging"
-        - cd .travis
-        - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/test/update-for-adding-handle-merge-to-master/travis-build-merger/merge_if_success.sh
-        - bash merge_if_success.sh
-        - cd -
+        # the below should be kept for test inside travis-playlist only
+        - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success_test.sh
+        - bash merge_if_success_test.sh | tee merge.log
+
+        # production code
+        # - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
+        # - bash merge_if_success_test.sh
+
+after_failure:
+  - cat merge.log
