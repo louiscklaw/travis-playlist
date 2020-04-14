@@ -79,7 +79,7 @@ def test_merge_to_pre_merge_master_branch():
   run_command('touch test_dummy_file', temp_dir)
   run_command('git add . && git commit . -m "test_commit,"', temp_dir)
   run_command('git checkout master', temp_dir)
-  run_command('git checkout -b develop', temp_dir)
+  run_command('git checkout -b origin/develop', temp_dir)
   run_command('git checkout -b pre-merge-master', temp_dir)
 
   merge_to_pre_merge_master_branch('develop', temp_dir)

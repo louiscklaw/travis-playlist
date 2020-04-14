@@ -168,7 +168,7 @@ def merge_to_pre_merge_master_branch(branch_to_merge, cwd):
   print('into merge_to_pre_merge_master_branch')
   create_branch_if_not_exist('pre-merge-master', cwd)
   run_command('git merge -m"pre-merge-master from develop and use theirs for test," origin/develop',cwd)
-  run_command('git push -f --set-upstream origin pre-merge-master',cwd)
+
 
 
 def merge_to_master_branch(branch_to_merge, cwd):
@@ -241,10 +241,10 @@ def process_develop_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = Fal
   run_command('git clone {} .'.format(PUSH_URI), cwd)
   merge_to_pre_merge_master_branch(pre_merge_branch_in, cwd)
 
-  # if no_push_uri:
-  #   print('no pushing commit as no_push_uri is true')
-  # else:
-  #   push_commit(PUSH_URI, 'pre-merge-master', cwd)
+  if no_push_uri:
+    print('no pushing commit as no_push_uri is true')
+  else:
+    run_command('git push -f --set-upstream origin pre-merge-master',cwd)
 
 
 def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
