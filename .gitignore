@@ -1,10 +1,6 @@
 
 **/.env
 main.py
-<<<<<<< HEAD
-node_modules
-=======
 **/node_modules
->>>>>>> develop
 
 **/*.log
