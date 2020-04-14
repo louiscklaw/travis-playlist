@@ -151,8 +151,25 @@ def merge_to_develop_branch(branch_to_merge, cwd):
 
 
 def merge_to_pre_merge_master_branch(branch_to_merge, cwd):
+  # create_branch_if_not_exist('pre-merge-master', cwd)
+  # push_commit(PUSH_URI, 'pre-merge-master', cwd)
+
+  # run_command("git push", cwd)
+  # run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
+
+  # working code
+  # run_command("git checkout master", cwd)
+  # run_command('git checkout -b pre-merge-master', cwd)
+  # run_command('git merge -m"pre-merge-master from develop and use theirs for test," origin/develop',cwd)
+  # run_command('git branch', cwd)
+  # run_command('git status',cwd)
+  # run_command('git push -f --set-upstream origin pre-merge-master',cwd)
+
+  print('into merge_to_pre_merge_master_branch')
   create_branch_if_not_exist('pre-merge-master', cwd)
-  run_command('git merge --ff-only "{}"'.format(branch_to_merge), cwd)
+  run_command('git merge -m"pre-merge-master from develop and use theirs for test," origin/develop',cwd)
+  run_command('git push -f --set-upstream origin pre-merge-master',cwd)
+
 
 def merge_to_master_branch(branch_to_merge, cwd):
   checkout_branch('master', cwd)
@@ -224,10 +241,10 @@ def process_develop_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = Fal
   run_command('git clone {} .'.format(PUSH_URI), cwd)
   merge_to_pre_merge_master_branch(pre_merge_branch_in, cwd)
 
-  if no_push_uri:
-    print('no pushing commit as no_push_uri is true')
-  else:
-    push_commit(PUSH_URI, 'develop', cwd)
+  # if no_push_uri:
+  #   print('no pushing commit as no_push_uri is true')
+  # else:
+  #   push_commit(PUSH_URI, 'pre-merge-master', cwd)
 
 
 def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_uri = False):
@@ -240,7 +257,7 @@ def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, 'develop', cwd)
+    push_commit(PUSH_URI, 'master', cwd)
 
 
 def main(PUSH_URI, TEMP_DIR):
@@ -269,7 +286,7 @@ def main(PUSH_URI, TEMP_DIR):
 
   elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEVELOP:
     # develop branch will merge to pre-merge-master branch
-    print("this is develop branch, will merge to master branch")
+    print("this is develop branch, will merge to pre-merge-master branch")
     process_develop_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_PRE_MERGE_MASTER:
