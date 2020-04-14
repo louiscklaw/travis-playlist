@@ -2,15 +2,8 @@
 jobs:
   include:
     - stage: Merge
-      name: "Merge to main playlist"
-      script:
-        - if: branch = master
-          # the below should be stable script to outside project
-          - cd .travis
-          - wget  https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success.sh
-          - bash merge_if_success.sh
-          - cd -
-        - if: branch != master
+      if: branch != master
+        script:
           # the below should be kept for test inside travis-playlist only
           - cd .travis
           - wget  https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/.travis/merge_if_success_test.sh
