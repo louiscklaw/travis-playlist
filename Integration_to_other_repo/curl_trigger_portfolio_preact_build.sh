@@ -6,7 +6,7 @@ set -ex
 
 body='{
   "request": {
-    "branch":" integration/test-from-travis-playlist"
+    "branch":" develop"
   },
   "config": {
     "merge_mode": "deep_merge",
