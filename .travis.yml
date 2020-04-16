@@ -16,6 +16,14 @@ cache:
   - npm
   - pip
 
+
+stages:
+  - unit_test
+  - build
+  - deploy
+  - merge
+
+
 import:
   - helloworld/.travis.yml
   - travis-broadcast/.travis.yml
