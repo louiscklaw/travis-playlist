@@ -18,10 +18,11 @@ cache:
 
 
 stages:
-  - unit_test
-  - build
-  - deploy
-  - merge
+  - Unit_test
+  - Test
+  - Build
+  - Deploy
+  - Merge
 
 
 import:
