@@ -1,7 +1,7 @@
 
 jobs:
   include:
-    - stage: Test
+    - stage: Unit_test
       name: Test helloworld
       script:
         - echo "helloworld"

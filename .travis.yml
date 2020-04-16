@@ -23,7 +23,7 @@ stages:
   - Build
   - Deploy
   - Merge
-
+  - Integration_to_other_repo
 
 import:
   - helloworld/.travis.yml

@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Integration_to_other_repo
+      name: Test helloworld
+      script:
+        - echo "Integration_to_other_repo"
