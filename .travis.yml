@@ -19,7 +19,7 @@ cache:
 import:
   - helloworld/.travis.yml
   - travis-broadcast/.travis.yml
-  - transfer-sh-tryout/.travis.yml
+  # - transfer-sh-tryout/.travis.yml
   - travis-yml-import/test.yml
   - travis-kicad-build/.travis.yml
   # - build-stages-demo/.travis.yml
@@ -38,6 +38,9 @@ notifications:
 
 env:
   global:
+    # TRAVIS_TOKEN
+    - secure: "L9MoSrsdmKjzv8mQgG5fulJRHijs6XQk8afmBmeovUG9mWosNoD+WRYcb4fj0XzGT7B0j/tb3CbT028XIF1chBTGmJCQaG6hbO6ByrKgAlBHoo03TxxOT+8OgTCDJvZGLwAefNZXIR5nChp2mkXCZIQ8QRpVvrqEd7S4r+IBN2oeWJIzbVuGtqEkXViKBpHz/jk9ZzYrlZS5Lkt41jGhz2I3YRy70G0ccsmc9NFVrsb5mNTRKqLygbMTPcaMXdq3mm7s40odV9ZOUXUahHx3ZQKC7W2f+PaV3a0uF8Jy2qY518m+V1ZhCJvPujh9iXGVvLGjh7i+mt/rUURLjkoyaUnFD+kOWEO5E7GLO83zeEc28drxpC66LQ9g2f/32F7dvtyhbM3WoZqfQbbga8sc6V+eGH+L+xNnRVJUyR3Xc8B+GF9EpJEI2+FFr1H6poIoOIfp+5ml095HGJacYfoHVmDEiw7/oTO4rS9YwDGrqnEQbONgiYZTPRzEdM5+/6kCAmNleJdjP1LYj+lL6eYIHKwY+c9LjoJQJyrhwDhfljCbS4vO7rMxHdTB/9pwOThCubixQon7Ew4B3lskW2adtjEy6EgaIg4/ftQhTYHPdXa3sJ+hrQ9eWQqH3C0i48Ps337m1LSmAx2osy9ftCDG98IYZVgZEBRFbs68H+7AlZQ="
+
     # GITHUB_TOKEN
     - secure: T5FMZIhIGap+LrNFrN4x1bDeUJ/LZWM/9tlDv0jbQ4V3iGob2FYYnBeOBTrXZrrft46/UZXZfLZ7rC4JqwbutTWxb5s79teFEe9OmhZGnVRldCpireKUrSFRNsjPTo4/vjkNI7x9/mmrF+SUKqtyJJy/vkbdVq97kzyBkH1OrsgoYTRtuSO2G4cbxT3Z10wq2PQrkjZp5rJNMdLT4Mw+MSgk/GcXnIbo3rVKLmUfmoTSkvy3232VDxycd6OB3/C+sdQsLRqCTkihe/pAosMQa28tmS+jL5Z6w1fkm7Yk2Ri4V+4ScX4xh3Vp6x12LoYMRLus7B1lkOc5auBe8ZuYmJAK6h3+9IooXXqL3dwZ+691F09TLmEUhfrRENLNe2DXbNiiyJPtabFnri1vlSXLSjzN4NWWeDYE6lwE65T9LjBAFibCRLrW5/TL0nCEoKRt4lftJNUZP3W3zcJK2l6MrbxVB2DN4W+yksHrwuhyL+dAZsxr+I42OcDGtDjbvfH6L6XjeawKVcLGdcK7x4dZLPyu2scpr1hntn4qs+Cf+yvqCYmBQRzPhM38vUhcakrypP/Iter/nsDhGXAamAtMrBY3CM4wYARkRBGvzm9+pbVYJUcBApnNhGi89UObv1syfzQ/MwEhWeHUGfxwNVsHbp1kRNe5m4gu+754do73AzE=
 
