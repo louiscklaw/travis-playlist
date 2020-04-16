@@ -6,14 +6,15 @@ set -ex
 
 body='{
   "request": {
-    "branch":" develop"
-  },
-  "config": {
-    "merge_mode": "deep_merge",
-    "env": {
-      "jobs": [
-        "DRY_RUN=TRUE"
-      ]
+    "branch":" develop",
+    "message": "trigger from integration test by travis-playlist",
+    "config": {
+      "merge_mode": "deep_merge",
+      "env": {
+        "jobs": [
+          "DRY_RUN=TRUE"
+        ]
+      }
     }
   }
 }'
@@ -25,3 +26,5 @@ curl -s -X POST \
   -H "Authorization: token ${TRAVIS_AUTH_TOKEN}" \
   -d "$body" \
   https://api.travis-ci.com/repo/$1/requests
+
+echo 'done'
