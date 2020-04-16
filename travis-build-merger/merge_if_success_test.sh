@@ -11,6 +11,8 @@
 
 # cd -
 
+set -e
+
 mkdir -p .travis
 cd .travis
   cp ../travis-build-merger/_util/merge.py .
