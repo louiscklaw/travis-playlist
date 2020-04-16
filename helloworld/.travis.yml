@@ -2,6 +2,6 @@
 jobs:
   include:
     - stage: Unit_test
-      name: Test helloworld
+      name: Sanity test
       script:
         - echo "helloworld"
