@@ -4,7 +4,7 @@ set -ex
 
 body='{
 "request": {
-"branch":"develop"
+"branch":" integration/test-from-travis-playlist"
 }}'
 
 curl -s -X POST \
