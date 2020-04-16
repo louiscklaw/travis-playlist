@@ -28,16 +28,16 @@ stages:
 import:
   - helloworld/.travis.yml
   - travis-broadcast/.travis.yml
-  # - transfer-sh-tryout/.travis.yml
-  - travis-yml-import/test.yml
-  - travis-kicad-build/.travis.yml
-  # - build-stages-demo/.travis.yml
-  # - travis-docker-tryout/.travis.yml
-  # - cache-docker-image/.travis.yml
-  - travis-build-docker-image/.travis.yml
-  - travis-arm-build/.travis.yml
-  - travis-pydrive-tryout/.travis.yml
-  - travis-wget/.travis.yml
+  # # - transfer-sh-tryout/.travis.yml
+  # - travis-yml-import/test.yml
+  # - travis-kicad-build/.travis.yml
+  # # - build-stages-demo/.travis.yml
+  # # - travis-docker-tryout/.travis.yml
+  # # - cache-docker-image/.travis.yml
+  # - travis-build-docker-image/.travis.yml
+  # - travis-arm-build/.travis.yml
+  # - travis-pydrive-tryout/.travis.yml
+  # - travis-wget/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
 
