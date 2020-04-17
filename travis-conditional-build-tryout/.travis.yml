@@ -11,4 +11,5 @@ jobs:
       name: travis-conditional-build-tryout1
       if: branch = "test/travis-conditional-build-tryout1"
       script:
+        - git checkout develop
         - echo "test test test test test "
