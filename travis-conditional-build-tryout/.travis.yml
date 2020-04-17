@@ -4,7 +4,11 @@ jobs:
     - stage: Test
       name: travis-conditional-build-tryout
       script:
-        if: branch = "test/travis-conditional-build-tryout"
-          - echo "helloworld"
-        if: branch = "test/travis-conditional-build-tryout1"
+        - echo "helloworld"
+      if: branch = "test/travis-conditional-build-tryout"
+
+    - stage: Test
+      name: travis-conditional-build-tryout1
+      if: branch = "test/travis-conditional-build-tryout1"
+        script:
           - echo "test test test test test "
