@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Test
+      name: travis-conditional-build-tryout
+      script:
+        - echo "helloworld"
