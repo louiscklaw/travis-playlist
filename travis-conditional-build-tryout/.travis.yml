@@ -9,6 +9,6 @@ jobs:
 
     - stage: Test
       name: travis-conditional-build-tryout1
+      script:
+        - echo "test test test test test "
       if: branch = "test/travis-conditional-build-tryout1"
-        script:
-          - echo "test test test test test "
