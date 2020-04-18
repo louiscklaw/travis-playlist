@@ -11,6 +11,8 @@
 
 # cd -
 
+set -xe
+
 mkdir -p .travis
 cd .travis
 
