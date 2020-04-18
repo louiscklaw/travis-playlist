@@ -26,7 +26,7 @@ stages:
   - Integration_to_other_repo
 
 import:
-  # - helloworld/.travis.yml
+  - helloworld/.travis.yml
   # - travis-broadcast/.travis.yml
   - travis-conditional-build-tryout/.travis.yml
   # # - transfer-sh-tryout/.travis.yml
@@ -39,7 +39,7 @@ import:
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
-  # - travis-build-merger/.travis.yml
+  - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
 
 
