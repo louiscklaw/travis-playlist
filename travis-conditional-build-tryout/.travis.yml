@@ -11,9 +11,10 @@ jobs:
       name: travis-conditional-build-tryout1
       if: branch = "test/travis-conditional-build-tryout1"
       script:
-        - TMP_DIR=$(mktemp -d)
+        - export TMP_DIR=$(mktemp -d)
         - cd $TMP_DIR
-        - git clone  https://github.com/louiscklaw/travis-playlist.git  -b develop
+        - pwd
+        - git clone  https://github.com/louiscklaw/travis-playlist.git  -b develop .
         - git branch
         - ls -l
         - echo "test test test test test "
