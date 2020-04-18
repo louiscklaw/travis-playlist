@@ -40,7 +40,7 @@ import:
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
   # - travis-build-merger/.travis.yml
-  # - Integration_to_other_repo/.travis.yml
+  - Integration_to_other_repo/.travis.yml
 
 
 notifications:

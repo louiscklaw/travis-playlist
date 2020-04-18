@@ -12,7 +12,7 @@ body='{
       "merge_mode": "deep_merge",
       "env": {
         "jobs": [
-          "DRY_RUN=TRUE"
+          "SKIP_DEPLOY=YES"
         ]
       }
     }
