@@ -4,20 +4,20 @@
 
 set -ex
 
-body='{
-  "request": {
-    "branch":"poc/add-dry-run-no-deploy",
-    "message": "trigger from integration test by travis-playlist",
-    "config": {
-      "merge_mode": "deep_merge",
-      "env": {
-        "jobs": [
-          "SKIP_DEPLOY=YES"
+body="{
+  \"request\": {
+    \"branch\":\"poc/add-dry-run-no-deploy\",
+    \"message\": \"trigger from integration test by travis-playlist/$TRAVIS_BRANCH\",
+    \"config\": {
+      \"merge_mode\": \"deep_merge\",
+      \"env\": {
+        \"jobs\": [
+          \"SKIP_DEPLOY=YES\"
         ]
       }
     }
   }
-}'
+}"
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
