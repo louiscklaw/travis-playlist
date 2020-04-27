@@ -26,9 +26,13 @@ stages:
   - Integration_to_other_repo
 
 import:
+  # TODO: resume
   - helloworld/.travis.yml
   # - travis-broadcast/.travis.yml
-  - travis-conditional-build-tryout/.travis.yml
+
+  # TODO: resume
+  # - travis-conditional-build-tryout/.travis.yml
+
   # # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
   # - travis-kicad-build/.travis.yml
@@ -39,8 +43,12 @@ import:
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
-  - travis-build-merger/.travis.yml
-  - Integration_to_other_repo/.travis.yml
+
+  - travis-test-markdown/.travis.yml
+
+  # TODO: resume
+  # - travis-build-merger/.travis.yml
+  # - Integration_to_other_repo/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh

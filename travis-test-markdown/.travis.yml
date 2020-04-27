@@ -1,0 +1,10 @@
+cache:
+  npm: true
+  directories:
+  - travis_cache
+
+before_install:
+  - npm install remark-cli remark-validate-links
+
+script:
+  - /bin/bash ./.github_scripts/travis/ci-build.sh
