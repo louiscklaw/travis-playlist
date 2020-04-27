@@ -50,6 +50,12 @@ import:
   # - travis-build-merger/.travis.yml
   # - Integration_to_other_repo/.travis.yml
 
+before_install:
+  - npm install remark-cli remark-validate-links
+
+script:
+  - /bin/bash travis-test-markdown/ci-build.sh
+
 after_success:
   travis-test-after-success/fail_script.sh
 
