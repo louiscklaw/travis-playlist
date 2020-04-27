@@ -7,4 +7,4 @@ before_install:
   - npm install remark-cli remark-validate-links
 
 script:
-  - /bin/bash ./.github_scripts/travis/ci-build.sh
+  - /bin/bash travis-test-markdown/ci-build.sh
