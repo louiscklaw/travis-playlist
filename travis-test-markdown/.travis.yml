@@ -2,7 +2,7 @@
 jobs:
   include:
     - stage: Unit_test
-      name: Sanity test
+      name: markdown test
       script:
         - echo "helloworld"
 
