@@ -1,10 +1,16 @@
-cache:
-  npm: true
-  directories:
-  - travis_cache
 
-before_install:
-  - npm install remark-cli remark-validate-links
+jobs:
+  include:
+    - stage: Unit_test
+      name: Sanity test
+      script:
+        - echo "helloworld"
 
-script:
-  - /bin/bash travis-test-markdown/ci-build.sh
+# jobs:
+#   include:
+#     - stage: Merge
+#       before_install:
+#         - npm install remark-cli remark-validate-links
+
+#       script:
+#         - /bin/bash travis-test-markdown/ci-build.sh
