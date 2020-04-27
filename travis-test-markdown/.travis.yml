@@ -3,14 +3,7 @@ jobs:
   include:
     - stage: Unit_test
       name: markdown test
+      before_install:
+        - npm install remark-cli remark-validate-links
       script:
-        - echo "helloworld"
-
-# jobs:
-#   include:
-#     - stage: Merge
-#       before_install:
-#         - npm install remark-cli remark-validate-links
-
-#       script:
-#         - /bin/bash travis-test-markdown/ci-build.sh
+        - /bin/bash travis-test-markdown/ci-build.sh
