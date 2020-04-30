@@ -25,6 +25,7 @@ import:
   # - travis-broadcast/.travis.yml
   - travis-conditional-build-tryout/.travis.yml
   - travis-stl-checking/.travis.yml
+  - travis-freecad-checking/.travis.yml
   # # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
   # - travis-kicad-build/.travis.yml

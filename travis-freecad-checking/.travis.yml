@@ -10,4 +10,4 @@ jobs:
         - sudo mkdir /usr/lib/freecad-python3/Mod
 
       script:
-        - for i in $(ls -1 *.FCStd); do python3 ./freecad_open_test.py $i; done
+        - for i in $(ls -1 *.FCStd); do python3 travis-freecad-checking/freecad_open_test.py $i; done
