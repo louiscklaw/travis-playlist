@@ -74,7 +74,7 @@ print('testing freecad file {}'.format(freecad_file_to_test))
 
 # filename = '{}/_workspace/freecad-playlist/common_parts.FCStd'.format(USER_HOME_DIR)
 App.open(freecad_file_to_test)
-App.setActiveDocument(freecad_document_name)
+App.setActiveDocument(freecad_document_name.replace('-','_'))
 App.ActiveDocument.recompute()
 App.setActiveDocument("")
 App.ActiveDocument=None
