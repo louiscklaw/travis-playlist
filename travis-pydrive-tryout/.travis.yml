@@ -1,7 +1,0 @@
-
-jobs:
-  include:
-    - stage: Test
-      name: Test travis-pydrive-tryout
-      script:
-        - echo "place holder for pydrive tryout"

@@ -1,9 +1,0 @@
-jobs:
-  include:
-    - stage: Unit_test
-      name: travis-stl-checking
-      before_install:
-        - npm install remark-cli remark-validate-links
-      script:
-        - git clone https://github.com/louiscklaw/GithubScripts.git .github_scripts
-        - /bin/bash ./.github_scripts/travis/ci-build.sh

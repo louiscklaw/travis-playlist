@@ -1,7 +1,0 @@
-
-jobs:
-  include:
-    - stage: Unit_test
-      name: Sanity test
-      script:
-        - echo "helloworld"
