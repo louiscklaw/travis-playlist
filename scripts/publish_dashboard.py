@@ -23,11 +23,11 @@ with lcd('build-dashboard'):
 
   # directory should exist
   local('ls -l {}'.format(GH_PAGES_DIR))
+  # local('git clone git@github.com:louiscklaw/travis-playlist.git {}'.format(GH_PAGES_DIR))
 
-  local('git checkout --orphan gh-pages')
-  local('git checkout master')
+  # with lcd(GH_PAGES_DIR):
+  #   local('git checkout --orphan gh-pages')
 
-  sys.exit()
 
   local('git worktree add {} gh-pages'.format(GH_PAGES_DIR))
 
@@ -37,8 +37,10 @@ with lcd('build-dashboard'):
 
   with lcd(GH_PAGES_DIR), settings(warn_only=True):
     local('git add .')
-    if local('git commit -m "publish from travis-playlist/scripts/publish.sh"', capture=True).find("nothing to commit, working tree clean") > 0:
+    commit_result = local('git commit -m "publish from travis-playlist/scripts/publish.sh"', capture=True)
+    if commit_result.find("nothing to commit, working tree clean") > 0:
       print("branch is up to day, skipping...")
+      print(commit_result)
     else:
       local('git push')
 
@@ -50,5 +52,6 @@ with lcd('build-dashboard'):
   local('git worktree list')
 
   local('rm -rf {}'.format(GH_PAGES_DIR))
+  local('git branch -D gh-pages')
 
 #done
