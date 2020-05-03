@@ -9,9 +9,9 @@ TMPDIR=local('mktemp -d',capture=True)
 
 GH_PAGES_DIR=os.path.join(TMPDIR,'gh-pages')
 
-with settings(warn_only=True):
-  local('git worktree prune')
-  local('git worktree remove gh-pages')
+# with settings(warn_only=True):
+  # local('git worktree prune')
+  # local('git worktree remove gh-pages')
 
 with lcd('build-dashboard'):
 
