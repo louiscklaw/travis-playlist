@@ -25,9 +25,9 @@ import:
   - credentials.yml
   - helloworld/.travis.yml
   # - travis-broadcast/.travis.yml
-  - travis-conditional-build-tryout/.travis.yml
-  - travis-stl-checking/.travis.yml
-  - travis-freecad-checking/.travis.yml
+  # - travis-conditional-build-tryout/.travis.yml
+  # - travis-stl-checking/.travis.yml
+  # - travis-freecad-checking/.travis.yml
   # # - transfer-sh-tryout/.travis.yml
   # - travis-yml-import/test.yml
   # - travis-kicad-build/.travis.yml
@@ -38,7 +38,7 @@ import:
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
-  - travis-test-markdown/.travis.yml
+  # - travis-test-markdown/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
   - build-dashboard/.travis.yml
