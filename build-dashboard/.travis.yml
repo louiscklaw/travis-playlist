@@ -3,7 +3,7 @@ jobs:
     - stage: Publish_dashboard
       name: Update travis build dashboard
       before_script:
-        pip3 install --user pipenv
-        pipenv sync
+        - pip3 install --user pipenv
+        - pipenv sync
       script:
         - pipenv run python3 ./scripts/publish_dashboard.py
