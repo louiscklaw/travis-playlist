@@ -24,7 +24,10 @@ with lcd('build-dashboard'):
   # directory should exist
   local('ls -l {}'.format(GH_PAGES_DIR))
 
-  local('git checkout -b --orphan gh-pages')
+  local('git checkout --orphan gh-pages')
+  local('git checkout master')
+
+  sys.exit()
 
   local('git worktree add {} gh-pages'.format(GH_PAGES_DIR))
 
