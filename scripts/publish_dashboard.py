@@ -27,7 +27,11 @@ with lcd('build-dashboard'):
   with lcd(GH_PAGES_DIR):
     local('git add .')
     local('git commit -m "publish from publish.sh"')
-    local('git push')
+
+    if local('git status -uno', capture=True).find("Your branch is up to date with 'origin/master'.")> 0:
+      print("branch is up to day, skipping...")
+    else:
+      local('git push')
 
 
   local('git worktree list')
