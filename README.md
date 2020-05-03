@@ -12,7 +12,8 @@ $ python3 publish_dashboard.py
 ```
 
 ### build dashboard
-https://louiscklaw.github.io/travis-playlist/
+https://louiscklaw.github.io/travis-playlist/project/travis-dashboard/
+<!-- https://louiscklaw.github.io/travis-playlist/ -->
 
 ### build status
 [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=develop)](https://travis-ci.com/louiscklaw/travis-playlist)
