@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-set -ex
+set -x
 
-TMPDIR=$(mktemp -d)
+# TMPDIR=$(mktemp -d)
+TMPDIR='/tmp'
 GH_PAGES_DIR=$TMPDIR/gh-pages
 
 cd build-dashboard

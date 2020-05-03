@@ -8,4 +8,4 @@ jobs:
       #   - pip3 install --user pipenv
       #   - pipenv sync
       script:
-        - scripts/test_publish.sh
+        - scripts/publish.sh
