@@ -2,4 +2,4 @@
 
 set -ex
 
-scripts/test_dashboard.sh
+# done

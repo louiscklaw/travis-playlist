@@ -2,6 +2,8 @@
 
 set -ex
 
+scripts/test_dashboard.sh
+
 for l in $(find . -name .travis.yml -not -path "./node_modules/*");
 do
   travis lint $l &
