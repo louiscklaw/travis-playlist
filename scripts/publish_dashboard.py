@@ -22,6 +22,8 @@ with lcd('build-dashboard'):
 
   local('git worktree add {} gh-pages'.format(GH_PAGES_DIR))
 
+  local('cp build-dashboard/overlay/themes/minimal/layouts/index.html build-dashboard/themes/minimal/layouts/index.html')
+
   local('hugo --minify --enableGitInfo --ignoreCache -d {}'.format(GH_PAGES_DIR))
 
   with lcd(GH_PAGES_DIR), settings(warn_only=True):

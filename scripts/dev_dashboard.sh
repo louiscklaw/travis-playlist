@@ -2,8 +2,15 @@
 
 set -ex
 
-cd build-dashboard
+cp build-dashboard/overlay/themes/minimal/layouts/index.html build-dashboard/themes/minimal/layouts/index.html
 
-hugo serve -D
+cd build-dashboard
+  hugo serve -D
+cd -
+
+# fallback overlayed change
+cd build-dashboard/themes/minimal
+  git checkout layouts/index.html
+cd -
 
 # done
