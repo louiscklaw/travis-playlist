@@ -1,5 +1,16 @@
 # travis tryout playlist
 
+## travis dashboard
+### local development
+```
+$ ./scripts/dev_dashboard.sh
+```
+
+### publish pages(run by travis)
+```
+$ python3 publish_dashboard.py
+```
+
 ### build dashboard
 https://louiscklaw.github.io/travis-playlist/
 

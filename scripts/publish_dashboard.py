@@ -3,11 +3,11 @@
 import os,sys
 from pprint import pprint
 
-from fabric.api import local, lcd, run
+from fabric.api import local, lcd, run, settings
 
 TMPDIR=local('mktemp -d',capture=True)
 
-GH_PAGES_DIR=os.path.join('/tmp','gh-pages')
+GH_PAGES_DIR=os.path.join(TMPDIR,'gh-pages')
 
 with lcd('build-dashboard'):
 
@@ -24,11 +24,9 @@ with lcd('build-dashboard'):
 
   local('hugo --minify --enableGitInfo --ignoreCache -d {}'.format(GH_PAGES_DIR))
 
-  with lcd(GH_PAGES_DIR):
+  with lcd(GH_PAGES_DIR), settings(warn_only=True):
     local('git add .')
-    local('git commit -m "publish from publish.sh"')
-
-    if local('git status -uno', capture=True).find("Your branch is up to date with 'origin/master'.")> 0:
+    if local('git commit -m "publish from publish.sh"', capture=True).find("nothing to commit, working tree clean") > 0:
       print("branch is up to day, skipping...")
     else:
       local('git push')

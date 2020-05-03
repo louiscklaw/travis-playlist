@@ -2,6 +2,8 @@
 
 set -ex
 
+cd build-dashboard
 
+hugo serve -D
 
 # done
