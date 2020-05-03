@@ -19,6 +19,7 @@ stages:
   - Deploy
   - Merge
   - Integration_to_other_repo
+  - Publish_dashboard
 
 import:
   - credentials.yml
@@ -40,6 +41,7 @@ import:
   - travis-test-markdown/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
+  - build-dashboard/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh

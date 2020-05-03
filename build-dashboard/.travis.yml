@@ -1,0 +1,6 @@
+jobs:
+  include:
+    - stage: Publish_dashboard
+      name: Update travis build dashboard
+      script:
+        - pipenv run python3 ./scripts/publish_dashboard.py
