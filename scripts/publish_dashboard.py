@@ -24,6 +24,8 @@ with lcd('build-dashboard'):
   # directory should exist
   local('ls -l {}'.format(GH_PAGES_DIR))
 
+  local('git checkout --orphan gh-pages')
+
   local('git worktree add {} gh-pages'.format(GH_PAGES_DIR))
 
   local('cp overlay/themes/minimal/layouts/index.html themes/minimal/layouts/index.html')
