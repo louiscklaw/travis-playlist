@@ -17,7 +17,7 @@ rm -rf hugo_extended_0.69.2_Linux-64bit.deb
 
 # TMPDIR=$(mktemp -d)
 TMPDIR='/tmp'
-GH_PAGES_DIR=$TMPDIR/gh-pages
+GH_PAGES_DIR=$TMPDIR/gh-pages-out
 
 pipenv sync
 
@@ -26,7 +26,7 @@ pipenv run python3 ./scripts/gen_repo_table.py
 cd build-dashboard
   git submodule update --init --recursive themes/minimal
 
-  hugo --minify --enableGitInfo --ignoreCache -d /tmp/gh-pages-out
+  hugo --minify --enableGitInfo --ignoreCache -d $GH_PAGES_DIR
 
 cd ..
 
