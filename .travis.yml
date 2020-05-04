@@ -1,19 +1,47 @@
-language: generic
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/environment-variables/
+# https://docs.travis-ci.com/user/job-lifecycle/
+
+# You can import up to 25 other configs in total.
+os: linux
+
+language: node_js
+node_js:
+  - 12
+cache:
+  - npm
+  - pip
+
+stages:
+  - Unit_test
+  - Test
+  - Build
+  - Deploy
+  - Integration_to_other_repo
+  - Publish_dashboard
+  - Merge
 
 import:
   - credentials.yml
+  # - helloworld/.travis.yml
+  # # - travis-broadcast/.travis.yml
+  # # - travis-conditional-build-tryout/.travis.yml
+  # # - travis-stl-checking/.travis.yml
+  # # - travis-freecad-checking/.travis.yml
+  # # # - transfer-sh-tryout/.travis.yml
+  # # - travis-yml-import/test.yml
+  # # - travis-kicad-build/.travis.yml
+  # # # - build-stages-demo/.travis.yml
+  # # # - travis-docker-tryout/.travis.yml
+  # # # - cache-docker-image/.travis.yml
+  # # - travis-build-docker-image/.travis.yml
+  # # - travis-arm-build/.travis.yml
+  # # - travis-pydrive-tryout/.travis.yml
+  # # - travis-wget/.travis.yml
+  # # - travis-test-markdown/.travis.yml
+  # - travis-build-merger/.travis.yml
+  # - Integration_to_other_repo/.travis.yml
+  - build-dashboard/.travis.yml
 
-script:
-  - hostname
-  - mkdir /tmp/gh-pages-out
-  - touch /tmp/gh-pages-out/index.html
-  - echo helloworld > /tmp/gh-pages-out/index.html
-
-
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    local_dir: /tmp/gh-pages-out
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: test/update-install-hugo
+after_success:
+  travis-test-after-success/fail_script.sh
