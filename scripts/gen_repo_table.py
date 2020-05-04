@@ -9,7 +9,7 @@ RUN_ENVIRONMENT = os.getenv('CI')
 
 github_json=[]
 
-row_template='| `https://travis-ci.com/github/louiscklaw/travis-playlist`  | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=master)](https://travis-ci.com/louiscklaw/travis-playlist) | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=develop)](https://travis-ci.com/louiscklaw/travis-playlist)|'
+row_template='| `louiscklaw/travis-playlist`  | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=master)](https://travis-ci.com/louiscklaw/travis-playlist) | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=develop)](https://travis-ci.com/louiscklaw/travis-playlist)|'
 
 repo_list=[
   'louiscklaw/portfolio-preact',
@@ -47,7 +47,7 @@ else:
 str_templates = ''.join(f_template.readlines())
 repo_name_list = map(lambda y: y['full_name'], filter(lambda x: 'full_name' in x, github_json))
 
-str_temp=map(lambda x: row_template.replace('louiscklaw/travis-playlist',x),repo_name_list)
+str_temp=map(lambda x: row_template.replace('louiscklaw/travis-playlist',x),sorted(repo_name_list))
 
 str_templates = str_templates.replace('<table_body>', '\n'.join(str_temp))
 

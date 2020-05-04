@@ -4,6 +4,8 @@ set -ex
 
 cp build-dashboard/overlay/themes/minimal/layouts/index.html build-dashboard/themes/minimal/layouts/index.html
 
+./scripts/gen_repo_table.py
+
 cd build-dashboard
   hugo serve -D
 cd -
