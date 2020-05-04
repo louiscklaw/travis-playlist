@@ -13,7 +13,7 @@ set -x
 TMPDIR='/tmp'
 GH_PAGES_DIR=$TMPDIR/gh-pages
 
-python3 ./scripts/gen_repo_table.py
+pipenv run python3 ./scripts/gen_repo_table.py
 
 cd build-dashboard
   git submodule update --init --recursive themes/minimal
