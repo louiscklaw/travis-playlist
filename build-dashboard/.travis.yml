@@ -10,7 +10,7 @@ jobs:
       script:
         - scripts/publish.sh
 
-      if: branch = test/update-install-hugo
+      if: branch = master
 
 deploy:
   - provider: pages
@@ -18,4 +18,4 @@ deploy:
     local_dir: /tmp/gh-pages-out
     github_token: $GITHUB_TOKEN
     on:
-      branch: test/update-install-hugo
+      branch: master
