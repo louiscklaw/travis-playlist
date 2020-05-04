@@ -7,10 +7,6 @@ script:
   - hostname
   - mkdir /tmp/gh-pages-out
 
-branches:
-  only:
-    - test/update-install-hugo
-
 deploy:
   provider: pages
   local_dir: out
