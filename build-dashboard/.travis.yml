@@ -9,3 +9,5 @@ jobs:
       #   - pipenv sync
       script:
         - scripts/publish.sh
+
+      if: branch = master
