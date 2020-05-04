@@ -9,8 +9,12 @@ export LANG=C.UTF-8
 rm -rf /tmp/tmp*
 rm -rf /tmp/gh-pages
 rm -rf hugo_extended*
+git branch -D gh-pages || true
+
 
 cp /host/etc/apt/sources.list.hk /etc/apt/sources.list
+
+
 
 # exit 1
 
