@@ -7,6 +7,8 @@ script:
   - hostname
   - mkdir /tmp/gh-pages-out
   - touch /tmp/gh-pages-out/index.html
+  - echo helloworld > /tmp/gh-pages-out/index.html
+
 
 deploy:
   - provider: pages
