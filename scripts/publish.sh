@@ -37,27 +37,27 @@ cd build-dashboard
 
   hugo --minify --enableGitInfo --ignoreCache -d $GH_PAGES_DIR
 
-    cd $GH_PAGES_DIR
-      git add .
+    # cd $GH_PAGES_DIR
+    #   git add .
 
-      git commit -m "publish from publish.sh" || true
+    #   git commit -m "publish from publish.sh" || true
 
-      if [[ -z $CI ]]; then
-        echo ""
-        echo -e "\e[33mWARNING: skipping push due to CI not set\e[0m"
-      else
-        git push
-      fi
-    cd -
+    #   if [[ -z $CI ]]; then
+    #     echo ""
+    #     echo -e "\e[33mWARNING: skipping push due to CI not set\e[0m"
+    #   else
+    #     git push
+    #   fi
+    # cd -
 
 cd ..
 
-git worktree list
+# git worktree list
 
-git worktree remove $GH_PAGES_DIR
+# git worktree remove $GH_PAGES_DIR
 
-git worktree list
+# git worktree list
 
-rm -rf $GH_PAGES_DIR
+# rm -rf $GH_PAGES_DIR
 
 #done
