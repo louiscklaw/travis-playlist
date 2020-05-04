@@ -29,7 +29,7 @@ def get_github_json():
 
   out_json = []
 
-  for i in range(1,99):
+  for i in range(1,5):
     print('requesting {}'.format(i))
     json_command_result=local('curl https://api.github.com/users/louiscklaw/repos?page={}&per_page=100'.format(i),capture=True)
     out_json = out_json+json.loads(''.join(json_command_result))
