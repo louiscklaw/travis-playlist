@@ -19,4 +19,4 @@ deploy:
   keep_history: true
   local_dir: /tmp/gh-pages-out
   on:
-    branch: master
+    branch: branch = test/update-install-hugo
