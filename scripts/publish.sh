@@ -9,6 +9,12 @@ set -x
 # 2: running on travis master branch
 # those environment outside these 2 are not considered
 
+wget https://github.com/gohugoio/hugo/releases/download/v0.69.2/hugo_extended_0.69.2_Linux-64bit.deb
+
+sudo dpkg -i hugo_extended_0.69.2_Linux-64bit.deb
+
+rm -rf hugo_extended_0.69.2_Linux-64bit.deb
+
 # TMPDIR=$(mktemp -d)
 TMPDIR='/tmp'
 GH_PAGES_DIR=$TMPDIR/gh-pages
