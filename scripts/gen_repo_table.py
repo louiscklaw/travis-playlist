@@ -18,7 +18,7 @@ repo_list=[
 
 # PREPARE
 f_template = open('build-dashboard/content/project/travis-dashboard-template.md','r')
-f_result = open('build-dashboard/content/project/travis-dashboard.md','r+')
+f_result = open('build-dashboard/content/project/travis-dashboard.md','w')
 
 def get_github_json():
   '''
