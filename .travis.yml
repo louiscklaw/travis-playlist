@@ -10,8 +10,7 @@ script:
 deploy:
   - provider: pages
     skip_cleanup: true
-    local_dir: out
-    github_token: $GITHUB_TOKEN
     local_dir: /tmp/gh-pages-out
+    github_token: $GITHUB_TOKEN
     on:
       branch: test/update-install-hugo
