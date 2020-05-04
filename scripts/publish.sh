@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -ex
 
 # design notes:
 # --------------------------------------
@@ -18,6 +18,8 @@ rm -rf hugo_extended_0.69.2_Linux-64bit.deb
 # TMPDIR=$(mktemp -d)
 TMPDIR='/tmp'
 GH_PAGES_DIR=$TMPDIR/gh-pages
+
+pipenv sync
 
 pipenv run python3 ./scripts/gen_repo_table.py
 
@@ -37,7 +39,8 @@ cd build-dashboard
 
     cd $GH_PAGES_DIR
       git add .
-      git commit -m "publish from publish.sh"
+
+      git commit -m "publish from publish.sh" || true
 
       if [[ -z $CI ]]; then
         echo ""
