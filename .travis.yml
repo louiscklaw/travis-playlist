@@ -16,5 +16,3 @@ deploy:
   local_dir: out
   github_token: $GITHUB_TOKEN
   local_dir: /tmp/gh-pages-out
-  edge:
-    branch: test/update-install-hugo
