@@ -8,7 +8,9 @@ script:
   - mkdir /tmp/gh-pages-out
 
 deploy:
-  provider: pages
-  local_dir: out
-  github_token: $GITHUB_TOKEN
-  local_dir: /tmp/gh-pages-out
+  - provider: pages
+    local_dir: out
+    github_token: $GITHUB_TOKEN
+    local_dir: /tmp/gh-pages-out
+    on:
+      branch: test/update-install-hugo
