@@ -26,29 +26,7 @@ pipenv run python3 ./scripts/gen_repo_table.py
 cd build-dashboard
   git submodule update --init --recursive themes/minimal
 
-  git worktree prune
-
-  mkdir -p $GH_PAGES_DIR
-
-  # directory should exist
-  ls -l $GH_PAGES_DIR
-
-  git worktree add $GH_PAGES_DIR gh-pages
-
-  hugo --minify --enableGitInfo --ignoreCache -d $GH_PAGES_DIR
-
-    # cd $GH_PAGES_DIR
-    #   git add .
-
-    #   git commit -m "publish from publish.sh" || true
-
-    #   if [[ -z $CI ]]; then
-    #     echo ""
-    #     echo -e "\e[33mWARNING: skipping push due to CI not set\e[0m"
-    #   else
-    #     git push
-    #   fi
-    # cd -
+  hugo --minify --enableGitInfo --ignoreCache -d /tmp/gh-pages-out
 
 cd ..
 
