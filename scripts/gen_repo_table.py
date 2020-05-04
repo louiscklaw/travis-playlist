@@ -9,7 +9,18 @@ RUN_ENVIRONMENT = os.getenv('CI')
 
 github_json=[]
 
-row_template='| `louiscklaw/travis-playlist`  | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=master)](https://travis-ci.com/louiscklaw/travis-playlist) | [![Build Status](https://travis-ci.com/louiscklaw/travis-playlist.svg?branch=develop)](https://travis-ci.com/louiscklaw/travis-playlist)|'
+row_template='''
+| `repo1`
+| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)
+| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)
+| `repo2`
+| [![Build Status](https://travis-ci.com/repo2.svg?branch=master)](https://travis-ci.com/repo2)
+| [![Build Status](https://travis-ci.com/repo2.svg?branch=develop)](https://travis-ci.com/repo2)
+| `repo3`
+| [![Build Status](https://travis-ci.com/repo3.svg?branch=master)](https://travis-ci.com/repo3)
+| [![Build Status](https://travis-ci.com/repo3.svg?branch=develop)](https://travis-ci.com/repo3)
+|
+'''.replace('\n','').strip()
 
 repo_list=[
   'louiscklaw/portfolio-preact',
@@ -47,7 +58,16 @@ else:
 str_templates = ''.join(f_template.readlines())
 repo_name_list = map(lambda y: y['full_name'], filter(lambda x: 'full_name' in x, github_json))
 
-str_temp=map(lambda x: row_template.replace('louiscklaw/travis-playlist',x),sorted(repo_name_list))
+repo_name_list = list(repo_name_list)
+repo_name_list_in_3 = [[repo_name_list[i],repo_name_list[i+1],repo_name_list[i+2]] for i in range(0,len(repo_name_list),3)]
+
+
+str_temp=map(
+  lambda x: row_template
+    .replace('repo1',x[0])
+    .replace('repo2',x[1])
+    .replace('repo3',x[2])
+  ,sorted(repo_name_list_in_3))
 
 str_templates = str_templates.replace('<table_body>', '\n'.join(str_temp))
 
