@@ -26,6 +26,14 @@ pipenv run python3 ./scripts/gen_repo_table.py
 cd build-dashboard
   git submodule update --init --recursive themes/minimal
 
+  rsync -avzh \
+  overlay/themes/minimal/layouts/index.html \
+  themes/minimal/layouts/index.html
+
+  rsync -avzh \
+  overlay/themes/minimal/static/css/main.css \
+  themes/minimal/static/css/main.css
+
   hugo --minify --enableGitInfo --ignoreCache -d $GH_PAGES_DIR
 
 cd ..
