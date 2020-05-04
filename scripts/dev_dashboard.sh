@@ -2,7 +2,13 @@
 
 set -ex
 
-cp build-dashboard/overlay/themes/minimal/layouts/index.html build-dashboard/themes/minimal/layouts/index.html
+rsync -avzh \
+build-dashboard/overlay/themes/minimal/layouts/index.html \
+build-dashboard/themes/minimal/layouts/index.html
+
+rsync -avzh \
+build-dashboard/overlay/themes/minimal/static/css/main.css \
+build-dashboard/themes/minimal/static/css/main.css
 
 ./scripts/gen_repo_table.py
 
