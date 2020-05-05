@@ -49,12 +49,12 @@ def get_github_json():
 
     return json_page_1+json_page_2
   else:
-    for i in range(1,5):
+    for i in range(1,20+1):
       print('requesting {}'.format(i))
       json_command_result=local('curl https://api.github.com/users/louiscklaw/repos?page={}&per_page=100'.format(i),capture=True)
       out_json = out_json+json.loads(''.join(json_command_result))
 
-  return out_json
+    return out_json
 
 github_json = get_github_json()
 
