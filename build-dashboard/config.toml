@@ -44,12 +44,18 @@ googleAnalytics = ""
 [[menu.icon]]
     url = "https://travis-ci.com/github/louiscklaw/travis-playlist"
     name = "building"
+    weight = 1
+
+[[menu.icon]]
+    url = "https://github.com/louiscklaw/travis-playlist/"
+    name = "code"
     weight = 2
 
 [[menu.icon]]
-    url = "https://github.com/louiscklaw/travis-playlist"
-    name = "code"
-    weight = 5
+    url = "https://travis-ci.com/github/louiscklaw?tab=insights"
+    name = "male"
+    weight = 3
+
 
 [markup.goldmark.renderer]
     unsafe= true
