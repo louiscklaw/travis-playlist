@@ -14,7 +14,7 @@ github_json=[]
 row_content = '''`repo1`| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)'''.strip()
 
 
-row_template='''| row_content_1 | row_content_2 | row_content_3 |'''.replace('\n','').strip()
+row_template='''| row_content_1 | row_content_2 | row_content_3 | row_content_4 | row_content_5 |'''.replace('\n','').strip()
 
 repo_list=[
   'louiscklaw/portfolio-preact',
@@ -71,7 +71,7 @@ repo_name_list_in_3 = [
     repo_name_list[i] if i <= last_repo_name_list_idx  is not None else '',
     repo_name_list[i+1] if i+1 <= last_repo_name_list_idx is not None else '',
     repo_name_list[i+2] if i+2 <= last_repo_name_list_idx is not None else ''
-  ] for i in range(0,last_repo_name_list_idx,3)
+  ] for i in range(0,last_repo_name_list_idx, 5)
 ]
 
 str_temp=map(
@@ -79,6 +79,8 @@ str_temp=map(
     .replace('row_content_1', get_row_content(x[0]) if x[0] != '' else '')
     .replace('row_content_2', get_row_content(x[1]) if x[1] != '' else '')
     .replace('row_content_3', get_row_content(x[2]) if x[2] != '' else '')
+    .replace('row_content_4', get_row_content(x[3]) if x[3] != '' else '')
+    .replace('row_content_5', get_row_content(x[4]) if x[4] != '' else '')
   ,sorted(repo_name_list_in_3))
 
 str_templates = str_templates.replace('<table_body>', '\n'.join(str_temp))
