@@ -11,7 +11,12 @@ DEBUG = ENV_CI == None
 
 github_json=[]
 
-row_content = '''`repo_name`| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)'''.strip()
+row_content = '''
+`repo_name`
+| <a href="https://github.com/louiscklaw/repo_name" target="_blank"><img src="https://simpleicons.org/icons/github.svg" style="height: 1em;"/></a>
+| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)
+| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)
+'''.replace('\n','')
 
 
 row_template='''| row_content_1 | row_content_2 | row_content_3 | row_content_4 | row_content_5 |'''.replace('\n','').strip()
@@ -26,8 +31,8 @@ f_template = open('build-dashboard/content/project/travis-dashboard-template.md'
 f_result = open('build-dashboard/content/project/travis-dashboard.md','w')
 
 def get_md_thead(col=5):
-  col_header = ['repo','master','develop']
-  table_bottom_line = [':----','-----','-----']
+  col_header = ['repo_name','link',':master:','develop']
+  table_bottom_line = [':----',':---:',':---:',':---:']
 
   whole_header = col_header * col
   whole_bottom_line = table_bottom_line * col
@@ -52,8 +57,9 @@ def get_github_json():
     f_json_page1 = open('./scripts/dummy_page_1.json')
     f_json_page2 = open('./scripts/dummy_page_2.json')
 
-    json_page_1 = json.loads(''.join(f_json_page1.readlines()))
-    json_page_2 = json.loads(''.join(f_json_page2.readlines()))
+    json_page_1 = json.loads(''.join(f_json_page1.readlines()))[0:5]
+    # json_page_2 = json.loads(''.join(f_json_page2.readlines()))
+    json_page_2=['']
 
     # pprint(len(json_page_1))
     # pprint(len(json_page_2))

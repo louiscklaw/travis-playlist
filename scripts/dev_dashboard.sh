@@ -10,7 +10,7 @@ rsync -avzh \
 build-dashboard/overlay/themes/minimal/static/css/main.css \
 build-dashboard/themes/minimal/static/css/main.css
 
-./scripts/gen_repo_table.py
+# ./scripts/gen_repo_table.py
 
 cd build-dashboard
   hugo serve -D

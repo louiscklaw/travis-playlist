@@ -35,3 +35,6 @@ googleAnalytics = ""
     url = "https://github.com/louiscklaw/travis-playlist"
     name = "code"
     weight = 5
+
+[markup.goldmark.renderer]
+    unsafe= true
