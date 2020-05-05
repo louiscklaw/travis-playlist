@@ -27,8 +27,8 @@ repo_list=[
 ]
 
 # PREPARE
-f_template = open('build-dashboard/content/project/travis-dashboard-template.md','r')
-f_result = open('build-dashboard/content/project/travis-dashboard.md','w')
+f_template = open('build-dashboard/content/travis-dashboard-template.md','r')
+f_result = open('build-dashboard/content/travis-dashboard.md','w')
 
 def get_md_thead(col=5):
   col_header = ['repo_name','link',':master:','develop']
