@@ -11,7 +11,7 @@ DEBUG = ENV_CI == None
 
 github_json=[]
 
-row_content = '''`repo1`| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)'''.strip()
+row_content = '''`repo_name`| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)'''.strip()
 
 
 row_template='''| row_content_1 | row_content_2 | row_content_3 | row_content_4 | row_content_5 |'''.replace('\n','').strip()
@@ -25,8 +25,20 @@ repo_list=[
 f_template = open('build-dashboard/content/project/travis-dashboard-template.md','r')
 f_result = open('build-dashboard/content/project/travis-dashboard.md','w')
 
+def get_md_thead(col=5):
+  col_header = ['repo','master','develop']
+  table_bottom_line = [':----','-----','-----']
+
+  whole_header = col_header * col
+  whole_bottom_line = table_bottom_line * col
+
+  string_header = "| "+' | '.join(whole_header)+" | "
+  string_bottom_line = "| "+' | '.join(whole_bottom_line)+" |"
+
+  return string_header +'\n'+ string_bottom_line +'\n'
+
 def get_row_content(repo):
-  return row_content.replace('repo1',repo)
+  return row_content.replace('repo1',repo).replace('repo_name',repo.replace('louiscklaw/',''))
 
 def get_github_json():
   '''
@@ -70,7 +82,9 @@ repo_name_list_in_3 = [
   [
     repo_name_list[i] if i <= last_repo_name_list_idx  is not None else '',
     repo_name_list[i+1] if i+1 <= last_repo_name_list_idx is not None else '',
-    repo_name_list[i+2] if i+2 <= last_repo_name_list_idx is not None else ''
+    repo_name_list[i+2] if i+2 <= last_repo_name_list_idx is not None else '',
+    repo_name_list[i+3] if i+3 <= last_repo_name_list_idx is not None else '',
+    repo_name_list[i+4] if i+4 <= last_repo_name_list_idx is not None else ''
   ] for i in range(0,last_repo_name_list_idx, 5)
 ]
 
@@ -83,6 +97,8 @@ str_temp=map(
     .replace('row_content_5', get_row_content(x[4]) if x[4] != '' else '')
   ,sorted(repo_name_list_in_3))
 
-str_templates = str_templates.replace('<table_body>', '\n'.join(str_temp))
+str_temp = get_md_thead() + '\n'.join(str_temp)
+
+str_templates = str_templates.replace('<table_body>', str_temp)
 
 f_result.write(str_templates)
