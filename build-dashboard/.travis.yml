@@ -10,12 +10,12 @@ jobs:
       script:
         - scripts/publish.sh
 
-      if: branch = master
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          local_dir: /tmp/gh-pages-out
+          github_token: $GITHUB_TOKEN
+          on:
+            branch: master
 
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    local_dir: /tmp/gh-pages-out
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
+      if: branch = master
