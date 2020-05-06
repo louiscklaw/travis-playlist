@@ -13,9 +13,13 @@ github_json=[]
 
 row_content = '''
 `repo_name`
-| <a href="https://github.com/louiscklaw/repo_name" target="_blank"><img src="https://simpleicons.org/icons/github.svg" style="height: 1em;"/></a>
-| [![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)
-| [![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)
+|
+<a href="https://github.com/louiscklaw/repo_name" target="_blank"><img src="https://simpleicons.org/icons/github.svg" style="height: 1em;"/></a>
+<a href="//git clone git@github.com:louiscklaw/repo_name.git" target="_blank"><img src="https://simpleicons.org/icons/rss.svg" style="height: 1em;" alt="git clont command"/></a>
+|
+[![Build Status](https://travis-ci.com/repo1.svg?branch=master)](https://travis-ci.com/repo1)
+|
+[![Build Status](https://travis-ci.com/repo1.svg?branch=develop)](https://travis-ci.com/repo1)
 '''.replace('\n','')
 
 

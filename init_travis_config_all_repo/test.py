@@ -5,7 +5,9 @@ import os,sys
 from fabric.api import local, lcd, run, settings
 from pprint import pprint
 
-f_repo_list = open('/home/logic/_workspace/travis-playlist/init_travis_config_all_repo/repo_list.txt','r')
+import chalk
+
+f_repo_list = open(sys.argv[1],'r')
 repo_list= list(map(lambda x: x.strip(), f_repo_list.readlines()))
 
 def add_travis_config(current_repo):
@@ -82,7 +84,7 @@ def add_travis_config(current_repo):
         local('git push -f --set-upstream origin test/init-travis-build-merger')
 
       else:
-        print('travis file found, skipping')
+        print(chalk.red('travis file found, skipping'))
 
   # git@github.com:louiscklaw/12V_power_supply_tryout.git
   local('rm -rf {}'.format(TMP_DIR))
