@@ -31,7 +31,7 @@
 #android_helloworld_api25
 #android_phone
 #android-message-box-tryout
-anycubic-slic3r-settings
+#anycubic-slic3r-settings
 AP3429-tryout
 apc-controller-mount
 appium-playlist
