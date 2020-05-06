@@ -13,7 +13,7 @@ jobs:
       deploy:
         - provider: pages
           skip_cleanup: true
-          local_dir: /tmp/gh-pages-out
+          local_dir: gh-pages
           github_token: $GITHUB_TOKEN
           on:
             branch: master

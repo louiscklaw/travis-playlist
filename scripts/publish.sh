@@ -17,7 +17,7 @@ rm -rf hugo_extended_0.69.2_Linux-64bit.deb
 
 # TMPDIR=$(mktemp -d)
 TMPDIR='/tmp'
-GH_PAGES_DIR=$TMPDIR/gh-pages-out
+GH_PAGES_DIR=../gh-pages
 
 pipenv sync
 
