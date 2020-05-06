@@ -4,11 +4,11 @@
 import os,sys
 from fabric.api import local, lcd, run, settings
 from pprint import pprint
-
+from time import sleep
 import chalk
 
 f_repo_list = open(sys.argv[1],'r')
-repo_list= list(map(lambda x: x.strip(), f_repo_list.readlines()))
+repo_list= list(map(lambda x: x.strip(), filter(lambda y: y.find("#") == -1 , f_repo_list.readlines())))
 
 def add_travis_config(current_repo):
   # /tmp
@@ -88,6 +88,8 @@ def add_travis_config(current_repo):
 
   # git@github.com:louiscklaw/12V_power_supply_tryout.git
   local('rm -rf {}'.format(TMP_DIR))
+  print(chalk.yellow('sleep a while for travis cooldown ...'))
+  sleep(15)
 
 if __name__=="__main__":
   for repo_name in repo_list:
