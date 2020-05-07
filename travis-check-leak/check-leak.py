@@ -6,7 +6,9 @@ from multiprocessing import Pool
 from functools import reduce
 
 word_list=[
-  'careless_token'
+  'careless_token',
+  'token xoxb',
+  'xoxb'
 ]
 
 excepted_file_list = ['check-leak.py']
