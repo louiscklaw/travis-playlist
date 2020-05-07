@@ -4,4 +4,4 @@ jobs:
     - stage: Unit_test
       name: script test
       script:
-        - scripts/check_leak.sh
+        - scripts/test_check_leak.sh
