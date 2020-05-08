@@ -11,6 +11,5 @@ with settings(warn_only=True):
   print(result)
 
   assert(result.find(expected_result) > -1)
-  print
-  print('check-leak script test done')
-  print()
+
+  print('test_pass.py done')

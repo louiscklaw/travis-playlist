@@ -38,3 +38,7 @@ if __name__ == '__main__':
       print(file_after_exception)
 
       exit(99)
+
+    print
+    print('check-leak script test done')
+    print()
