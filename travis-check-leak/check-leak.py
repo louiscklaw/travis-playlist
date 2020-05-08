@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     file_after_exception = list(filter(find_file_in_exception  ,flattened_file_list))
 
-    if len(file_after_exception) > 0:
+    if len(file_after_exception) != 1:
       print('')
       print('LEAKING FOUND')
       print('-'*80)
