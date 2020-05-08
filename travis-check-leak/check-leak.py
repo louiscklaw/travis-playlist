@@ -11,7 +11,7 @@ word_list=[
   'xoxb'
 ]
 
-excepted_file_list = ['check-leak.py']
+excepted_file_list = []
 
 check_commands = ['grep -ril "{}" *'.format(word) for word in word_list]
 
