@@ -11,7 +11,7 @@ word_list=[
   'xoxb'
 ]
 
-excepted_file_list = []
+excepted_file_list = ['check-leak.py']
 
 check_commands = ['grep -ril "{}" *'.format(word) for word in word_list]
 
@@ -41,4 +41,4 @@ if __name__ == '__main__':
 
     print
     print('check-leak script test done')
-    print()
+    print

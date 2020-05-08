@@ -10,6 +10,6 @@ with settings(warn_only=True):
   result = local('python3 check-leak.py',capture=True)
   print(result)
 
-  assert(result.find(expected_result) > -1)
+  assert(result.find(expected_result) == -1)
 
   print('test_pass.py done')
