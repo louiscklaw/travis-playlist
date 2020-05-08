@@ -4,6 +4,11 @@ import os, re, subprocess
 from fabric.api import local, shell_env, lcd, run, settings
 
 os.environ['GITHUB_TOKEN'] = 'GITHUB_TOKEN_test'
+os.environ['TRAVIS_BRANCH'] = 'travis_test_branch'
+os.environ['TRAVIS_COMMIT'] = 'travis_commit'
+os.environ['TRAVIS_BUILD_NUMBER'] = 'travis_build_number'
+os.environ['TRAVIS_REPO_SLUG'] = 'travis_repo_slug'
+
 
 from _util.merge import *
 
