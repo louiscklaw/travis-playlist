@@ -39,7 +39,7 @@ import:
   # # - build-stages-demo/.travis.yml
   # # - travis-docker-tryout/.travis.yml
   # # - cache-docker-image/.travis.yml
-  # - travis-build-docker-image/.travis.yml
+  - travis-build-docker-image/.travis.yml
   # - travis-arm-build/.travis.yml
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
