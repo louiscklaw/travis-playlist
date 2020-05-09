@@ -10,5 +10,5 @@ jobs:
         - docker --version
       script:
         - cd travis-build-docker-image
-        - docker build -t build-from-travis-helloworld .
+        - docker build -t logickee/travis-test-image .
         - cd -
