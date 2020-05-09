@@ -22,7 +22,7 @@ cd tmp
 
   cp ../travis-check-leak/leak.js .
 
-  pipenv --rm
+  pipenv --rm || true
   pipenv sync
   python3 test_pass.py
 
