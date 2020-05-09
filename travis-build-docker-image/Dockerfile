@@ -5,6 +5,8 @@ FROM ubuntu:18.04
 #   apt-get install -y build-essential sudo git wget
 
 RUN apt update
+RUN apt install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+RUN python3 -m pip install pipenv
 
 RUN ls -l /root
 
