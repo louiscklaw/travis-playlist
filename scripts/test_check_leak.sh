@@ -2,6 +2,14 @@
 
 set -ex
 
+# apt update
+# apt install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+# python3 -m pip install pipenv
+
+# export PATH=$PATH:/root/.local/bin
+# export LC_ALL=C.UTF-8
+# export LANG=C.UTF-8
+
 mkdir -p tmp
 
 cd tmp
@@ -14,9 +22,8 @@ cd tmp
 
   cp ../travis-check-leak/leak.js .
 
-  # pipenv --rm
-  # pipenv sync
-
+  pipenv --rm
+  pipenv sync
   python3 test_pass.py
 
 cd ..
