@@ -24,6 +24,6 @@ cd tmp
 
   pipenv --rm || true
   pipenv sync
-  python3 test_pass.py
+  pipenv run python3 test_pass.py
 
 cd ..
