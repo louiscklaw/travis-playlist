@@ -18,6 +18,12 @@ environ_var_list=[
   'SLACK_NOTIFICATIONS'
 ]
 
+try:
+  [os.environ[t] for t in environ_var_list]
+except Exception as e:
+  print(chalk.red("cannot get the wanted environment variables"))
+  sys.exit(99)
+
 excepted_file_list = ['check-leak.py']
 
 check_commands = ['grep -ril "{}" * 2>&1'.format(temp) for temp in word_list]+['grep -ril ${} * 2>&1'.format(temp) for temp in environ_var_list]
