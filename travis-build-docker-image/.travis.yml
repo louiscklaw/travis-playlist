@@ -6,9 +6,21 @@ jobs:
       name: Test travis-build-docker-image
       services:
         - docker
-      before_install:
+
+      before_script:
         - docker --version
+
       script:
-        - cd travis-build-docker-image
-        - docker build -t logickee/travis-test-image .
-        - cd -
+        - cd travis-build-docker-image/travis-python
+        - docker build -t logickee/travis-python-test .
+        - cd ../..
+
+        - cd travis-build-docker-image/travis-ubuntu
+        - docker build -t logickee/travis-ubuntu-test .
+        - cd ../..
+
+      after_script:
+        - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+        - docker push logickee/travis-python-test
+        - docker push logickee/travis-ubuntu-test
+        - docker logout
