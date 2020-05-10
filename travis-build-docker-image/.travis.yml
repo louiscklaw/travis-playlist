@@ -20,4 +20,4 @@ jobs:
         - cd ../..
 
       after_script:
-        - test $TRAVIS_BRANCH = "master" && docker_push.sh
+        - test $TRAVIS_BRANCH = "master" && travis-build-docker-image/docker_push.sh
