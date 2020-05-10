@@ -24,3 +24,4 @@ jobs:
         - docker push logickee/travis-python-test
         - docker push logickee/travis-ubuntu-test
         - docker logout
+        if: branch = master
