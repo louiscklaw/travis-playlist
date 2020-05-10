@@ -20,8 +20,4 @@ jobs:
         - cd ../..
 
       after_script:
-        - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-        - docker push logickee/travis-python-test
-        - docker push logickee/travis-ubuntu-test
-        - docker logout
-        if: branch = master
+        - test $TRAVIS_BRANCH = "master" && docker_push.sh
