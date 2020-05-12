@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 # RUN apt-get update && \
 #   apt-get install -y build-essential sudo git wget
 
-COPY sources.list.hk /etc/apt/sources.list
+# COPY sources.list.hk /etc/apt/sources.list
 
 RUN apt-get update
 

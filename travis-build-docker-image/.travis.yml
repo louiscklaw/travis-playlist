@@ -15,6 +15,10 @@ jobs:
         - docker build -t logickee/travis-python-test .
         - cd ../..
 
+        - cd travis-build-docker-image/travis-python
+        - docker build -t logickee/travis-python-test .
+        - cd ../..
+
         - cd travis-build-docker-image/travis-ubuntu
         - docker build -t logickee/travis-ubuntu-test .
         - cd ../..
