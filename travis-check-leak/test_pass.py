@@ -7,6 +7,7 @@ from pprint import pprint
 expected_result = "['leak.js']"
 
 with settings(warn_only=True):
+  local('pipenv run python3 check-leak.py')
   result = local('pipenv run python3 check-leak.py 2>&1',capture=True)
   print(result)
 
