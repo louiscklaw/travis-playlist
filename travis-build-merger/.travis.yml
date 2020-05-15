@@ -5,11 +5,11 @@ jobs:
       script:
         # the below should be kept for test inside travis-playlist only
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success_test.sh
-        - bash merge_if_success_test.sh | tee merge.log
+        - bash merge_if_success_test.sh
 
         # production code
         # - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
-        # - bash merge_if_success.sh | tee merge.log
+        # - bash merge_if_success.sh
 
 after_failure:
   - cat merge.log
