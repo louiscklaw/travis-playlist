@@ -11,7 +11,5 @@ jobs:
           skip_cleanup: true
           local_dir: gh-pages
           github_token: $GITHUB_TOKEN
-          on:
-            branch: master
 
       if: branch = poc/test-using-gatsby-github-pages
