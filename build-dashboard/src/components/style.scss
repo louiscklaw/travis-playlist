@@ -27,3 +27,8 @@ $input-shadow: none;
 
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/bulma.sass";
+
+html {
+  overflow-x: unset;
+  overflow-y: unset;
+}
