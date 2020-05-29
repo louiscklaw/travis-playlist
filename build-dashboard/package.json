@@ -19,6 +19,8 @@
     "react-helmet": "^6.0.0"
   },
   "devDependencies": {
+    "bulma": "^0.8.2",
+    "node-sass": "^4.14.1",
     "prettier": "2.0.5"
   },
   "keywords": [
@@ -32,7 +34,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "css-build": "node-sass --omit-source-map-url src/components/style.scss src/components/layout.css",
+    "css-watch": "npm run css-build -- --watch"
   },
   "repository": {
     "type": "git",

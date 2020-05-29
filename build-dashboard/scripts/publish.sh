@@ -4,6 +4,8 @@ set -ex
 
 yarn clean
 
+yarn css-build
+
 yarn build
 
 rm -rf ../gh-pages
