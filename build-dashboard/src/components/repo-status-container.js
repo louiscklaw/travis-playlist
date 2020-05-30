@@ -76,7 +76,7 @@ class RepoStatusContainer extends React.Component{
     }else{
       console.log('is_loading false')
       console.log(this.state.github_repos)
-      return this.state.github_repos.map(x => {
+      return this.state.github_repos.sort().map(x => {
         return (
           <RepoStatus key={`repo-status-${x}`} full_name={x}/>
         )
