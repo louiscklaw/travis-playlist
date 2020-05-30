@@ -11,12 +11,12 @@ class RepoStatus extends React.Component{
       <div className="repo-status">
         <div className="repo-status-content has-tooltip-bottom" data-tooltip={full_name}>
           <div style={{overflow: "hidden", textAlign:'center'}}>
-            <button className="repo-link-button button is-text branch-badge-name-plate is-small" >{full_name.split('/')[1]}</button>
+            <a className="repo-link-a is-text branch-badge-name-plate is-small" >{full_name.split('/')[1]}</a>
             <div className="repo-icon-list">
               <a href={`https://www.github.com/${full_name}`} target="_blank">
                 <i className="fab fa-github"></i>
               </a>
-              <a heft={`https://www.travis.com/${full_name}`}>
+              <a href={`https://www.travis-ci.com/${full_name}`} target="_blank">
                 <i className="fas fa-hard-hat"></i>
               </a>
             </div>
