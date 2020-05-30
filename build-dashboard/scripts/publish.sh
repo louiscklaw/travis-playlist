@@ -4,10 +4,11 @@ set -ex
 
 yarn clean
 
+rm -rf public
+rm -rf ../gh-pages
+
 yarn css-build
 
 yarn build
-
-rm -rf ../gh-pages
 
 cp -R public/ ../gh-pages
