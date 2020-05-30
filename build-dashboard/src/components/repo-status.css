@@ -1,5 +1,6 @@
 .repo-status {
-  height: 5vh;
+  height: 8vh;
+  min-width: 100px;
   width: calc((100% / 20));
 }
 
@@ -13,7 +14,7 @@
 
 .branch-badge-name-plate {
   white-space: nowrap;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .repo-status .branch-badge {

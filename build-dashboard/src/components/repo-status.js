@@ -9,13 +9,28 @@ class RepoStatus extends React.Component{
     return(
       <div className="repo-status">
         <div className="repo-status-content">
-          <div className="branch-badge-name-plate">{full_name.split('/')[1]}</div>
+          <div style={{overflow: "hidden"}}>
+            <div className="branch-badge-name-plate">
+              {full_name.split('/')[1]}
+            </div>
+
+            <div>
+              <a href={`https://www.github.com/${full_name}`} target="_blank">
+                <i className="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+
           <div className="branch-badge-container">
             <div className="branch-badge">
-              <img src={`https://travis-ci.com/${full_name}.svg?branch=master`}/>
+              <a href={`https://travis-ci.com/${full_name}`} target="_blank">
+                <img src={`https://travis-ci.com/${full_name}.svg?branch=master`}/>
+              </a>
             </div>
             <div className="branch-badge">
-              <img src={`https://travis-ci.com/${full_name}.svg?branch=develop`}/>
+              <a href={`https://travis-ci.com/${full_name}`} target="_blank">
+                <img src={`https://travis-ci.com/${full_name}.svg?branch=develop`}/>
+              </a>
             </div>
           </div>
         </div>

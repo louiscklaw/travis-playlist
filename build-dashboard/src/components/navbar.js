@@ -24,33 +24,24 @@ class Navbar extends React.Component{
               </a>
 
               <a className="navbar-item">
-                Documentation
+                Build pipe (not implemented)
               </a>
-
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">
-                  More
-                </a>
-
-                <div className="navbar-dropdown">
-                  <a className="navbar-item">
-                    About
-                  </a>
-                  <a className="navbar-item">
-                    Jobs
-                  </a>
-                  <a className="navbar-item">
-                    Contact
-                  </a>
-                  <hr className="navbar-divider" />
-                  <a className="navbar-item">
-                    Report an issue
-                  </a>
-                </div>
-              </div>
             </div>
 
             <div className="navbar-end">
+              <div className="navbar-item">
+
+              <div className="field">
+                <p className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" placeholder="search" />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-search"></i>
+                  </span>
+                </p>
+              </div>
+
+
+              </div>
               <div className="navbar-item">
                 <div className="buttons">
                   <a className="button is-primary">
