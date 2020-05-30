@@ -1,0 +1,23 @@
+.repo-status {
+  height: 5vh;
+  width: calc((100% / 20));
+  /* min-width: 100px; */
+  background-color: gold;
+}
+
+.repo-status-content {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.repo-status .branch-badge {
+  width: 50%;
+}
+
+.branch-badge-container {
+  display: flex;
+  align-content: space-between;
+}
