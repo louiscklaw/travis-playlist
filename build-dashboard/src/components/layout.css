@@ -2173,7 +2173,7 @@ a.box:active {
   padding: 0;
   width: 100%; }
   .progress::-webkit-progress-bar {
-    background-color: #ededed; }
+    background-color: #cbc6e1; }
   .progress::-webkit-progress-value {
     background-color: #433a6e; }
   .progress::-moz-progress-bar {
@@ -2188,7 +2188,7 @@ a.box:active {
   .progress.is-white::-ms-fill {
     background-color: white; }
   .progress.is-white:indeterminate {
-    background-image: linear-gradient(to right, white 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, white 30%, #cbc6e1 30%); }
   .progress.is-black::-webkit-progress-value {
     background-color: #0a0a0a; }
   .progress.is-black::-moz-progress-bar {
@@ -2196,7 +2196,7 @@ a.box:active {
   .progress.is-black::-ms-fill {
     background-color: #0a0a0a; }
   .progress.is-black:indeterminate {
-    background-image: linear-gradient(to right, #0a0a0a 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #0a0a0a 30%, #cbc6e1 30%); }
   .progress.is-light::-webkit-progress-value {
     background-color: whitesmoke; }
   .progress.is-light::-moz-progress-bar {
@@ -2204,7 +2204,7 @@ a.box:active {
   .progress.is-light::-ms-fill {
     background-color: whitesmoke; }
   .progress.is-light:indeterminate {
-    background-image: linear-gradient(to right, whitesmoke 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, whitesmoke 30%, #cbc6e1 30%); }
   .progress.is-dark::-webkit-progress-value {
     background-color: #363636; }
   .progress.is-dark::-moz-progress-bar {
@@ -2212,7 +2212,7 @@ a.box:active {
   .progress.is-dark::-ms-fill {
     background-color: #363636; }
   .progress.is-dark:indeterminate {
-    background-image: linear-gradient(to right, #363636 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #363636 30%, #cbc6e1 30%); }
   .progress.is-primary::-webkit-progress-value {
     background-color: #574b90; }
   .progress.is-primary::-moz-progress-bar {
@@ -2220,7 +2220,7 @@ a.box:active {
   .progress.is-primary::-ms-fill {
     background-color: #574b90; }
   .progress.is-primary:indeterminate {
-    background-image: linear-gradient(to right, #574b90 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #574b90 30%, #cbc6e1 30%); }
   .progress.is-link::-webkit-progress-value {
     background-color: #4b5690; }
   .progress.is-link::-moz-progress-bar {
@@ -2228,7 +2228,7 @@ a.box:active {
   .progress.is-link::-ms-fill {
     background-color: #4b5690; }
   .progress.is-link:indeterminate {
-    background-image: linear-gradient(to right, #4b5690 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #4b5690 30%, #cbc6e1 30%); }
   .progress.is-info::-webkit-progress-value {
     background-color: #3298dc; }
   .progress.is-info::-moz-progress-bar {
@@ -2236,7 +2236,7 @@ a.box:active {
   .progress.is-info::-ms-fill {
     background-color: #3298dc; }
   .progress.is-info:indeterminate {
-    background-image: linear-gradient(to right, #3298dc 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #3298dc 30%, #cbc6e1 30%); }
   .progress.is-success::-webkit-progress-value {
     background-color: #48c774; }
   .progress.is-success::-moz-progress-bar {
@@ -2244,7 +2244,7 @@ a.box:active {
   .progress.is-success::-ms-fill {
     background-color: #48c774; }
   .progress.is-success:indeterminate {
-    background-image: linear-gradient(to right, #48c774 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #48c774 30%, #cbc6e1 30%); }
   .progress.is-warning::-webkit-progress-value {
     background-color: #ffdd57; }
   .progress.is-warning::-moz-progress-bar {
@@ -2252,7 +2252,7 @@ a.box:active {
   .progress.is-warning::-ms-fill {
     background-color: #ffdd57; }
   .progress.is-warning:indeterminate {
-    background-image: linear-gradient(to right, #ffdd57 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #ffdd57 30%, #cbc6e1 30%); }
   .progress.is-danger::-webkit-progress-value {
     background-color: #f14668; }
   .progress.is-danger::-moz-progress-bar {
@@ -2260,14 +2260,14 @@ a.box:active {
   .progress.is-danger::-ms-fill {
     background-color: #f14668; }
   .progress.is-danger:indeterminate {
-    background-image: linear-gradient(to right, #f14668 30%, #ededed 30%); }
+    background-image: linear-gradient(to right, #f14668 30%, #cbc6e1 30%); }
   .progress:indeterminate {
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
     animation-name: moveIndeterminate;
     animation-timing-function: linear;
-    background-color: #ededed;
-    background-image: linear-gradient(to right, #433a6e 30%, #ededed 30%);
+    background-color: #cbc6e1;
+    background-image: linear-gradient(to right, #433a6e 30%, #cbc6e1 30%);
     background-position: top left;
     background-repeat: no-repeat;
     background-size: 150% 150%; }
@@ -3561,7 +3561,7 @@ a.tag:hover {
 
 .card-footer {
   background-color: transparent;
-  border-top: 1px solid #ededed;
+  border-top: 1px solid #cbc6e1;
   align-items: stretch;
   display: flex; }
 
@@ -3574,7 +3574,7 @@ a.tag:hover {
   justify-content: center;
   padding: 0.75rem; }
   .card-footer-item:not(:last-child) {
-    border-right: 1px solid #ededed; }
+    border-right: 1px solid #cbc6e1; }
 
 .card .media:not(:last-child) {
   margin-bottom: 1.5rem; }
@@ -3634,7 +3634,7 @@ button.dropdown-item {
     color: #fff; }
 
 .dropdown-divider {
-  background-color: #ededed;
+  background-color: #cbc6e1;
   border: none;
   display: block;
   height: 1px;
@@ -5012,10 +5012,10 @@ a.navbar-item,
 
 .panel-tabs:not(:last-child),
 .panel-block:not(:last-child) {
-  border-bottom: 1px solid #ededed; }
+  border-bottom: 1px solid #cbc6e1; }
 
 .panel-heading {
-  background-color: #ededed;
+  background-color: #cbc6e1;
   border-radius: 6px 6px 0 0;
   color: #363636;
   font-size: 1.25em;
@@ -6554,6 +6554,12 @@ label.panel-block {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
 
+.button i {
+  padding-right: 10px; }
+
+.repo-status:hover {
+  background-color: #cbc6e1; }
+
 html {
-  overflow-x: unset;
+  overflow-x: hidden;
   overflow-y: unset; }

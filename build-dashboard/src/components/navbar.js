@@ -1,13 +1,41 @@
 import React from 'react'
 
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+var PORTFOLIO_PAGE='https://louiscklaw.github.io/'
+
 class Navbar extends React.Component{
+
+  helloSwalReactContent = (e) => {
+    e.preventDefault()
+
+    const MySwal = withReactContent(Swal)
+    MySwal.fire({
+      title: <p>Thanks for interest </p>,
+      text: 'but sorry the function may not available at the moment.',
+      footer: <a href={PORTFOLIO_PAGE}>{PORTFOLIO_PAGE}</a>,
+      onOpen: () => {
+        // MySwal.clickConfirm()
+      }
+    }).then(() => {
+      return MySwal.fire(<p>sorry again</p>)
+    })
+  }
+
+
   render(){
     return(
       <>
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="https://bulma.io">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+              <div style={{
+                fontFamily: 'Noto Sans TC, sans-serif',
+                fontSize: 'x-large'
+                }}>
+                Travis dashboard
+              </div>
             </a>
 
             <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -24,7 +52,7 @@ class Navbar extends React.Component{
               </a>
 
               <a className="navbar-item">
-                Build pipe (not implemented)
+                Build pipe
               </a>
             </div>
 
@@ -44,11 +72,13 @@ class Navbar extends React.Component{
               </div>
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-primary">
+                  <a className="button is-primary" onClick={(e)=>{this.helloSwalReactContent(e)}}>
+                    <i className="fas fa-user-plus"></i>
                     <strong>Sign up</strong>
                   </a>
-                  <a className="button is-light">
-                    Log in
+                  <a className="button is-light" onClick={(e)=>{this.helloSwalReactContent(e)}}>
+                    <i className="fas fa-sign-in-alt"></i>
+                      Log in
                   </a>
                 </div>
               </div>

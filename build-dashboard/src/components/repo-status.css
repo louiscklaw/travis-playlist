@@ -1,7 +1,15 @@
+.repo-link-button {
+  padding-left: 0px;
+}
+
 .repo-status {
   height: 8vh;
   min-width: 100px;
   width: calc((100% / 20));
+}
+
+.repo-icon-list i{
+  padding-right: 3px;
 }
 
 .repo-status-content {

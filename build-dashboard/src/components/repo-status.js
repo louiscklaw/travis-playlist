@@ -3,20 +3,21 @@ import React from 'react'
 import './repo-status.css'
 
 class RepoStatus extends React.Component{
+
   render(){
     let full_name = this.props.full_name
 
     return(
       <div className="repo-status">
-        <div className="repo-status-content">
-          <div style={{overflow: "hidden"}}>
-            <div className="branch-badge-name-plate">
-              {full_name.split('/')[1]}
-            </div>
-
-            <div>
+        <div className="repo-status-content has-tooltip-bottom" data-tooltip={full_name}>
+          <div style={{overflow: "hidden", textAlign:'center'}}>
+            <button className="repo-link-button button is-text branch-badge-name-plate is-small" >{full_name.split('/')[1]}</button>
+            <div className="repo-icon-list">
               <a href={`https://www.github.com/${full_name}`} target="_blank">
                 <i className="fab fa-github"></i>
+              </a>
+              <a heft={`https://www.travis.com/${full_name}`}>
+                <i className="fas fa-hard-hat"></i>
               </a>
             </div>
           </div>
