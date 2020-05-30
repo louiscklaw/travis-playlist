@@ -11,7 +11,7 @@ cd build-dashboard
   # echo helloworld > ../gh-pages/index.html
   yarn
   yarn clean
-  yarn build
+  yarn build --prefix-paths
 
   rsync -azh public/ ../gh-pages
 
