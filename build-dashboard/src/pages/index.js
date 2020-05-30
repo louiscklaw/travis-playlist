@@ -8,7 +8,7 @@ import Navbar from '../components/navbar'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="travis dashboard" />
     <Navbar />
     <RepoStatusContainer />
   </Layout>
