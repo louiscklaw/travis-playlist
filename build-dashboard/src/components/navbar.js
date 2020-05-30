@@ -25,6 +25,34 @@ class Navbar extends React.Component{
     })
   }
 
+  componentDidMount = () => {
+    let el_navbar_burger = document.querySelector('.navbar-burger')
+    let el_html = document.querySelector('html')
+
+    el_navbar_burger.addEventListener('click',(e) => {
+
+      if (el_navbar_burger.classList.contains("is-active")){
+        document.querySelector(`.navbar-burger`).classList.remove('is-active')
+        document.querySelector(`#navbarContent`).classList.remove('is-active')
+      }else{
+        document.querySelector(`.navbar-burger`).classList.add('is-active')
+        document.querySelector(`#navbarContent`).classList.add('is-active')
+      }
+    })
+
+    el_html.addEventListener('click', (e) => {
+
+      if (e.target.classList.contains('navbar-burger')){
+      }else{
+        if ( el_navbar_burger.classList.contains("is-active")){
+          document.querySelector(`.navbar-burger`).classList.remove('is-active')
+          document.querySelector(`#navbarContent`).classList.remove('is-active')
+        }
+      }
+    })
+
+  }
+
 
   render(){
     return(
@@ -40,14 +68,14 @@ class Navbar extends React.Component{
               </div>
             </a>
 
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarContent">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
           </div>
 
-          <div id="navbarBasicExample" className="navbar-menu">
+          <div id="navbarContent" className="navbar-menu">
             <div className="navbar-start">
               <a className="navbar-item">
                 Overview
