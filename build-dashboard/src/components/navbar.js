@@ -3,6 +3,8 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
+import ThemeToggle from './theme_toggle'
+
 var PORTFOLIO_PAGE='https://louiscklaw.github.io/'
 
 class Navbar extends React.Component{
@@ -80,6 +82,7 @@ class Navbar extends React.Component{
                     <i className="fas fa-sign-in-alt"></i>
                       Log in
                   </a>
+                  {/* <ThemeToggle /> */}
                 </div>
               </div>
             </div>
