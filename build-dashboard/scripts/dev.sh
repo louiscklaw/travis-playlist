@@ -2,6 +2,8 @@
 
 set -ex
 
+yarn
+
 yarn clean
 
 yarn start
