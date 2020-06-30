@@ -2,13 +2,9 @@
 
 set -ex
 
-yarn clean
-
 rm -rf public
 rm -rf ../gh-pages
 
-yarn css-build
-
-yarn build
+./scripts/build.sh
 
 cp -R public/ ../gh-pages
