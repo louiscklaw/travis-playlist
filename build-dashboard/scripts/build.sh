@@ -2,8 +2,9 @@
 
 set -ex
 
-yarn
-
 yarn clean
 
-yarn start
+rm -rf public
+
+yarn css-build
+yarn build
