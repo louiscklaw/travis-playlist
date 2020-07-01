@@ -1,0 +1,15 @@
+alias getTravisBash="cp /home/logic/_workspace/travis-playlist/travis-yml-template/bash.travis.yml ."
+
+alias getTravisDocker="cp /home/logic/_workspace/travis-playlist/travis-yml-template/docker.travis.yml ."
+
+alias getTravisFirebase="cp /home/logic/_workspace/travis-playlist/travis-yml-template/firebase.travis.yml ."
+
+alias getTravisNext="cp /home/logic/_workspace/travis-playlist/travis-yml-template/next.travis.yml ."
+
+alias getTravisNode="cp /home/logic/_workspace/travis-playlist/travis-yml-template/node.travis.yml ."
+
+alias getTravisPython="cp /home/logic/_workspace/travis-playlist/travis-yml-template/python.travis.yml ."
+
+alias getTravisReact="cp /home/logic/_workspace/travis-playlist/travis-yml-template/react.travis.yml ."
+
+alias updateTravisTemplate="cd /home/logic/_workspace/travis-playlist/travis-yml-template && ./gen.py && source scripts.rc" && cd -

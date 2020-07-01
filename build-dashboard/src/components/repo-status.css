@@ -1,0 +1,35 @@
+.repo-link-button {
+  padding-left: 0px;
+}
+
+.repo-status {
+  height: 8vh;
+  min-width: 100px;
+  width: calc((100% / 20));
+}
+
+.repo-icon-list i{
+  padding-right: 3px;
+}
+
+.repo-status-content {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.branch-badge-name-plate {
+  white-space: nowrap;
+  /* overflow: hidden; */
+}
+
+.repo-status .branch-badge {
+  width: 50%;
+}
+
+.branch-badge-container {
+  display: flex;
+  align-content: space-between;
+}

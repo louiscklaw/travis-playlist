@@ -1,0 +1,15 @@
+FROM ubuntu:18.04
+
+# Install required software
+# RUN apt-get update && \
+#   apt-get install -y build-essential sudo git wget
+
+# COPY sources.list.hk /etc/apt/sources.list
+
+RUN apt-get update
+
+ENV PATH=$PATH:/root/.local/bin
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
+
+WORKDIR /root

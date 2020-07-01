@@ -11,14 +11,14 @@
 
 # cd -
 
-set -xe
+set -ex
 
-mkdir -p .travis
-cd .travis
+mkdir -p tmp
+cd tmp
 
-  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/Pipfile
-  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/Pipfile.lock
-  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/develop/travis-build-merger/_util/merge.py
+  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile
+  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile.lock
+  wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/merge.py
 
   chmod +x merge.py
 

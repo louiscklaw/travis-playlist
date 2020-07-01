@@ -2,9 +2,11 @@
 
 set -ex
 
-scripts/test_dashboard.sh
+scripts/pre-commit.sh
 
-for l in $(find . -name .travis.yml -not -path "./node_modules/*");
+# scripts/test_dashboard.sh
+
+for l in $(find . -name .travis.yml -not -path "./node_modules/*"  -not -path "./build-dashboard/node_modules/*" );
 do
   travis lint $l &
 done;

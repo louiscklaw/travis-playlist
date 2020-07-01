@@ -11,10 +11,10 @@
 
 # cd -
 
-set -e
+set -ex
 
-mkdir -p .travis
-cd .travis
+mkdir -p tmp
+cd tmp
   cp ../travis-build-merger/_util/merge.py .
   cp ../travis-build-merger/_util/Pipfile .
   cp ../travis-build-merger/_util/Pipfile.lock .

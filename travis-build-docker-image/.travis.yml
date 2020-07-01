@@ -6,9 +6,22 @@ jobs:
       name: Test travis-build-docker-image
       services:
         - docker
-      before_install:
+
+      before_script:
         - docker --version
+
       script:
-        - cd travis-build-docker-image
-        - docker build -t build-from-travis-helloworld .
-        - cd -
+        - cd travis-build-docker-image/travis-python
+        - docker build -t logickee/travis-python-test .
+        - cd ../..
+
+        - cd travis-build-docker-image/travis-python
+        - docker build -t logickee/travis-python-test .
+        - cd ../..
+
+        - cd travis-build-docker-image/travis-ubuntu
+        - docker build -t logickee/travis-ubuntu-test .
+        - cd ../..
+
+      after_script:
+        - test $TRAVIS_BRANCH = "master" && travis-build-docker-image/docker_push.sh
