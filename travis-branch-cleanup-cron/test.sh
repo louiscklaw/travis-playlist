@@ -13,6 +13,6 @@ echo "use case"
 export DELETE_DAY_THRESHOLD=0.0001
 export DRY_RUN=1
 
-./test_clone.sh
+./use_case.sh
 
 echo 'test done'
