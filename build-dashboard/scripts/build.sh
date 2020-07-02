@@ -2,6 +2,7 @@
 
 set -ex
 
+yarn
 yarn clean
 
 rm -rf public
