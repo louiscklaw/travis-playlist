@@ -88,9 +88,7 @@ class RepoStatusContainer extends React.Component{
     return(
       <div style={{margin: 'auto'}}>
         <div className="repo-status-container">
-          <RepoListLoading repos_loaded={100} />
-          {/* { this.showRepoList() } */}
-          {/* <RepoStatus full_name={x}/> */}
+          { this.showRepoList() }
         </div>
       </div>
 
