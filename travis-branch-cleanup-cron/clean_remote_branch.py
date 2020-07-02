@@ -9,6 +9,7 @@ from fabric.api import local, shell_env, lcd, run, settings
 
 DELETE_DAY_THRESHOLD = float(os.getenv('DELETE_DAY_THRESHOLD', 90))
 DRY_RUN = int(os.getenv('DRY_RUN',0))
+GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 
 def sendCommand(command_text):
   result = local(command_text, capture=True).split('\n')
@@ -113,17 +114,21 @@ def checkAndCleanBranch():
 
     if shouldDeleteBranch(diff_day, branch_to_test):
       performDeleteBranch(branch_to_test)
+    else:
+      print('not deleting as criteria not meet')
 
 if __name__ == "__main__":
-  repo_url = sys.argv[1]
-  repo_name = repo_url.split('/')[-1].replace('.git','')
+  repo_full_name = sys.argv[1]
+  repo_uri = "https://{}@github.com/{}".format(GITHUB_TOKEN, repo_full_name)
+
+  repo_name = repo_full_name.split('/')[-1].replace('.git','')
   working_directory = '/tmp/'+repo_name
 
   print('repo_name {}'.format(repo_name))
   print('working_directory {}'.format(working_directory))
 
   print('cloning directory')
-  cloneRemoteBranch(repo_url)
+  cloneRemoteBranch(repo_uri)
 
   with lcd(working_directory):
     print('working directory {}'.format(working_directory))

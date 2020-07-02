@@ -8,4 +8,4 @@ export DELETE_DAY_THRESHOLD=30
 rm -rf /tmp/hko-weather-slackbot
 
 pipenv sync
-pipenv run python3 clean_remote_branch.py git@github.com:louiscklaw/hko-weather-slackbot.git
+pipenv run python3 clean_remote_branch.py louiscklaw/hko-weather-slackbot.git
