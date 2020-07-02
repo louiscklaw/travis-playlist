@@ -11,4 +11,4 @@ jobs:
     - stage: Test
       name: travis-branch-cleanup-cron
       script:
-        - ./test.sh
+        - travis-branch-cleanup-cron/test.sh
