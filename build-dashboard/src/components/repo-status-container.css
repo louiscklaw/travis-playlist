@@ -1,5 +1,8 @@
-.repo-status-container {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: space-around;
+.repos-status {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  width: 98vw;
+  margin: auto;
+
 }

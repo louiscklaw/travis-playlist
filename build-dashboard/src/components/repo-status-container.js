@@ -10,6 +10,20 @@ import './repo-status-container.css'
 import {MAX_GITHUB_PAGE_TO_FETCH} from '../../config'
 import sample from './sample.json'
 
+function ReposStatus(props){
+  return(
+    <div className="repos-status">
+      {
+        props.repos.sort().map(x => {
+          return (
+            <RepoStatus key={`repo-status-${x}`} full_name={x}/>
+          )
+        })
+      }
+    </div>
+  )
+}
+
 class RepoStatusContainer extends React.Component{
   constructor(props){
     super(props)
@@ -88,7 +102,9 @@ class RepoStatusContainer extends React.Component{
     return(
       <div style={{margin: 'auto'}}>
         <div className="repo-status-container">
-          { this.showRepoList() }
+          {
+            false ? <RepoListLoading repos_loaded={100}/>: <ReposStatus repos={this.state.github_repos} />
+          }
         </div>
       </div>
 
