@@ -15,7 +15,4 @@ export DRY_RUN=1
 
 ./test_clone.sh
 
-echo 'test done, commit change'
-
-git add .
-git commit -m"update for adding travis-branch-cleanup,"
+echo 'test done'

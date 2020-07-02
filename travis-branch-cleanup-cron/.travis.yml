@@ -1,0 +1,14 @@
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/environment-variables/
+# https://docs.travis-ci.com/user/job-lifecycle/
+
+# You can import up to 25 other configs in total.
+os: linux
+language: python
+
+jobs:
+  include:
+    - stage: Test
+      name: travis-branch-cleanup-cron
+      script:
+        - ./test.sh
