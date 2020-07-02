@@ -103,7 +103,7 @@ class RepoStatusContainer extends React.Component{
       <div style={{margin: 'auto'}}>
         <div className="repo-status-container">
           {
-            false ? <RepoListLoading repos_loaded={100}/>: <ReposStatus repos={this.state.github_repos} />
+            this.state.is_loading ? <RepoListLoading repos_loaded={100}/>: <ReposStatus repos={this.state.github_repos} />
           }
         </div>
       </div>
