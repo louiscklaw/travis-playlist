@@ -1,75 +1,99 @@
 #!/usr/bin/env python
 
-import sys
-import os, re, subprocess
-import time
+from clean_remote_branch import *
 
-import slack
-from fabric.api import local, shell_env, lcd, run, settings
+def test_sendCommand():
+  fail_reason = 'test_sendCommand test failed'
+  assert len(sendCommand("hostname")) > 0, fail_reason
+  return False
 
-DELETE_DAY_THRESHOLD = 0.05
+def test_compareTimeStampFromNow():
+  fail_reason = 'test_compareTimeStampFromNow test failed'
+  assert compareTimeStampFromNow(10, 1) == 9, fail_reason
+  return False
 
-def getGitAllBranches():
-  return local('git branch -a', capture=True).split('\n')
+def test_filterOutBranch():
+  fail_reason = 'filter out branch failed'
+  assert False == filterOutBranch('not_wanted','not_wanted'),fail_reason
+  assert True == filterOutBranch('wanted','not_wanted'), fail_reason
 
-def filterOutBranch(branch, keyword):
-  return branch.find(keyword) == -1
+  print('test_filterOutBranch ok')
 
-def filterOutHeadBranch(branch):
-  return filterOutBranch(branch,'HEAD')
+  return False
 
-def filterOutMasterBranch(branch):
-  return filterOutBranch(branch,'/master')
+def test_filterOutDevelopBranch():
+  fail_reason = 'filterOutDevelopBranch'
+  assert False==filterOutDevelopBranch('/develop'), fail_reason
+  return False
 
-def filterOutDevelopBranch(branch):
-  return filterOutBranch(branch, '/develop')
+def test_filterOutGithubPagesBranch():
+  fail_reason = 'filterOutGithubPagesBranch'
+  assert False==filterOutGithubPagesBranch('gh-pages'), fail_reason
+  return False
 
-def filterOutGithubPagesBranch(branch):
-  return filterOutBranch(branch, 'gh-pages')
+def test_filterOutHeadBranch():
+  fail_reason = 'filterOutHeadBranch'
+  assert False==filterOutHeadBranch('HEAD'), fail_reason
+  return False
 
-def filterOutTestBranch(branch):
-  return filterOutBranch(branch, 'test')
+def test_filterOutMasterBranch():
+  fail_reason = 'filterOutMasterBranch'
+  assert False==filterOutMasterBranch('/master'), fail_reason
+  return False
 
-def getGitAllRemoteBranches():
-  result = local('git branch -r', capture=True).split('\n')
-  result = map(lambda x: x.strip(), result)
-  result = filter(lambda x: filterOutHeadBranch(x), result)
-  result = filter(lambda x: filterOutMasterBranch(x), result)
-  result = filter(lambda x: filterOutDevelopBranch(x), result)
-  result = filter(lambda x: filterOutGithubPagesBranch(x), result)
-  result = filter(lambda x: filterOutTestBranch(x), result)
+def test_filterOutTestBranch():
+  fail_reason = 'filterOutTestBranch'
+  assert False==filterOutTestBranch('test'), fail_reason
+  return False
 
-  return sorted(list(result))
+def test_filterPreMergeBranch():
+  fail_reason = 'filterPreMergeBranch'
+  test_result = list(filterPreMergeBranch(['pre-merge/1','pre-merge/2','test']))
+  assert ['pre-merge/1','pre-merge/2']==test_result, fail_reason
+  return False
 
-def getUnixTimeStampNow():
-  return time.time()
 
-# git show --format="%ci %cr" origin/feature/adding-travis-branch-cleanup-cron
-def getLastCommittionDateOfBranch(branch):
-  return local('git show --format="%ct" '+branch, capture=True).strip()
+def test_getDayDifference():
+  fail_reason = 'getDayDifference'
+  test_result = getDayDifference(86400)
+  assert 1==test_result, fail_reason
+  return False
 
-def compareTimeStampFromNow(branch_timestamp):
-  return int(branch_timestamp) - getUnixTimeStampNow()
+def test_getUnixTimeStampNow():
+  fail_reason = 'test_getUnixTimeStampNow'
+  assert getUnixTimeStampNow() > 1593672959, fail_reason
+  return False
 
-def getDayDifference(diff_in_s):
-  return diff_in_s / (60 * 60 * 24)
+def test_performDeleteBranch():
+  return False
 
-def filterPreMergeBranch(branches):
-  return filter(lambda x: x.find('pre-merge/') > -1 ,branches)
+def test_shouldDeleteBranch():
+  fail_reason = 'test_shouldDeleteBranch'
+  assert False==shouldDeleteBranch(1, 'master'), fail_reason
+  assert False==shouldDeleteBranch(90, 'master'), fail_reason
+  assert False==shouldDeleteBranch(91, 'master'), fail_reason
 
-def shouldDeleteBranch(diff_day):
-  return abs(diff_day) > DELETE_DAY_THRESHOLD
+  assert False==shouldDeleteBranch(1, 'develop'), fail_reason
+  assert False==shouldDeleteBranch(90, 'develop'), fail_reason
+  assert False==shouldDeleteBranch(91, 'develop'), fail_reason
 
-def performDeleteBranch(branch):
-  remote_branch_name = branch.replace('origin/','')
-  return local('git push -d origin {}'.format(remote_branch_name),capture=True)
+  assert False==shouldDeleteBranch(1, 'pre-merge/test'), fail_reason
+  assert False==shouldDeleteBranch(90, 'pre-merge/test'), fail_reason
+  assert True==shouldDeleteBranch(91, 'pre-merge/test'), fail_reason
+  return False
 
-for branch_to_test in getGitAllRemoteBranches():
-  diff_s = compareTimeStampFromNow(getLastCommittionDateOfBranch(branch_to_test))
-  diff_day = getDayDifference(diff_s)
-  print('checking branch '+branch_to_test)
-  print('day diff {}'.format(diff_day))
 
-  if shouldDeleteBranch(diff_day):
-    print('delete day is larger than threshold, delete branch')
-    performDeleteBranch(branch_to_test)
+if __name__ == "__main__":
+  helloworld()
+
+  test_sendCommand()
+  test_filterOutBranch()
+  # test_compareTimeStampFromNow()
+  test_getUnixTimeStampNow()
+  test_filterOutDevelopBranch()
+  test_filterOutGithubPagesBranch()
+  test_filterOutHeadBranch()
+  test_filterOutMasterBranch()
+  test_filterPreMergeBranch()
+  test_getDayDifference()
+  test_shouldDeleteBranch()
