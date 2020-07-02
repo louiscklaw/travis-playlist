@@ -34,7 +34,6 @@ const Layout = ({ children }) => {
     <>
       <ThemeContextProvider>
         <main>{children}</main>
-        <Footer />
       </ThemeContextProvider>
     </>
   )

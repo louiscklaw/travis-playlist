@@ -1,3 +1,9 @@
-.repo-list-is-loading {
-  background-color: red;
+.test {
+  background-color: gold;
+  width: 100vw;
+  height: 90vh;
+}
+
+.loading-body{
+  overflow: hidden;
 }

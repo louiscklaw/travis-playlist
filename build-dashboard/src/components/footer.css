@@ -1,0 +1,10 @@
+.custom-footer {
+
+  height: 3vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
