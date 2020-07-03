@@ -3,7 +3,7 @@
 set -ex
 
 # pipenv --rm
-pipenv sync
+# pipenv sync
 
 echo "unit test"
 # pipenv run python3 clean_remote_branch.py
@@ -14,5 +14,11 @@ export DELETE_DAY_THRESHOLD=0.0001
 export DRY_RUN=1
 
 ./use_case.sh
+
+
+if [[ -z "$CI" ]]; then
+  git add .
+  git commit -m"feat: test done commit,"
+fi
 
 echo 'test done'
