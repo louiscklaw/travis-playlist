@@ -35,7 +35,34 @@ jobs:
         - pip3 install --user pipenv
         - cd travis-branch-cleanup-cron
         - pipenv sync
-        - pipenv run python3 clean_remote_branch.py louiscklaw/hko-weather-slackbot.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/appium-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/AR9331-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/buildkite-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/CNC-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/cubieboard2-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/deno-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/docker-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/esp32-cam-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/expo-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/freecad-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/gatsbyjs-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/genimage-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/github-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/graphQL-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/i3mega-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/i3mega-playlist.pdf.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/js-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/Makefile-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/nextjs-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/nmap-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/orange-pi-zero-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/preactjs-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/puppeteer-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/python-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/raspberry-pi-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/react-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/sfx-power-supply-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/travis-playlist.git
+        - pipenv run python3 clean_remote_branch.py louiscklaw/webpack-playlist.git
         - cd -
       if: TRAVIS_EVENT_TYPE = cron
