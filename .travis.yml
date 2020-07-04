@@ -25,6 +25,7 @@ stages:
   - Integration_to_other_repo
   - Publish_dashboard
   - Merge
+  - Cron
 
 import:
   - credentials.yml

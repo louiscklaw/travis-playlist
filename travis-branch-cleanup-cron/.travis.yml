@@ -27,7 +27,7 @@ jobs:
         - pipenv run python3 clean_remote_branch.py louiscklaw/hko-weather-slackbot.git
         - cd -
 
-    - stage: cron
+    - stage: Cron
       name: cron_job_clear_auto_generated_branch
       script:
         - sudo apt update
