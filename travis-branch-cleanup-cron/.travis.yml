@@ -65,4 +65,3 @@ jobs:
         - pipenv run python3 clean_remote_branch.py louiscklaw/travis-playlist.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/webpack-playlist.git
         - cd -
-      if: TRAVIS_EVENT_TYPE = cron
