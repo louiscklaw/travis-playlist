@@ -50,7 +50,6 @@ jobs:
         - pipenv run python3 clean_remote_branch.py louiscklaw/github-playlist.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/graphQL-playlist.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/i3mega-playlist.git
-        - pipenv run python3 clean_remote_branch.py louiscklaw/i3mega-playlist.pdf.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/js-playlist.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/Makefile-playlist.git
         - pipenv run python3 clean_remote_branch.py louiscklaw/nextjs-playlist.git
