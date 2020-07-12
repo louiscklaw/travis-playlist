@@ -31,6 +31,7 @@ import:
   - credentials.yml
   - helloworld/.travis.yml
   - travis-branch-cleanup-cron/.travis.yml
+  - travis-send-slack-files/.travis.yml
   # - travis-broadcast/.travis.yml
   # - travis-conditional-build-tryout/.travis.yml
   # - travis-stl-checking/.travis.yml
