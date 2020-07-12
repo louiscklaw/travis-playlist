@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -ex
+
+# use case 1
+pipenv run python3 send_slack_file.py page-change-detect 'message title' 'page change detected' './helloworld.png'
+
+# use case 2
+pipenv run python3 send_slack_file.py page-change-detect '' 'page change detected' './helloworld.png'

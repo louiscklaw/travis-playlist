@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Test
+      name: Test travis-send-slack-files
+      script:
+        - travis-send-slack-files/test.sh
