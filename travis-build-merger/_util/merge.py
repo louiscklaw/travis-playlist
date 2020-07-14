@@ -299,4 +299,12 @@ def main(PUSH_URI, TEMP_DIR):
 
 if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
-  main(PUSH_URI, TEMP_DIR)
+
+  try:
+    main(PUSH_URI, TEMP_DIR)
+    pass
+  except Exception as e:
+    print(e.message)
+    print('cannot merge the branch, possibily due to private repo or token not update.')
+    raise e
+    pass
