@@ -179,6 +179,8 @@ def merge_to_master_branch(branch_to_merge, cwd):
 
 
 def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
+  raise helloerror
+  sys.exit()
 
   try:
     branch_name = get_branch_name(test_branch_name)
