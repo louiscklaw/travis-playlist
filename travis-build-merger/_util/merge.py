@@ -19,6 +19,8 @@ CONST_BRANCH_PRE_MERGE = 3
 CONST_BRANCH_DEVELOP = 4
 CONST_BRANCH_PRE_MERGE_MASTER = 5
 
+GIT_ERR_128_EXPLAIN="error found during creating new branch, check if token is possible to create branch in repo (private repo ?)"
+
 merge_direction = {
   '^test/(.+?)$': 'feature',
   '^feature/(.+?)$' : 'develop',
@@ -178,19 +180,25 @@ def merge_to_master_branch(branch_to_merge, cwd):
 
 def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
 
+  try:
+    branch_name = get_branch_name(test_branch_name)
+    feature_branch_name = 'feature/'+branch_name
 
-  branch_name = get_branch_name(test_branch_name)
-  feature_branch_name = 'feature/'+branch_name
+    # CAUTION: using cwd inside run_command
+    run_command('git clone  -b {} {} .'.format(test_branch_name, PUSH_URI), cwd)
 
-  # CAUTION: using cwd inside run_command
-  run_command('git clone  -b {} {} .'.format(test_branch_name, PUSH_URI), cwd)
+    merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
 
-  merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
+    if no_push_uri:
+      print('no pushing commit as no_push_uri is true')
+    else:
+      push_commit(PUSH_URI, feature_branch_name, cwd)
 
-  if no_push_uri:
-    print('no pushing commit as no_push_uri is true')
-  else:
-    push_commit(PUSH_URI, feature_branch_name, cwd)
+  except Exception as e:
+    print(e.message)
+    print(GIT_ERR_128_EXPLAIN)
+    raise e
+
 
 def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False):
 
@@ -302,9 +310,7 @@ if __name__ == "__main__":
 
   try:
     main(PUSH_URI, TEMP_DIR)
-    pass
+
   except Exception as e:
-    print(e.message)
-    print('cannot merge the branch, possibily due to private repo or token not update.')
+    print('error found during merging repo')
     raise e
-    pass
