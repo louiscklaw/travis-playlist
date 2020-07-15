@@ -180,15 +180,18 @@ def merge_to_master_branch(branch_to_merge, cwd):
 
 
 def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
-  print(chalk.red(GIT_ERR_128_EXPLAIN))
 
   branch_name = get_branch_name(test_branch_name)
   feature_branch_name = 'feature/'+branch_name
 
   # CAUTION: using cwd inside run_command
-  run_result = run_command('git clone  -b {} {} .'.format(test_branch_name, PUSH_URI), cwd)
-  if run_result.failed:
-    raise GIT_ERR_128_EXPLAIN
+
+  with settings(warn_only=True):
+    run_result = run_command('git clone  -b {} {} .'.format(test_branch_name, PUSH_URI), cwd)
+
+    if run_result.failed:
+      print(chalk.red(GIT_ERR_128_EXPLAIN))
+      raise GIT_ERR_128_EXPLAIN
 
   merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
 
