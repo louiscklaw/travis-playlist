@@ -308,11 +308,6 @@ def main(PUSH_URI, TEMP_DIR):
 if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
 
-  # TODO: remove me
-  print('helloworld')
-  raise helloerror
-  sys.exit(99)
-
   try:
     main(PUSH_URI, TEMP_DIR)
 
