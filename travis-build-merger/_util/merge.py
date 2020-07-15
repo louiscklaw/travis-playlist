@@ -309,7 +309,8 @@ if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
 
   print('helloworld')
-  sys.exit()
+  raise helloerror
+  sys.exit(99)
 
   try:
     main(PUSH_URI, TEMP_DIR)
