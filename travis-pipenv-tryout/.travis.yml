@@ -5,22 +5,10 @@
 # You can import up to 25 other configs in total.
 os: linux
 
-script:
-  - echo "helloworld"
-
 jobs:
   include:
     - stage: Build
       script:
-        - cd travis-pipenv-helloworld
+        - cd travis-pipenv-tryout
         - ./build.sh
         - cd ..
-
-stages:
-  - Unit_test
-  - Test
-  - Build
-  - Deploy
-  - Integration_to_other_repo
-  - Publish_dashboard
-  - Merge
