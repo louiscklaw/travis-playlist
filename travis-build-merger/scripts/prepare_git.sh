@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
-rm -rf 7
-mkdir -p 7
+rm -rf test_git_repo
+mkdir -p test_git_repo
 
-cd 7
+cd test_git_repo
   git init
   echo 1 > test.txt
 
@@ -19,6 +19,7 @@ cd 7
   git checkout -b test/test_3
   git checkout -b test/test_4
   git checkout -b test/test_5
+  git checkout -b dependabot/npm_and_yarn/preact-graphviz-tryout/lodash
   git checkout -b develop
   git checkout -b pre-merge-master
 
@@ -46,23 +47,8 @@ cd 7
 
   git checkout pre-merge-master
   git merge --ff-only test/test_2
+  git checkout test/test_2
   # master already contain 2
   # merging develop into master introduce error
 
   # git merge develop
-
-
-
-  export TRAVIS_BRANCH=develop
-  export TRAVIS_COMMIT=0edef86
-  export TRAVIS_BUILD_NUMBER=1
-  export TRAVIS_REPO_SLUG=louiscklaw/test_on_github.git
-  export GITHUB_TOKEN=token
-
-  # # git checkout develop
-  cp ../merger.py .
-  cp ../test_merger.py .
-  pipenv run python3 ./test_merger.py
-
-  # # # # conflict should happen here !
-  # # # git merge --ff-only test/test_3

@@ -19,10 +19,16 @@ CONST_BRANCH_TEST = 2
 CONST_BRANCH_PRE_MERGE = 3
 CONST_BRANCH_DEVELOP = 4
 CONST_BRANCH_PRE_MERGE_MASTER = 5
+CONST_BRANCH_DEPENDABOT = 6
+
+DRY_RUN=False
+ERR_DRY_RUN_EXPLAIN='DRY RUN ACCEPTED'
 
 GIT_ERR_128_EXPLAIN="error found during creating new branch, check if token is possible to create branch in repo (private repo ?)"
 
+
 merge_direction = {
+  '^dependabot/(.+?)$': 'feature',
   '^test/(.+?)$': 'feature',
   '^feature/(.+?)$' : 'develop',
   '^fix/(.+?)$' : 'pre-merge',
@@ -37,6 +43,13 @@ GITHUB_REPO = os.environ['TRAVIS_REPO_SLUG']
 GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 
 PUSH_URI="https://{}@github.com/{}".format(GITHUB_TOKEN, GITHUB_REPO)
+
+class dummy_run_result():
+  def __init__(self):
+    self.failed = ERR_DRY_RUN_EXPLAIN
+
+  pass
+
 
 def create_temp_dir():
   TEMP_DIR = local('mktemp -d', capture=True)
@@ -56,9 +69,13 @@ def slack_message(message, channel):
       )
 
 def run_command(command_body, cwd):
-  command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
-  print(command_result)
-  return command_result
+  if (DRY_RUN):
+    return dummy_run_result()
+  else:
+    command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
+    print(command_result)
+    return command_result
+
 
 def push_commit(uri_to_push, merge_to, cwd):
     print('push commit')
@@ -110,7 +127,8 @@ def check_branch_exist(branch_name, cwd):
       pass
 
 def helloworld():
-  print('helloworld')
+  print('helloworld from merge.py')
+  return 'helloworld test'
 
 def get_branch_name(branch_in):
   temp = branch_in.split('/')
@@ -133,6 +151,8 @@ def categorize_branch(branch_to_test):
     return CONST_BRANCH_TEST
   elif branch_to_test[0:10] == 'pre-merge/':
     return CONST_BRANCH_PRE_MERGE
+  elif branch_to_test[0:11] == 'dependabot/':
+    return CONST_BRANCH_DEPENDABOT
   else:
     return CONST_BRANCH_UNKNOWN
 
@@ -189,9 +209,15 @@ def process_test_branch(PUSH_URI, test_branch_name, cwd, no_push_uri = False):
   with settings(warn_only=True):
     run_result = run_command('git clone  -b {} {} .'.format(test_branch_name, PUSH_URI), cwd)
 
-    if run_result.failed:
+
+    if (run_result.failed == ERR_DRY_RUN_EXPLAIN):
+      print(chalk.yellow(ERR_DRY_RUN_EXPLAIN))
+
+    elif run_result.failed:
       print(chalk.red(GIT_ERR_128_EXPLAIN))
       raise GIT_ERR_128_EXPLAIN
+    else:
+      pass
 
   merge_to_feature_branch(test_branch_name, feature_branch_name, cwd)
 
@@ -303,6 +329,10 @@ def main(PUSH_URI, TEMP_DIR):
     print("this is pre-merge-master branch, will merge to master branch")
     process_pre_merge_master_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
+  elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEPENDABOT:
+    print("this is dependabot branch, will merge to test branch")
+    process_feature_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
+
   else:
     print('no merge direction for this branch')
 
@@ -310,6 +340,10 @@ if __name__ == "__main__":
   TEMP_DIR = create_temp_dir()
 
   try:
+    if ('-d' in sys.argv):
+      print('dry run activated')
+      DRY_RUN = True
+
     main(PUSH_URI, TEMP_DIR)
 
   except Exception as e:

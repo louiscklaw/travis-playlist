@@ -1,30 +1,95 @@
 #!/usr/bin/env python3
 
 import os,sys
+import unittest
+
 from pprint import pprint
 from fabric.api import local, shell_env, lcd, run, settings
 from chalk import red, green, yellow
 
 PWD = os.getcwd()
+sys.path.append(PWD)
+sys.path.append(os.path.join(PWD,'_util'))
 
-def run_command(command_body, cwd=PWD):
-  command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
-  print(command_result)
-  return command_result
+from _util.merge import *
 
-try:
-  with settings(warn_only=True):
-    test = run_command('exit 99')
-    pprint(test.succeeded)
-    pprint(test.real_command)
-    pprint(test.return_code)
-    pprint(test.failed)
-    if test.failed:
-      print(red('failed'))
+class TestMerger(unittest.TestCase):
+  def test_helloworld(self):
+    self.assertTrue(helloworld()=='helloworld test', 'helloworld self test failed')
+
+  def test_CategorizeBranch_fix(self):
+    self.assertTrue(categorize_branch('fix/123321')==CONST_BRANCH_FIX,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_develop(self):
+    self.assertTrue(categorize_branch('develop')==CONST_BRANCH_DEVELOP,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_pre_merge_master(self):
+    self.assertTrue(categorize_branch('pre-merge-master')==CONST_BRANCH_PRE_MERGE_MASTER,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_feature(self):
+    self.assertTrue(categorize_branch('feature/123321')==CONST_BRANCH_FEATURE,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_test(self):
+    self.assertTrue(categorize_branch('test/123321')==CONST_BRANCH_TEST,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_pre_merge(self):
+    self.assertTrue(categorize_branch('pre-merge/123321')==CONST_BRANCH_PRE_MERGE,'categorize_branch fix failed')
+
+  def test_CategorizeBranch_dependabot(self):
+    self.assertTrue(categorize_branch('dependabot/npm_and_yarn/preact-graphviz-tryout/lodash')==CONST_BRANCH_DEPENDABOT,'categorize_branch dependabot failed')
 
 
-except Exception as e:
-  print('error run_command')
-  raise e
 
-assert('helloworld' == run_command('echo helloworld'))
+class TestWithGitRepo(unittest.TestCase):
+  def setUp(self):
+    self.test_git_dir = os.path.join(os.getcwd(),'test_git_repo')
+    local('./scripts/prepare_git.sh')
+
+  def tearDown(self):
+    # local('rm -rf test_git_repo',shell=True)
+    pass
+
+  def test_create_branch_if_not_exist_not_exist_branch(self):
+    self.assertFalse(check_branch_exist('not_exist', self.test_git_dir), 'check_branch_exist return true with non exist branch')
+
+  def test_create_branch_if_not_exist_exist_branch(self):
+    self.assertTrue(check_branch_exist('test/test_1', self.test_git_dir),'check_branch_exist return false with exist branch')
+    pass
+
+  def test_CreateNewBranch(self):
+    self.assertFalse(check_branch_exist('this-is-new_branch', self.test_git_dir))
+    if check_branch_exist('this-is-new_branch', self.test_git_dir):
+      self.assertTrue(False, "shouldn't be here")
+    else:
+      create_new_branch('this-is-new_branch',self.test_git_dir)
+      self.assertTrue(check_branch_exist('this-is-new_branch', self.test_git_dir),
+        'cannot find created branch'
+      )
+
+  def test_create_branch_if_not_exist(self):
+    self.assertFalse(check_branch_exist('this-is-new_branch', self.test_git_dir))
+    create_branch_if_not_exist('this-is-new_branch', self.test_git_dir)
+    self.assertTrue(check_branch_exist('this-is-new_branch', self.test_git_dir),
+        'cannot find created branch'
+      )
+
+
+
+class TestStringMethods(unittest.TestCase):
+
+    def test_upper(self):
+        self.assertEqual('foo'.upper(), 'FOO')
+
+    def test_isupper(self):
+        self.assertTrue('FOO'.isupper())
+        self.assertFalse('Foo'.isupper())
+
+    def test_split(self):
+        s = 'hello world'
+        self.assertEqual(s.split(), ['hello', 'world'])
+        # check that s.split fails when the separator is not a string
+        with self.assertRaises(TypeError):
+            s.split(2)
+
+if __name__ == '__main__':
+    unittest.main()

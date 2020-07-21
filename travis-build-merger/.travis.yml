@@ -1,6 +1,11 @@
 
 jobs:
   include:
+    - stage: Test
+      script:
+        - cd travis-build-merger
+        - ./test/run_test.sh
+        - cd ..
     - stage: Merge
       script:
         # the below should be kept for test inside travis-playlist only
