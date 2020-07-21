@@ -4,8 +4,6 @@
 
 set -e
 
-reset
-
 # ./scripts/prepare_git.sh
 
 python3 ./test/test.py
