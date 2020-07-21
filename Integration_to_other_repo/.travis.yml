@@ -5,5 +5,5 @@ jobs:
       name: trigger a test to users repo
       script:
         - cd Integration_to_other_repo
-        - ./curl_trigger_portfolio_preact_build.sh "louiscklaw%2Fportfolio-preact"
+        - ./curl_trigger_remote_build.sh "louiscklaw%2Fportfolio-gatsby"
         - cd -
