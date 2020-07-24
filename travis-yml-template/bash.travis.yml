@@ -4,7 +4,6 @@
 
 # You can import up to 25 other configs in total.
 os: linux
-language: python
 
 script:
   - echo "helloworld"
