@@ -1,3 +1,5 @@
+alias codeTravisTemplate="code /home/logic/_workspace/travis-playlist/travis-yml-template"
+
 alias getTravisBash="cp /home/logic/_workspace/travis-playlist/travis-yml-template/bash.travis.yml ."
 
 alias getTravisDocker="cp /home/logic/_workspace/travis-playlist/travis-yml-template/docker.travis.yml ."
