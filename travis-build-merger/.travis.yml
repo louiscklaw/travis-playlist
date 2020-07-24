@@ -4,8 +4,17 @@ jobs:
     - stage: Test
       script:
         - cd travis-build-merger
-        - ./test/run_test.sh
+
+        # - ./test/run_test.sh
+        - sudo apt update
+        - sudo apt install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+        - python3 -m pip install pipenv
+
+        - pipenv sync
+        - pipenv run python3 ./test/test.py
+
         - cd ..
+
     - stage: Merge
       script:
         # the below should be kept for test inside travis-playlist only
