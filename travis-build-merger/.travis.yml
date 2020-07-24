@@ -20,7 +20,24 @@ jobs:
       script:
         # the below should be kept for test inside travis-playlist only
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success_test.sh
-        - bash merge_if_success_test.sh
+
+        # NOTE: this regards as part of the test as i just use the sh file outside this repo, using sh file to run will hide the fail from the scripts and commands
+        # - bash merge_if_success_test.sh
+
+        - mkdir -p tmp
+        - cd tmp
+        -   cp ../travis-build-merger/_util/merge.py .
+        -   cp ../travis-build-merger/_util/Pipfile .
+        -   cp ../travis-build-merger/_util/Pipfile.lock .
+        -   chmod +x merge.py
+        -   sudo apt update
+        -   sudo apt install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+        # pip3 install --user pipenv
+        -  python3 -m pip install pipenv
+        -  pipenv sync
+        -  pipenv run python3 ./merge.py
+        - cd -
+
 
         # production code
         # - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
