@@ -2,6 +2,7 @@
 jobs:
   include:
     - stage: Test
+      name: test travis-build-merger
       script:
         - cd travis-build-merger
 
