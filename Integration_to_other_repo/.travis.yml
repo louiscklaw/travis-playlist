@@ -6,4 +6,5 @@ jobs:
       script:
         - cd Integration_to_other_repo
         - ./curl_trigger_remote_build.sh "louiscklaw%2Fportfolio-gatsby"
+        - ./curl_trigger_remote_build.sh "louiscklaw%2Fpython-playlist"
         - cd -
