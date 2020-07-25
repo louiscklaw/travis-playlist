@@ -25,7 +25,7 @@ DRY_RUN=False
 ERR_DRY_RUN_EXPLAIN='DRY RUN ACCEPTED'
 
 GIT_ERR_128_EXPLAIN="error found during creating new branch, check if token is possible to create branch in repo (private repo ?)"
-GIT_ERR_CANNOT_CHECKOUT_BRANCH_EXPLAIN="error during checkout branch {}, is the branch exist ?"
+GIT_ERR_CANNOT_CHECKOUT_BRANCH_EXPLAIN="error during checkout branch '{}', is the branch exist ?"
 
 
 merge_direction = {
@@ -44,6 +44,16 @@ GITHUB_REPO = os.environ['TRAVIS_REPO_SLUG']
 GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 
 PUSH_URI="https://{}@github.com/{}".format(GITHUB_TOKEN, GITHUB_REPO)
+
+pwd=os.getcwd()
+
+class MyException:
+  class branch_not_found_except(Exception):
+    explain = "error during checkout branch '{}', is the branch exist ?"
+
+  class command_error(Exception):
+    explain = "error found during running command"
+
 
 class dummy_run_result():
   def __init__(self):
@@ -69,13 +79,22 @@ def slack_message(message, channel):
       icon_url=':sob:'
       )
 
-def run_command(command_body, cwd):
+def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.command_error):
   if (DRY_RUN):
     return dummy_run_result()
   else:
-    command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
-    print(command_result)
-    return command_result
+    with settings(warn_only=True):
+
+      command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
+      print(command_result)
+
+      if command_result.failed:
+        if ignore_error:
+          print(chalk.red('error found during running command, ignore flag active'))
+        else:
+          raise except_in
+
+      return command_result
 
 
 def push_commit(uri_to_push, merge_to, cwd):
@@ -85,8 +104,9 @@ def push_commit(uri_to_push, merge_to, cwd):
 def merge_to_branch(commit_id, merge_to):
   try:
     with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI Merger' ) ):
-      print('checkout {} branch'.format(merge_to))
-      run_command('git checkout {}'.format(merge_to))
+      print('checkout "{}" branch'.format(merge_to))
+
+      run_command('git checkout {}'.format(merge_to), ignore_error=False, except_in=MyException.branch_not_found_except)
 
       print('Merging "{}"'.format(commit_id))
       result_to_check = run_command('git merge --ff-only "{}"'.format(commit_id))
@@ -96,8 +116,10 @@ def merge_to_branch(commit_id, merge_to):
       else:
         slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
 
-  except Exception as e:
+  except MyException.branch_not_found_except:
     print(chalk.red(GIT_ERR_CANNOT_CHECKOUT_BRANCH_EXPLAIN.format(merge_to)))
+
+  except Exception as e:
     raise e
 
 
