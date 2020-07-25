@@ -3,7 +3,7 @@ jobs:
   include:
     - stage: Integration_to_other_repo
       name: trigger a test to users repo
-      if: branch = "develop"
+      if: branch = develop OR branch = pre-merge-master
 
       script:
         - cd Integration_to_other_repo
