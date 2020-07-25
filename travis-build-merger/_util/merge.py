@@ -25,6 +25,7 @@ DRY_RUN=False
 ERR_DRY_RUN_EXPLAIN='DRY RUN ACCEPTED'
 
 GIT_ERR_128_EXPLAIN="error found during creating new branch, check if token is possible to create branch in repo (private repo ?)"
+GIT_ERR_CANNOT_CHECKOUT_BRANCH_EXPLAIN="error during checkout branch {}, is the branch exist ?"
 
 
 merge_direction = {
@@ -82,17 +83,25 @@ def push_commit(uri_to_push, merge_to, cwd):
     run_command("git push {} {}".format(uri_to_push, merge_to), cwd)
 
 def merge_to_branch(commit_id, merge_to):
-  with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
-    print('checkout {} branch'.format(merge_to))
-    run_command('git checkout {}'.format(merge_to))
+  try:
+    with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+      print('checkout {} branch'.format(merge_to))
+      run_command('git checkout {}'.format(merge_to))
 
-    print('Merging "{}"'.format(commit_id))
-    result_to_check = run_command('git merge --ff-only "{}"'.format(commit_id))
+      print('Merging "{}"'.format(commit_id))
+      result_to_check = run_command('git merge --ff-only "{}"'.format(commit_id))
 
-    if result_to_check.failed:
-      slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
-    else:
-      slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+      if result_to_check.failed:
+        slack_message('error found during merging BUILD{} `{}` from `{}` to `{}`'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+      else:
+        slack_message('merging BUILD{} from {} `{}` to `{}` done'.format(TRAVIS_BUILD_NUMBER, GITHUB_REPO, TRAVIS_BRANCH, merge_to), '#travis-build-result')
+
+  except Exception as e:
+    print(chalk.red(GIT_ERR_CANNOT_CHECKOUT_BRANCH_EXPLAIN.format(merge_to)))
+    raise e
+
+
+
 
 def create_new_branch(branch_name, cwd):
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
