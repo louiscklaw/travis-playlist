@@ -3,6 +3,8 @@ jobs:
   include:
     - stage: Integration_to_other_repo
       name: trigger a test to users repo
+      if: branch = "develop"
+
       script:
         - cd Integration_to_other_repo
         - ./curl_trigger_remote_build.sh "louiscklaw%2Fportfolio-gatsby"

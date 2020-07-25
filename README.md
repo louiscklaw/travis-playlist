@@ -1,5 +1,8 @@
 # travis tryout playlist
 
+### awesome ci
+https://github.com/ligurio/awesome-ci
+
 ## travis dashboard
 ### local development
 ```
