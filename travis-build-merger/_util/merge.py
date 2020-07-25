@@ -84,7 +84,7 @@ def push_commit(uri_to_push, merge_to, cwd):
 
 def merge_to_branch(commit_id, merge_to):
   try:
-    with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+    with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI Merger' ) ):
       print('checkout {} branch'.format(merge_to))
       run_command('git checkout {}'.format(merge_to))
 
