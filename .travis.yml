@@ -29,7 +29,7 @@ stages:
 
 import:
   - credentials.yml
-  - helloworld/.travis.yml
+  - travis-helloworld/.travis.yml
   - travis-branch-cleanup-cron/.travis.yml
   - travis-pipenv-tryout/.travis.yml
   # - travis-broadcast/.travis.yml
