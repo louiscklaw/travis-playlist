@@ -84,12 +84,13 @@ def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.
     return dummy_run_result()
   else:
     with settings(warn_only=True):
-
-      command_result = local('cd {} && {}'.format(cwd, command_body), capture=True)
+      command_to_run = 'cd {} && {}'.format(cwd, command_body)
+      command_result = local(command_to_run, capture=True)
       print(command_result)
 
       if command_result.failed:
         if ignore_error:
+          print(chalk.red('command: {}'.format(command_to_run)))
           print(chalk.red('error found during running command, ignore flag active'))
         else:
           raise except_in
