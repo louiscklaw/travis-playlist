@@ -13,15 +13,16 @@ node_js:
 cache:
   - npm
 
-script:
-  - echo "helloworld"
-
 jobs:
   include:
     - stage: Test
-      script:
+      name: node_travis_yml_template
+      before_script:
         - npm -V
         - yarn -V
+
+      script:
+        - echo "helloworld"
 
     - stage: Merge
       script:
