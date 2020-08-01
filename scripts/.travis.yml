@@ -2,12 +2,25 @@
 jobs:
   include:
     - stage: Unit_test
-      name: script test
+      name: check leak
       script:
-        - sudo apt update
-        - sudo apt install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+        - sudo apt-get update
+        - sudo apt-get install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
         - python3 -m pip install pipenv
         - pipenv sync
+
+        - mkdir -p tmp
+        - cd tmp
+        -   cp ../travis-check-leak/Pipfile .
+        -   cp ../travis-check-leak/Pipfile.lock .
+        -   cp ../travis-check-leak/check-leak.py .
+        -   cp ../travis-check-leak/test_pass.py .
+        -   cp ../travis-check-leak/leak.js .
+        -   pipenv --rm || true
+        -   pipenv sync
+        -   pipenv run python3 test_pass.py
+        - cd ..
+
         - scripts/test_check_leak.sh
         # - mkdir -p .travis
         # - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-check-leak/check-leak.py .travis/check-leak.py
