@@ -4,7 +4,7 @@
 
 # You can import up to 25 other configs in total.
 os: linux
-language: node
+language: node_js
 
 jobs:
   include:
