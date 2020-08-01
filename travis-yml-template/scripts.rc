@@ -29,3 +29,7 @@ alias codeDockerTravisTempalte="code $REACT_TRAVIS_YML"
 alias getTravisDocker="cp $REACT_TRAVIS_YML ."
 
 alias codeTravisTemplate="code /home/logic/_workspace/travis-playlist/travis-yml-template"
+
+listTravisTemplate(){
+  grep getTravis /home/logic/_workspace/travis-playlist/travis-yml-template/scripts.rc
+}
