@@ -18,14 +18,15 @@ script:
 
 
 stages:
-  - Unit_test
-  - Test
-  - Build
-  - Deploy
-  - Integration_to_other_repo
-  - Publish_dashboard
-  - Merge
-  - Cron
+  - name: Unit_test
+  # - Test
+  # - Build
+  # - Deploy
+  # - Integration_to_other_repo
+  - name: Publish_dashboard
+    if: branch = master
+  # - Merge
+  # - Cron
 
 import:
   - credentials.yml
