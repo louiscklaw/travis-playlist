@@ -18,6 +18,7 @@ jobs:
 
     - stage: Merge
       name: run merge
+      if: branch != master
       script:
         # the below should be kept for test inside travis-playlist only
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success_test.sh
