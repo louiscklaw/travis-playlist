@@ -22,9 +22,13 @@ stages:
   # - Test
   # - Build
   # - Deploy
-  # - Integration_to_other_repo
+
+  - name: Integration_to_other_repo
+    if: branch = develop
+
   - name: Publish_dashboard
     if: branch = master
+
   # - Merge
   # - Cron
 
