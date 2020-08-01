@@ -1,0 +1,31 @@
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/environment-variables/
+# https://docs.travis-ci.com/user/job-lifecycle/
+
+# You can import up to 25 other configs in total.
+os: linux
+
+jobs:
+  include:
+    - stage: Test
+      name: docker_travis_yml_template
+      script:
+        - echo "helloworld"
+
+    # # /home/logic/_workspace/travis-playlist/travis-build-merger/.travis.yml
+    # - stage: Merge
+    #   script:
+    #     - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
+    #     - bash merge_if_success.sh
+
+stages:
+  - Unit_test
+  - Test
+  - Build
+  - Deploy
+  - Integration_to_other_repo
+  - Publish_dashboard
+  - Merge
+
+# import:
+#   - credentials.yml
