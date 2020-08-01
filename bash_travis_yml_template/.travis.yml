@@ -7,15 +7,16 @@ os: linux
 
 jobs:
   include:
-    - stage: Build
+    - stage: Test
       name: bash_travis_yml_template
       script:
         - echo "helloworld"
 
-    - stage: Merge
-      script:
-        - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
-        - bash merge_if_success.sh
+    # # /home/logic/_workspace/travis-playlist/travis-build-merger/.travis.yml
+    # - stage: Merge
+    #   script:
+    #     - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
+    #     - bash merge_if_success.sh
 
 stages:
   - Unit_test
@@ -26,5 +27,5 @@ stages:
   - Publish_dashboard
   - Merge
 
-import:
-  - credentials.yml
+# import:
+#   - credentials.yml

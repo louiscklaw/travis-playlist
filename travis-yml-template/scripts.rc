@@ -1,17 +1,31 @@
+
+BASH_TRAVIS_YML="/home/logic/_workspace/travis-playlist/bash_travis_yml_template/.travis.yml"
+
+alias codeBashTravisTempalte="code $BASH_TRAVIS_YML"
+alias getTravisBash="cp $BASH_TRAVIS_YML ."
+
+DOCKER_TRAVIS_YML="/home/logic/_workspace/travis-playlist/docker_travis_yml_template/docker.travis.yml"
+alias codeDockerTravisTempalte="code $DOCKER_TRAVIS_YML"
+alias getTravisDocker="cp $DOCKER_TRAVIS_YML ."
+
+FIREBASE_TRAVIS_YML="/home/logic/_workspace/travis-playlist/firebase_travis_yml_template/firebase.travis.yml"
+alias codeDockerTravisTempalte="code $FIREBASE_TRAVIS_YML"
+alias getTravisDocker="cp $FIREBASE_TRAVIS_YML ."
+
+NEXT_TRAVIS_YML="/home/logic/_workspace/travis-playlist/next_travis_yml_template/next.travis.yml"
+alias codeDockerTravisTempalte="code $NEXT_TRAVIS_YML"
+alias getTravisDocker="cp $NEXT_TRAVIS_YML ."
+
+NODE_TRAVIS_YML="/home/logic/_workspace/travis-playlist/node_travis_yml_template/node.travis.yml"
+alias codeDockerTravisTempalte="code $NODE_TRAVIS_YML"
+alias getTravisDocker="cp $NODE_TRAVIS_YML ."
+
+PYTHON_TRAVIS_YML="/home/logic/_workspace/travis-playlist/python_travis_yml_template/python.travis.yml"
+alias codeDockerTravisTempalte="code $PYTHON_TRAVIS_YML"
+alias getTravisDocker="cp $PYTHON_TRAVIS_YML ."
+
+REACT_TRAVIS_YML="/home/logic/_workspace/travis-playlist/react_travis_yml_template/react.travis.yml"
+alias codeDockerTravisTempalte="code $REACT_TRAVIS_YML"
+alias getTravisDocker="cp $REACT_TRAVIS_YML ."
+
 alias codeTravisTemplate="code /home/logic/_workspace/travis-playlist/travis-yml-template"
-
-alias getTravisBash="cp /home/logic/_workspace/travis-playlist/travis-yml-template/bash.travis.yml ."
-
-alias getTravisDocker="cp /home/logic/_workspace/travis-playlist/travis-yml-template/docker.travis.yml ."
-
-alias getTravisFirebase="cp /home/logic/_workspace/travis-playlist/travis-yml-template/firebase.travis.yml ."
-
-alias getTravisNext="cp /home/logic/_workspace/travis-playlist/travis-yml-template/next.travis.yml ."
-
-alias getTravisNode="cp /home/logic/_workspace/travis-playlist/travis-yml-template/node.travis.yml ."
-
-alias getTravisPython="cp /home/logic/_workspace/travis-playlist/travis-yml-template/python.travis.yml ."
-
-alias getTravisReact="cp /home/logic/_workspace/travis-playlist/travis-yml-template/react.travis.yml ."
-
-alias updateTravisTemplate="cd /home/logic/_workspace/travis-playlist/travis-yml-template && ./gen.py && source scripts.rc" && cd -

@@ -51,7 +51,9 @@ import:
   - Integration_to_other_repo/.travis.yml
   - scripts/.travis.yml
   - build-dashboard/.travis.yml
+
   - bash_travis_yml_template/.travis.yml
+  - docker_travis_yml_template/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh
