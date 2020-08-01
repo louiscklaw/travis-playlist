@@ -8,7 +8,7 @@ scripts/pre-commit.sh
 
 for l in $(find . -name .travis.yml -not -path "./node_modules/*"  -not -path "./build-dashboard/node_modules/*" );
 do
-  travis lint $l &
+  travis lint --com $l &
 done;
 
 for VARIABLE in `find . -name "dockerfile"`;
