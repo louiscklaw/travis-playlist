@@ -54,6 +54,7 @@ import:
 
   - bash_travis_yml_template/.travis.yml
   - docker_travis_yml_template/.travis.yml
+  - node_travis_yml_template/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh
