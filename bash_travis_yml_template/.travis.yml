@@ -8,6 +8,7 @@ os: linux
 jobs:
   include:
     - stage: Build
+      name: bash_travis_yml_template
       script:
         - echo "helloworld"
 
