@@ -9,6 +9,12 @@ from string import Template
 
 from multiprocessing import Pool
 
+if len(sys.argv) < 1:
+  raise "the path to store the generated credential file wanted."
+  sys.exit(99)
+
+CREDENTIAL_FILEPATH = os.path.join(sys.argv[1], 'credentials.yml')
+
 cwd = os.getcwd()
 
 TRAVIS_AUTH_TOKEN=os.getenv('TRAVIS_AUTH_TOKEN')
@@ -75,7 +81,7 @@ if __name__ == '__main__':
     p.close()
     p.join()
 
-    with open('./credentials.yml','w') as f_credential:
+    with open(CREDENTIAL_FILEPATH,'w') as f_credential:
       f_credential.write(''.join(
         secure_template.substitute(
           TRAVIS_AUTH_TOKEN=result_list[0],
