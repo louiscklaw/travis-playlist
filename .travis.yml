@@ -35,6 +35,8 @@ stages:
 import:
   - credentials.yml
   - helloworld/.travis.yml
+  - scripts/.travis.yml
+
   - travis-branch-cleanup-cron/.travis.yml
   - travis-pipenv-tryout/.travis.yml
   # - travis-broadcast/.travis.yml
@@ -54,7 +56,7 @@ import:
   # - travis-test-markdown/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
-  - scripts/.travis.yml
+
   - build-dashboard/.travis.yml
 
   - bash_travis_yml_template/.travis.yml
