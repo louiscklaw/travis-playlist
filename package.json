@@ -21,13 +21,13 @@
     "@commitlint/config-conventional": "^8.3.4",
     "husky": "^4.2.3"
   },
-  // "husky": {
-  //   "hooks": {
-  //     "commit-msg": "npx commitlint -e $GIT_PARAMS",
-  //     "pre-commit": "./scripts/pre-commit.sh",
-  //     "pre-push": "./scripts/pre-push.sh"
-  //   }
-  // },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npx commitlint -e $GIT_PARAMS",
+      "pre-commit": "./scripts/pre-commit.sh",
+      "pre-push": "./scripts/pre-push.sh"
+    }
+  },
   "dependencies": {
     "remark-cli": "^7.0.1",
     "remark-validate-links": "^9.2.0"
