@@ -37,6 +37,8 @@ stages:
 import:
   - credentials.yml
   - helloworld/.travis.yml
+
+  # meta build list
   - scripts/.travis.yml
 
   - travis-branch-cleanup-cron/.travis.yml
