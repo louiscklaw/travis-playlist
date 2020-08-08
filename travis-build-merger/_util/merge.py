@@ -59,8 +59,17 @@ class dummy_run_result():
   def __init__(self):
     self.failed = ERR_DRY_RUN_EXPLAIN
 
-  pass
+def print_error(error_text):
+  print(chalk.red('V'* 80 + " error dump " + 'V'*80))
+  print('')
+  print(chalk.red(error_text))
+  print('')
+  print(chalk.red('^'* 80 + " error dump " + '^'*48))
 
+
+
+def print_message(msg_text):
+  print(chalk.red(error_text))
 
 def create_temp_dir():
   TEMP_DIR = local('mktemp -d', capture=True)
@@ -92,15 +101,31 @@ def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.
         if ignore_error:
           print(chalk.red('command: {}'.format(command_to_run)))
           print(chalk.red('error found during running command, ignore flag active'))
+          print_message(command_result.stderr)
         else:
+          print_error('run_command: error during running command "{}"'.format(command_to_run))
+
+          print_error('run_command: error message')
+          print_error(command_result.stderr)
+
           raise except_in
 
       return command_result
 
 
 def push_commit(uri_to_push, merge_to, cwd, ignore_error=True):
-    print('push commit')
-    run_command("git push {} {}".format(uri_to_push, merge_to), cwd, ignore_error)
+    print('push_commit')
+
+    command_to_run= "git push {} {}".format(uri_to_push, merge_to)
+
+    try:
+      run_command(command_to_run , cwd, ignore_error)
+
+    except Exception as e:
+      print_error('push_commit: cwd: "{}"'.format(cwd))
+      print_error('push_commit: error during running command "{}"'.format(command_to_run))
+
+      raise e
 
 def merge_to_branch(commit_id, merge_to):
   try:
@@ -327,6 +352,45 @@ def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_
   else:
     push_commit(PUSH_URI, 'master', cwd)
 
+def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
+  print('hello process dependabot PR')
+  '''
+  Step 1: From your project repository, bring in the changes and test.
+
+  git fetch origin
+  git checkout -b "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19" "origin/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"
+  git merge "master"
+
+  Step 2: Merge the changes and update on GitHub.
+
+  git checkout "master"
+  git merge --no-ff "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"
+  git push origin "master"
+  '''
+
+  test_pr_branch = 'test/'+pr_branch
+  origin_pr_branch = 'origin/'+pr_branch
+
+  print('PUSH_URI',PUSH_URI)
+  print('pr_branch',pr_branch)
+  print('test/pr_branch',test_pr_branch)
+  print('origin/pr_branch', origin_pr_branch)
+  print('cwd', cwd)
+
+
+  print('Step 1: From your project repository, bring in the changes and test.')
+  git_clone_source(PUSH_URI, cwd)
+  # run_command('git fetch origin',cwd)
+  run_command('git checkout -b "{}" "{}"'.format(test_pr_branch, origin_pr_branch), cwd)
+
+  push_commit(PUSH_URI, test_pr_branch, cwd, False)
+
+  # print('Step 2: Merge the changes and update on GitHub.')
+  # run_command('git checkout -b "test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
+  # run_command('git merge --no-ff "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
+  # git push origin "master"
+
+
 
 def main(PUSH_URI, TEMP_DIR):
   print('starting merger')
@@ -363,8 +427,8 @@ def main(PUSH_URI, TEMP_DIR):
     process_pre_merge_master_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEPENDABOT:
-    print("this is dependabot branch, will merge to test branch")
-    process_feature_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
+    print("this is dependabot branch, will go to merge PR if pass")
+    process_dependabot_PR(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   else:
     print('no merge direction for this branch')
