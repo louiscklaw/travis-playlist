@@ -98,9 +98,9 @@ def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.
       return command_result
 
 
-def push_commit(uri_to_push, merge_to, cwd):
+def push_commit(uri_to_push, merge_to, cwd, ignore_error=True):
     print('push commit')
-    run_command("git push {} {}".format(uri_to_push, merge_to), cwd)
+    run_command("git push {} {}".format(uri_to_push, merge_to), cwd, ignore_error)
 
 def merge_to_branch(commit_id, merge_to):
   try:
@@ -273,7 +273,8 @@ def process_feature_branch(PUSH_URI, feature_branch_in, cwd, no_push_uri = False
   if no_push_uri:
     print('no pushing commit as no_push_uri is true')
   else:
-    push_commit(PUSH_URI, pre_merge_branch, cwd)
+    # IDEA: trigger when push to github fail
+    push_commit(PUSH_URI, pre_merge_branch, cwd, False)
 
 def process_fix_branch(PUSH_URI, fix_branch_in, cwd, no_push_uri = False):
   branch_name = get_branch_name(fix_branch_in)
