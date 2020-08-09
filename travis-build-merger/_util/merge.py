@@ -60,16 +60,14 @@ class dummy_run_result():
     self.failed = ERR_DRY_RUN_EXPLAIN
 
 def print_error(error_text):
-  print(chalk.red('V'* 80 + " error dump " + 'V'*80))
+  print(chalk.red('V'* 40 + " error dump " + 'V'*40))
   print('')
   print(chalk.red(error_text))
   print('')
-  print(chalk.red('^'* 80 + " error dump " + '^'*48))
-
-
+  print(chalk.red('^'* 40 + " error dump " + '^'*40))
 
 def print_message(msg_text):
-  print(chalk.red(error_text))
+  print(chalk.blue(msg_text))
 
 def create_temp_dir():
   TEMP_DIR = local('mktemp -d', capture=True)
@@ -168,7 +166,15 @@ def create_branch_if_not_exist(branch_name, cwd):
   else:
     create_new_branch(branch_name, cwd)
 
+def create_branch_if_not_exist_remote(branch_name, cwd):
+  'checkout branch if exist, create and checkout if not exist'
+  if check_branch_exist(branch_name, cwd) or check_remote_branch_exist(branch_name, cwd):
+    checkout_branch(branch_name, cwd)
+  else:
+    create_new_branch(branch_name, cwd)
+
 def check_branch_exist(branch_name, cwd):
+  print_message('check branch exist, {}'.format(branch_name))
   with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
     print('check branch exist: {}'.format(branch_name))
     result = [temp.replace('* ','').strip() for temp in run_command('git branch', cwd).split('\n')]
@@ -180,6 +186,24 @@ def check_branch_exist(branch_name, cwd):
       return True
     except Exception as e:
       print('branch not found')
+      print_message(result)
+      return False
+      pass
+
+def check_remote_branch_exist(branch_name, cwd):
+  print_message('check remote branch exist {}'.format(branch_name))
+  with( shell_env( GIT_COMMITTER_EMAIL='travis@travis', GIT_COMMITTER_NAME='Travis CI' ) ):
+    print('check remote branch exist: {}'.format(branch_name))
+    result = [temp.replace('* ','').strip() for temp in run_command('git branch -a', cwd).split('\n')]
+    try:
+      from pprint import pprint
+      pprint(result)
+      result.index('remotes/origin/'+branch_name)
+      print('branch found')
+      return True
+    except Exception as e:
+      print('branch not found')
+      print_message(result)
       return False
       pass
 
@@ -381,8 +405,13 @@ def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
   print('Step 1: From your project repository, bring in the changes and test.')
   git_clone_source(PUSH_URI, cwd)
   # run_command('git fetch origin',cwd)
-  run_command('git checkout -b "{}" "{}"'.format(test_pr_branch, origin_pr_branch), cwd)
+  # run_command('git checkout -b "{}" "{}"'.format(test_pr_branch, origin_pr_branch), cwd)
 
+  # push_commit(PUSH_URI, test_pr_branch, cwd, False)
+
+  create_branch_if_not_exist_remote(test_pr_branch,cwd)
+  checkout_branch(test_pr_branch, cwd)
+  run_command('git merge {}'.format(pr_branch))
   push_commit(PUSH_URI, test_pr_branch, cwd, False)
 
   # print('Step 2: Merge the changes and update on GitHub.')
