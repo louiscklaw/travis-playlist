@@ -15,15 +15,26 @@ mkdir -p tmp
 cd tmp
   # wget pipfile
   # wget check-leak.py
-  cp ../travis-check-leak/Pipfile .
-  cp ../travis-check-leak/Pipfile.lock .
-  cp ../travis-check-leak/check-leak.py .
-  cp ../travis-check-leak/test_pass.py .
 
-  cp ../travis-check-leak/leak.js .
+  # old check leak
+  # cp ../travis-check-leak/Pipfile .
+  # cp ../travis-check-leak/Pipfile.lock .
+  # cp ../travis-check-leak/check-leak.py .
+  # cp ../travis-check-leak/test_pass.py .
 
-  pipenv --rm || true
-  pipenv sync
-  pipenv run python3 test_pass.py
+  # cp ../travis-check-leak/leak.js .
+
+  # pipenv --rm || true
+  # pipenv sync
+  # pipenv run python3 test_pass.py
+
+
+  rsync -avzh ../travis-check-leak/ .
+  # pipenv --rm || true
+  # pipenv sync
+
+  # usecase
+  pipenv run python3 main.py
+  pipenv run python3 main.py $@
 
 cd ..
