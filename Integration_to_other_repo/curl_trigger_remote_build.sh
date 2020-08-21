@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwjjmNvM0OzoAhW0L6YKHSTpA80QFjAAegQIQBAB&url=https%3A%2F%2Fdocs.travis-ci.com%2Fuser%2Ftriggering-builds%2F&usg=AOvVaw3Wws4vYIrJjOWVBGeQ91oa
+# https://docs.travis-ci.com/user/triggering-builds/
 
 set -ex
 
