@@ -34,6 +34,7 @@ cd tmp
   # pipenv sync
 
   # usecase
+  pipenv sync
   pipenv run python3 main.py
   pipenv run python3 main.py $@
 

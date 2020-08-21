@@ -1,1 +1,45 @@
-'pprint(list(set(readCredentialFile())))'
+
+
+
+
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+b''
+                 /home/logic/_workspace/travis-playlist/travis-check-leak
+num of sensitive word 37
+SCAN_DIR:"/home/logic/_workspace/travis-playlist/travis-check-leak"
+scan done
+                 scanning for sensitive words
+scan start
+VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
