@@ -11,11 +11,7 @@ jobs:
 
         - mkdir -p tmp
         - cd tmp
-        -   cp ../travis-check-leak/Pipfile .
-        -   cp ../travis-check-leak/Pipfile.lock .
-        -   cp ../travis-check-leak/check-leak.py .
-        -   cp ../travis-check-leak/test_pass.py .
-        -   cp ../travis-check-leak/leak.js .
+        -   rsync -avzh ../travis-check-leak/ .
         -   pipenv --rm || true
         -   pipenv sync
         -   pipenv run python3 test_pass.py
