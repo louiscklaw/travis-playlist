@@ -34,8 +34,12 @@ stages:
   # - Merge
   # - Cron
 
+
 import:
   - credentials.yml
+  # - .travis-merger.yml
+  # - .travis-stages.yml
+
   - helloworld/.travis.yml
 
   # meta build list
