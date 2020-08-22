@@ -1,4 +1,5 @@
-
+# https://docs.travis-ci.com/user/conditional-builds-stages-jobs/
+# https://docs.travis-ci.com/user/conditions-v1
 stages:
   - name: Build_docker
 
@@ -15,4 +16,4 @@ stages:
 
   - name: Merge
   - name: Cron
-    if: env(TRAVIS_EVENT_TYPE) == cron
+    if: type = cron
