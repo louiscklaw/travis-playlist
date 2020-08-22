@@ -56,7 +56,7 @@ def readCredentialFile(filepath):
 
 def parseCredentialFile():
   try:
-    HOME=os.environ('HOME')
+    HOME=os.environ['HOME']
     filepath=HOME+'/.credentials.rc'
     if os.path.exists(filepath):
 
