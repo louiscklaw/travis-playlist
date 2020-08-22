@@ -17,10 +17,10 @@ function BuildFailedCard(props){
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
-            <Link to="www.example.com" className="button is-white is-small">
-              <i class="fas fa-code-branch"></i>
+            <a href={'http://www.github.com/'+repo_name} className="button is-white is-small" target='_blank'>
+            <i class="fab fa-github-square fa-2x"></i>
               {repo_name.split('/')[1]}
-            </Link>
+            </a>
           </p>
         </header>
         <div className="card-content">
