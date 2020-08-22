@@ -1,6 +1,6 @@
 jobs:
   include:
-    - stage: Snapshot
+    - stage: Cron
       name: daily snapshot (travis-daily-snapshot/.travis.yml)
       script:
         - echo "helloworld"
