@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'gatsby'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -77,13 +78,13 @@ class Navbar extends React.Component{
 
           <div id="navbarContent" className="navbar-menu">
             <div className="navbar-start">
-              <a className="navbar-item">
+              <Link to="/" className="navbar-item">
                 Overview
-              </a>
+              </Link>
 
-              <a className="navbar-item">
-                Build pipe
-              </a>
+              <Link to="/list_of_failed_branch" className="navbar-item">
+                list of failed branches
+              </Link>
             </div>
 
             <div className="navbar-end">
