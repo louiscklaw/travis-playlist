@@ -24,15 +24,22 @@ function BuildFailedCard(props){
         </header>
         <div className="card-content">
           <div className="content">
+            <div className="tags">
             {
               content.map( link_to_travis => {
                 return(
-                  <a href={link_to_travis} className="button is-white is-small" target="_blank">
-                    {extractBuildNoFromLink(link_to_travis)}
-                  </a>
+                  <span class="tag is-danger">
+                    <a href={link_to_travis}
+                      style={{color: "white", padding: "3px;"}}
+                      target="_blank">
+                      <i class="fas fa-times"></i>
+                      {extractBuildNoFromLink(link_to_travis)}
+                    </a>
+                  </span>
                 )
               })
             }
+            </div>
           </div>
         </div>
         <footer className="card-footer">
