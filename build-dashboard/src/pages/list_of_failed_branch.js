@@ -6,6 +6,8 @@ import Navbar from '../components/navbar'
 
 import {getFailedBuildJson} from '../endpoints/jsons'
 import BuildFailedCard from '../components/build_failed_card'
+import ListOfFailedBranchHeading from '../components/list_of_failed_branches_heading'
+import { object } from 'prop-types'
 
 function chunkArray(myArray, chunk_size){
   var index = 0;
@@ -22,9 +24,17 @@ function chunkArray(myArray, chunk_size){
 }
 
 
+function countTotalNumberOfFail(json_in){
+  let subtotal = {}
+  Object.keys(json_in).forEach(per_repo => subtotal[per_repo] = json_in[per_repo].length)
+  return Object.values(subtotal).reduce( (x,y) => x+y)
+}
+
 function ListOfFailedBranchPage(props){
   let [test_json, setTestJson] = React.useState([])
   let [chunked_repo_name, setChunkedRepoName] = React.useState([])
+  let [num_repos, setNumRepos] = React.useState(0)
+  let [num_fails, setNumFails] = React.useState(1)
 
   React.useEffect(()=>{
     getFailedBuildJson()
@@ -32,6 +42,8 @@ function ListOfFailedBranchPage(props){
       .then(resp_json => {
         setTestJson(resp_json)
         setChunkedRepoName(chunkArray(Object.keys(resp_json), 6))
+        setNumRepos(Object.keys(resp_json).length)
+        setNumFails(countTotalNumberOfFail(resp_json))
       })
   },[])
 
@@ -40,7 +52,15 @@ function ListOfFailedBranchPage(props){
       <Layout>
         <SEO title="travis dashboard" />
         <Navbar />
-          <h1 className="title is-3">list of failed branches</h1>
+        <section className="section">
+          <div className="container">
+            <div className="columns is-desktop">
+              <div className="column">
+                <ListOfFailedBranchHeading num_fails={num_fails} num_repos={num_repos} />
+              </div>
+            </div>
+          </div>
+        </section>
 
           {chunked_repo_name.map(chunk => {
             return(

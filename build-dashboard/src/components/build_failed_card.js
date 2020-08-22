@@ -18,7 +18,8 @@ function BuildFailedCard(props){
         <header className="card-header">
           <p className="card-header-title">
             <Link to="www.example.com" className="button is-white is-small">
-              {repo_name}
+              <i class="fas fa-code-branch"></i>
+              {repo_name.split('/')[1]}
             </Link>
           </p>
         </header>
