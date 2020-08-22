@@ -15,4 +15,4 @@ stages:
 
   - name: Merge
   - name: Cron
-    if: $TRAVIS_EVENT_TYPE = cron
+    if: type != cron
