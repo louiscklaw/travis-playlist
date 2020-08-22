@@ -2,4 +2,5 @@
 
 set -ex
 
-node ./getRepoByUsername.js
+node ./index.js
+# node ./getRepoByUsername.js

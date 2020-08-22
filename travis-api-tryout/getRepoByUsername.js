@@ -1,54 +1,55 @@
 #!/usr/bin/env node
 
 // curl \
-  // -H "Travis-API-Version: 3" \
-  // -H "User-Agent: API Explorer" \
-  // -H "Authorization: token ${TRAVIS_AUTH_TOKEN}" \
-  // https://api.travis-ci.com/builds
+// -H "Travis-API-Version: 3" \
+// -H "User-Agent: API Explorer" \
+// -H "Authorization: token ${TRAVIS_AUTH_TOKEN}" \
+// https://api.travis-ci.com/builds
 
-const fs = require('fs')
-const process = require('process')
+const fs = require( 'fs' )
+const process = require( 'process' )
 
-const fetch = require('node-fetch')
+// const {getFailedBuildByRepo} = require('./getFailedBuildByRepo')
+const { getFailedBranchByRepo } = require( './getFailedBranchByRepo' )
 
-const {getFailedBuildByRepo} = require('./getFailedBuildByRepo')
-const {getFailedBranchByRepo, sayHelloworld} = require('./getFailedBranchByRepo')
+const {fetchWithToken} = require('./common')
 
+async function fetchRepos( url ) {
+  return fetchWithToken( url )
+      .then( r => r.json() )
+}
 
-function filterLogic(json_in){
-  let repos = json_in.repositories
-  let repos_slug = repos.map(x => x.slug)
-  // let repos_slug = ['louiscklaw/portfolio-gatsby']
+async function getRepoNamesFromUser( username_in ) {
+  var all_repos = []
 
-  Promise.all(
-    repos_slug.map(x => getFailedBranchByRepo(x))
-  )
-  .then((values)=>{
-    console.log(values.filter(x => x.length > 0))
-  })
+  var fetch_url = `https://api.travis-ci.com/owner/${username_in}/repos`
+
+  var keep_going = true
+  while ( keep_going ) {
+    console.log(`fetching ${fetch_url}`)
+    var fetch_result = await fetchRepos( fetch_url )
+    var pagination = fetch_result[ '@pagination' ]
+    keep_going = pagination.next
+    next_href = pagination.next ? pagination.next[ '@href' ] : null
+
+    // console.log(next_href)
+    fetch_url = `https://api.travis-ci.com${next_href}`
+    all_repos = [
+      ...all_repos,
+      ...fetch_result.repositories
+    ]
+
+  }
+
+  return all_repos
 
 }
 
-fs.readFile('./sample_repos_result.json',{encoding:'utf-8'}, (err, data) => {
-  filterLogic(JSON.parse(data))
-})
+function sayHelloworld() {
+  console.log( `helloworld ${__filename}` )
+}
 
-
-// function getRepoNamesFromUser(username_in){
-//   fetch(`https://api.travis-ci.com/owner/${username_in}/repos?limit=999`,{
-//     headers:{
-//       'Travis-API-Version': 3,
-//       'Authorization': `token ${process.env.TRAVIS_AUTH_TOKEN}`,
-//       "User-Agent": "API Explorer"
-//     }
-//   })
-//     .then(r => r.json())
-//     .then(r_json => {
-//       // fs.writeFileSync('./sample_repos_result.json',JSON.stringify(r_json),{encoding:'utf-8'})
-
-//       filterLogic(r_json)
-
-//     })
-// }
-
-// getRepoNamesFromUser('louiscklaw')
+module.exports = {
+  getRepoNamesFromUser,
+  sayHelloworld
+}
