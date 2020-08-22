@@ -76,7 +76,7 @@ function getFailedBuildByRepo(repo_in){
 // })
 
 function sayHelloworld(){
-  console.log('helloworld')
+  console.log(`helloworld ${__filename}`)
 }
 
 module.exports ={

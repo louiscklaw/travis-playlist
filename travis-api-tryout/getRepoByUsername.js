@@ -11,7 +11,9 @@ const process = require('process')
 
 const fetch = require('node-fetch')
 
-const {getFailedBuildByRepo, sayHelloworld} = require('./getFailedBuildByRepo')
+const {getFailedBuildByRepo} = require('./getFailedBuildByRepo')
+const {getFailedBranchByRepo, sayHelloworld} = require('./getFailedBranchByRepo')
+
 
 function filterLogic(json_in){
   let repos = json_in.repositories
@@ -19,7 +21,7 @@ function filterLogic(json_in){
   // let repos_slug = ['louiscklaw/portfolio-gatsby']
 
   Promise.all(
-    repos_slug.map(x => getFailedBuildByRepo(x))
+    repos_slug.map(x => getFailedBranchByRepo(x))
   )
   .then((values)=>{
     console.log(values.filter(x => x.length > 0))
