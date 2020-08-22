@@ -56,13 +56,15 @@ def readCredentialFile(filepath):
 
 def parseCredentialFile():
   try:
-    filepath='/home/logic/.credentials.rc'
+    HOME=os.environ['HOME']
+    filepath=HOME+'/.credentials.rc'
     if os.path.exists(filepath):
 
       content = readCredentialFile(filepath)
       content = map(lambda x: x.strip(), content)
       return map(lambda x: x.replace('export ',''), content)
     else:
+      print('filepath wanted: {}'.format(filepath))
       raise 'filepath not found'
   except Exception as e:
     raise e
