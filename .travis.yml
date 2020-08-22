@@ -50,7 +50,7 @@ import:
 
   - build-dashboard/.travis.yml
 
-  - bash_travis_yml_template/.travis.yml
+  # - bash_travis_yml_template/.travis.yml
   - docker_travis_yml_template/.travis.yml
   - travis-daily-snapshot/.travis.yml
 

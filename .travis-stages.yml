@@ -15,5 +15,6 @@ stages:
     if: branch = master
 
   - name: Merge
+
   - name: Cron
     if: type = cron
