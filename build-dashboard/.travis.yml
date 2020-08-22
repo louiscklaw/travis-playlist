@@ -3,15 +3,25 @@ jobs:
     - stage: Publish_dashboard
       name: Update travis build dashboard
 
+      env:
+        - GH_PAGES_DIR=../gh-pages
+
       script:
-        - scripts/publish.sh
+        - cd build-dashboard
+        -   rm -rf ../gh-pages/*
+        -   mkdir -p ../gh-pages
+        -   yarn
+        -   yarn clean
+        -   yarn build --prefix-paths
+        -   rsync -azh public/ ../gh-pages
+        - cd ..
 
       deploy:
         - provider: pages
           skip_cleanup: true
           local_dir: gh-pages
           github_token: $GITHUB_TOKEN
-          on:
-            branch: master
+          # on:
+            # branch: master
 
-      if: branch = master
+      # if: branch = master
