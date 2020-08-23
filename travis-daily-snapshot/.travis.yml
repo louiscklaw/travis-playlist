@@ -3,4 +3,6 @@ jobs:
     - stage: Cron
       name: daily snapshot (travis-daily-snapshot/.travis.yml)
       script:
-        - echo "helloworld"
+        - cd travis-daily-snapshot
+        -   node ./index.js
+        - cd ..
