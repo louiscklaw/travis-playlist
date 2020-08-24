@@ -85,6 +85,10 @@ class Navbar extends React.Component{
               <Link to="/list_of_failed_branch" className="navbar-item">
                 list of failed branches
               </Link>
+
+              <Link to="/branch_fail_statistics" className="navbar-item">
+                branch fail statistics
+              </Link>
             </div>
 
             <div className="navbar-end">

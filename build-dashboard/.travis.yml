@@ -7,6 +7,8 @@ jobs:
         - GH_PAGES_DIR=../gh-pages
 
       script:
+        # get data from db branch
+
         - cd build-dashboard
         -   rm -rf ../gh-pages/*
         -   mkdir -p ../gh-pages
