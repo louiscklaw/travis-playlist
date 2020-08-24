@@ -50,12 +50,13 @@ Promise.all( [
 
   } )
   .then(() => {
-    // NOTE: need to update db by hubdb one by one (hubdb)
-    console.log('updating statistics ... ')
-    addRecord(runStatistics(last_builds_failed))
-  })
-  .then(() => {
     console.log('updating build failed list ... ')
     updateBuildFaliledList(last_builds_failed)
     // NOTE: need to update db by hubdb one by one (hubdb)
   })
+
+  // .then(() => {
+  //   // NOTE: need to update db by hubdb one by one (hubdb)
+  //   console.log('updating statistics ... ')
+  //   addRecord(runStatistics(last_builds_failed))
+  // })
