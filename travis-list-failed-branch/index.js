@@ -52,6 +52,6 @@ Promise.all( [
 
     addRecord(runStatistics(last_builds_failed))
     // updateBuildFaliledList(last_builds_failed)
-    // updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
+    updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
 
   } )
