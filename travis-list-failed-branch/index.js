@@ -51,8 +51,8 @@ Promise.all( [
     updateBuildFaliledList(last_builds_failed)
 
   } )
-  .then( () => {
+  // .then( () => {
 
-    addRecord(runStatistics(last_builds_failed))
-    // fs.writeFileSync('./answer.json',JSON.stringify(last_builds_failed),{encoding:'utf-8'})
-  })
+  //   addRecord(runStatistics(last_builds_failed))
+  //   // fs.writeFileSync('./answer.json',JSON.stringify(last_builds_failed),{encoding:'utf-8'})
+  // })
