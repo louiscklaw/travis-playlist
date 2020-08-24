@@ -54,7 +54,7 @@ Promise.all( [
     // update db by hubdb one by one
     addRecord(runStatistics(last_builds_failed))
   })
-  .then((last_builds_failed) => {
-    // update db by hubdb one by one
+  .then(() => {
+    // NOTE: need to update db by hubdb one by one (hubdb)
     updateBuildFaliledList(last_builds_failed)
   })
