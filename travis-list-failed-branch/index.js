@@ -47,6 +47,9 @@ Promise.all( [
       var failed_list = failed_by_repo_name
       last_builds_failed[repo_name]=failed_list
     })
+
+    fs.writeFileSync('./build_failed_list.json', JSON.stringify(last_builds_failed),{encoding:'utf-8'})
+
   } )
   .then( () => {
 
