@@ -48,6 +48,7 @@ Promise.all( [
       last_builds_failed[repo_name]=failed_list
     })
 
+    console.log(last_builds_failed)
     // updateBuildFaliledList(last_builds_failed)
     updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
 
