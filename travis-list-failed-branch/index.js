@@ -47,6 +47,7 @@ Promise.all( [
       var failed_list = failed_by_repo_name
       last_builds_failed[repo_name]=failed_list
     })
+
   } )
   .then(() => {
     console.log('updating statistics ... ')
@@ -55,7 +56,7 @@ Promise.all( [
   })
   .then(() => {
     console.log('updating build failed list ... ')
-
+    updateBuildFaliledList(last_builds_failed)
     // NOTE: need to update db by hubdb one by one (hubdb)
     // console.log(last_builds_failed)
     updateBuildFaliledList(last_builds_failed)
