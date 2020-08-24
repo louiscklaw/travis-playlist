@@ -14,7 +14,7 @@ stages:
   - name: Publish_dashboard
     if: branch = master
 
-  - name: Test_ron
+  - name: Test_cron
 
   - name: Merge
 
