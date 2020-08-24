@@ -48,12 +48,9 @@ Promise.all( [
       last_builds_failed[repo_name]=failed_list
     })
 
-    console.log(last_builds_failed)
-
-    addRecord(runStatistics(last_builds_failed))
-    return last_builds_failed
   } )
-  .then((last_builds_failed) => {
-    // update db by hubdb one by one
-    updateBuildFaliledList(last_builds_failed)
+  .then(() => {
+    // NOTE: need to update db by hubdb one by one (hubdb)
+    console.log('updating statistics ... ')
+    addRecord(runStatistics(last_builds_failed))
   })
