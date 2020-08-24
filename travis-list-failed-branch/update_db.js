@@ -6,6 +6,7 @@ const Hubdb = require('hubdb')
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const TEST_DB ='branch_fail_statistics.json'
+const BUILD_FAILED_LIST_DB='build_failed_list.json'
 
 const {translateToKey, translateToNames} = require('./db_keys')
 
@@ -32,6 +33,13 @@ function addRecord(content){
 
 }
 
+function updateBuildFaliledList(build_failed_list){
+  db.update(BUILD_FAILED_LIST_DB, build_failed_list, (err, result, id)=> {
+    if (err) throw err
+  })
+}
+
 module.exports={
-  addRecord
+  addRecord,
+  updateBuildFaliledList
 }

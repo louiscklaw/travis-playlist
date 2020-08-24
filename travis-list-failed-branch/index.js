@@ -15,7 +15,7 @@ const { getRepoNameFromBuildsLink }= require('./common')
 const { getFailedBranchByRepo } = require('./getFailedBranchByRepo')
 const { getRepoNamesFromUser } = require( './getRepoByUsername' )
 const {runStatistics} = require('./statistics')
-const {addRecord} = require('./update_db')
+const {addRecord, updateBuildFaliledList} = require('./update_db')
 
 // getRepoNamesFromUser( 'louiscklaw' )
 var last_builds_failed={}
@@ -48,7 +48,7 @@ Promise.all( [
       last_builds_failed[repo_name]=failed_list
     })
 
-    fs.writeFileSync('./build_failed_list.json', JSON.stringify(last_builds_failed),{encoding:'utf-8'})
+    updateBuildFaliledList(last_builds_failed)
 
   } )
   .then( () => {
