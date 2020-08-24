@@ -50,16 +50,16 @@ Promise.all( [
 
     return last_builds_failed
   } )
-  .then((last_builds_failed) => {
-    console.log('updating statistics ... ')
-    // update db by hubdb one by one
-    addRecord(runStatistics(last_builds_failed))
-  })
-  // .then(() => {
-  //   console.log('updating build failed list ... ')
+  .then(() => {
+    console.log('updating build failed list ... ')
 
-  //   // NOTE: need to update db by hubdb one by one (hubdb)
-  //   // console.log(last_builds_failed)
-  //   updateBuildFaliledList(last_builds_failed)
-  //   // updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
+    // NOTE: need to update db by hubdb one by one (hubdb)
+    // console.log(last_builds_failed)
+    updateBuildFaliledList(last_builds_failed)
+    // updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
+  })
+  // .then((last_builds_failed) => {
+  //   console.log('updating statistics ... ')
+  //   // update db by hubdb one by one
+  //   addRecord(runStatistics(last_builds_failed))
   // })
