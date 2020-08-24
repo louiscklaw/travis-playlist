@@ -49,12 +49,8 @@ Promise.all( [
     })
 
     console.log(last_builds_failed)
+
     updateBuildFaliledList(last_builds_failed)
-    // updateBuildFaliledList({hello:'world_a',hello1:'world_b',hello2:'world_c'})
+    addRecord(runStatistics(last_builds_failed))
 
   } )
-  // .then( () => {
-
-  //   addRecord(runStatistics(last_builds_failed))
-  //   // fs.writeFileSync('./answer.json',JSON.stringify(last_builds_failed),{encoding:'utf-8'})
-  // })
