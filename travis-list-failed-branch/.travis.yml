@@ -1,0 +1,10 @@
+jobs:
+  include:
+    # TODO: move to Cron stage
+    - stage: Test_cron
+      name: travis-list-failed-branch (travis-list-failed-branch/.travis.yml)
+      script:
+        - cd travis-list-failed-branch
+        -   yarn
+        -   node ./index.js
+        - cd ..
