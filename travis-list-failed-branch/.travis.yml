@@ -6,5 +6,9 @@ jobs:
       script:
         - cd travis-list-failed-branch
         -   yarn
+        -   node ./test_updateBuildFaliledList.js
+        -   node ./test_update_db.js
+
         -   node ./index.js
+
         - cd ..
