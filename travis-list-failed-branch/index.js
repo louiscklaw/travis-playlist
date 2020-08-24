@@ -48,11 +48,8 @@ Promise.all( [
       last_builds_failed[repo_name]=failed_list
     })
 
-    return last_builds_failed
-  } )
-  .then( (last_builds_failed) => {
     console.log(last_builds_failed)
 
-    updateBuildFaliledList(last_builds_failed)
     addRecord(runStatistics(last_builds_failed))
-  })
+    updateBuildFaliledList(last_builds_failed)
+  } )
