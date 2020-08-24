@@ -1,7 +1,8 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
+import {getBranchFailStatistics} from '../endpoints/jsons'
 
-const data = {
+const basic_config = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
@@ -28,14 +29,23 @@ const data = {
   ]
 };
 
-export default class TestLine extends React.Component {
+function BranchFailLineChart(props){
+  let [branch_fail_stat_json, setBranchFailStatJson] = React.useState(null)
+  React.useEffect(()=>{
+    getBranchFailStatistics()
+      .then(r => r.json())
+      .then(r_json => {
+        setBranchFailStatJson(r_json)
+      })
+  },[])
 
-  render() {
-    return (
-      <div>
-        <h2>Line Example</h2>
-        <Line data={data} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h2>branch fail line chart</h2>
+      <Line data={basic_config} />
+    </div>
+  );
+
 }
+
+export default BranchFailLineChart
