@@ -23,7 +23,7 @@ import:
   - .travis-stages.yml
   # - .travis-merger.yml
 
-  - helloworld/.travis.yml
+  # - helloworld/.travis.yml
 
   # # meta build list
   # - scripts/.travis.yml
