@@ -41,7 +41,8 @@ Promise.all( [
     } )
   })
   .then( failed_list => {
-    // console.log(haha)
+    console.log(failed_list)
+
     failed_list.forEach(failed_by_repo_name => {
       var repo_name = getRepoNameFromBuildsLink(failed_by_repo_name[0])
       var failed_list = failed_by_repo_name

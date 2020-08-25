@@ -82,11 +82,15 @@ function Navbar(props){
             </Link>
 
             <Link to="/list_of_failed_branch" className="navbar-item">
-              list of failed branches
+              list failed branches
             </Link>
 
             <Link to="/branch_fail_statistics" className="navbar-item">
               branch fail statistics
+            </Link>
+
+            <Link to="/list_failed_branch_live" className="navbar-item">
+              list failed branch (Live update)
             </Link>
           </div>
 
