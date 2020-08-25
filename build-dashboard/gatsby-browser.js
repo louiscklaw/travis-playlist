@@ -1,7 +1,9 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from "react"
 
-// You can delete this file if you're not using it
+import {ModalContextProvider} from "./src/contexts/modal"
+
+export const wrapRootElement = ({ element }) => (
+  <ModalContextProvider>
+    {element}
+  </ModalContextProvider>
+)

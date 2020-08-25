@@ -4,13 +4,14 @@ import {Link} from 'gatsby'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-import ThemeToggle from './theme_toggle'
+import ModalContext from '../contexts/modal'
 
 var PORTFOLIO_PAGE='https://louiscklaw.github.io/'
 
-class Navbar extends React.Component{
+function Navbar(props){
+  let {openSettingModal} = React.useContext(ModalContext)
 
-  helloSwalReactContent = (e) => {
+  const helloSwalReactContent = (e) => {
     e.preventDefault()
 
     const MySwal = withReactContent(Swal)
@@ -26,7 +27,7 @@ class Navbar extends React.Component{
     })
   }
 
-  componentDidMount = () => {
+  React.useEffect(()=>{
     let el_navbar_burger = document.querySelector('.navbar-burger')
     let el_html = document.querySelector('html')
 
@@ -51,79 +52,83 @@ class Navbar extends React.Component{
         }
       }
     })
+  })
 
-  }
+  return(
+    <>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="//louiscklaw.github.io/">
+            <div style={{
+              fontFamily: 'Noto Sans TC, sans-serif',
+              fontSize: 'x-large'
+              }}>
+              Travis dashboard
+            </div>
+          </a>
 
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarContent">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
-  render(){
-    return(
-      <>
-        <nav className="navbar" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="//louiscklaw.github.io/">
-              <div style={{
-                fontFamily: 'Noto Sans TC, sans-serif',
-                fontSize: 'x-large'
-                }}>
-                Travis dashboard
-              </div>
-            </a>
+        <div id="navbarContent" className="navbar-menu">
 
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarContent">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
+          <div className="navbar-start">
+            <Link to="/" className="navbar-item">
+              Overview
+            </Link>
+
+            <Link to="/list_of_failed_branch" className="navbar-item">
+              list of failed branches
+            </Link>
+
+            <Link to="/branch_fail_statistics" className="navbar-item">
+              branch fail statistics
+            </Link>
           </div>
 
-          <div id="navbarContent" className="navbar-menu">
-            <div className="navbar-start">
-              <Link to="/" className="navbar-item">
-                Overview
-              </Link>
+          <div className="navbar-end">
+            <div className="navbar-item">
 
-              <Link to="/list_of_failed_branch" className="navbar-item">
-                list of failed branches
-              </Link>
-
-              <Link to="/branch_fail_statistics" className="navbar-item">
-                branch fail statistics
-              </Link>
+            <div className="field">
+              <p className="control has-icons-left has-icons-right">
+                <input className="input" type="text" placeholder="search" />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-search"></i>
+                </span>
+              </p>
             </div>
 
-            <div className="navbar-end">
-              <div className="navbar-item">
 
-              <div className="field">
-                <p className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" placeholder="search" />
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-search"></i>
-                  </span>
-                </p>
-              </div>
-
-
-              </div>
-              <div className="navbar-item">
-                <div className="buttons">
-                  <a className="button is-primary" onClick={(e)=>{this.helloSwalReactContent(e)}}>
-                    <i className="fas fa-user-plus"></i>
-                    <strong>Sign up</strong>
-                  </a>
-                  <a className="button is-light" onClick={(e)=>{this.helloSwalReactContent(e)}}>
-                    <i className="fas fa-sign-in-alt"></i>
-                      Log in
-                  </a>
-                  {/* <ThemeToggle /> */}
-                </div>
+            </div>
+            <div className="navbar-item">
+              <div className="buttons">
+                <a className="button is-primary" onClick={(e)=>{openSettingModal(e)}}>
+                  <i class="fas fa-cogs"></i>
+                </a>
+                <a className="button is-primary" onClick={(e)=>{helloSwalReactContent(e)}}>
+                  <i className="fas fa-user-plus"></i>
+                  <strong>Sign up</strong>
+                </a>
+                <a className="button is-light" onClick={(e)=>{helloSwalReactContent(e)}}>
+                  <i className="fas fa-sign-in-alt"></i>
+                    Log in
+                </a>
+                {/* <ThemeToggle /> */}
               </div>
             </div>
           </div>
-        </nav>
-      </>
-    )
-  }
+
+
+        </div>
+
+      </nav>
+    </>
+  )
 }
+
 
 export default Navbar
