@@ -92,6 +92,10 @@ function Navbar(props){
             <Link to="/list_failed_branch_live" className="navbar-item">
               list failed branch (Live update)
             </Link>
+
+            <Link to="/documentation" className="navbar-item">
+              documentation
+            </Link>
           </div>
 
           <div className="navbar-end">
