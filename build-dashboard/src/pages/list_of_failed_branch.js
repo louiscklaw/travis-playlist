@@ -1,13 +1,17 @@
 import React from 'react'
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import Navbar from '../components/navbar'
-
-import {getFailedBuildJson} from '../endpoints/jsons'
 import BuildFailedCard from '../components/build_failed_card'
 import ListOfFailedBranchHeading from '../components/list_of_failed_branches_heading'
-import { object } from 'prop-types'
+
+import {getFailedBuildJson, getUserRepoWithToken} from '../endpoints/jsons'
+
+import GlobalContext from '../contexts/global'
+import TravisTokenForm from '../components/TravisTokenForm'
+
 
 function chunkArray(myArray, chunk_size){
   var index = 0;
@@ -36,6 +40,11 @@ function ListOfFailedBranchPage(props){
   let [num_repos, setNumRepos] = React.useState(0)
   let [num_fails, setNumFails] = React.useState(1)
 
+  // let [live_failed_branch, setLiveFailedBranch] = React.useState()
+  let [live_user_repo, setLiveUserRepo] = React.useState()
+
+  let {travis_token} = React.useContext(GlobalContext)
+
   React.useEffect(()=>{
     getFailedBuildJson()
       .then(resp => resp.json())
@@ -45,7 +54,16 @@ function ListOfFailedBranchPage(props){
         setNumRepos(Object.keys(resp_json).length)
         setNumFails(countTotalNumberOfFail(resp_json))
       })
+
   },[])
+
+  React.useEffect(()=>{
+    if (typeof travis_token != 'undefined'){
+      getUserRepoWithToken(travis_token)
+        .then(r => r.json())
+        .then(r_json => setLiveUserRepo(r_json))
+    }
+  },[travis_token])
 
   return(
     <>
@@ -54,6 +72,7 @@ function ListOfFailedBranchPage(props){
         <Navbar />
         <section className="section">
           <div className="container">
+            {JSON.stringify(live_user_repo)}
             <div className="columns is-desktop">
               <div className="column">
                 <ListOfFailedBranchHeading num_fails={num_fails} num_repos={num_repos} />
