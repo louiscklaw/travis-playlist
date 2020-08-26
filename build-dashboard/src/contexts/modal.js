@@ -5,7 +5,11 @@ import GlobalContext from '../contexts/global'
 
 import TravisTokenForm from '../components/TravisTokenForm'
 
-const ModalContext = createContext();
+const default_value = {
+  openSettingModal: () => {}
+}
+
+const ModalContext = createContext(default_value);
 
 
 function ModalContextProvider(props){
