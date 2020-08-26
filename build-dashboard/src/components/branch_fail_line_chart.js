@@ -38,7 +38,9 @@ const root_config = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: [ 1, 2, 3, 4, 5, 6, 7 ],
+      pointRadius: 10,
+      pointHoverRadius: 15
     },
     {
       label: 'number of branch',
@@ -59,7 +61,9 @@ const root_config = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [1, 2, 3, 4, 5, 6, 7]
+      data: [1, 2, 3, 4, 5, 6, 7],
+      pointRadius: 10,
+      pointHoverRadius: 15
     }
   ]
 };
