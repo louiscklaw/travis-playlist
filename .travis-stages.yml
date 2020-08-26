@@ -11,6 +11,9 @@ stages:
   - name: Integration_to_other_repo
     if: branch = develop
 
+  - name: Test_publish_dashboard
+    if: branch = develop
+
   - name: Publish_dashboard
     if: branch = master
 
