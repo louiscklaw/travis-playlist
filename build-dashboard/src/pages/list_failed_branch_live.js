@@ -14,6 +14,7 @@ import BuildFailedCard from '../components/build_failed_card'
 import ListOfFailedBranchLiveHeading from '../components/list_of_failed_branches_live_heading'
 
 function fetchRepoLastBuildStatus(repo_list, travis_token_in){
+  console.log('into fetchRepoLastBuildStatus')
   return Promise.all(repo_list.map(repo => getFailedBranchByRepo(repo, travis_token_in)))
 }
 
@@ -57,6 +58,8 @@ function ShowRepoCards(props){
 }
 
 function ListUserRepoPage(props){
+  const minutes = 1000*60
+
   let {travis_token} = React.useContext(GlobalContext)
   let [content , setContent] = React.useState()
   let [chunked_repo_name, setChunkedRepoName] = React.useState([])
@@ -67,9 +70,40 @@ function ListUserRepoPage(props){
 
   let [test_debug, setTestDebug] = React.useState()
 
+  let [refresh_interval, setRefreshInterval] = React.useState(1 * minutes)
+
+  let [raw_repo_list, setRawRepoList] = React.useState({})
+
   function handleFilterOnChange(e){
     let filter_text = e.target.value.trim()
     setRepoFilter(filter_text)
+  }
+
+  function LoadRepoFromTravis(){
+    console.log('load repo from travis')
+    Promise.all([
+      getUserAllRepoWithToken(travis_token, true)
+    ])
+    .then(values => {
+      setRawRepoList(values[0])
+      console.log('raw repo list updated')
+    })
+  }
+
+  function reassemble_failed_list(failed_list){
+    let output={}
+    try {
+      failed_list.forEach(failed_by_repo_name => {
+        var repo_name = getRepoNameFromBuildsLink(failed_by_repo_name[0])
+        var failed_list = failed_by_repo_name
+        // last_builds_failed[repo_name]=failed_list
+        output[repo_name]=failed_list
+      })
+    } catch (error) {
+      console.log('failed_list', failed_list)
+    }
+
+    return output
   }
 
   React.useEffect(()=>{
@@ -78,37 +112,32 @@ function ListUserRepoPage(props){
     if (typeof travis_token != 'undefined'){
       setContent('loading')
 
-      Promise.all([
-        getUserAllRepoWithToken(travis_token, true)
-      ])
-      .then(values => {
-        var repo_list = values[0].map(x => x.slug)
+      if (raw_repo_list.length > 0){
+        console.log('into raw_repo_list')
+        console.log('raw_repo_list',raw_repo_list)
 
-        // ['louiscklaw/hkstock-digest','louiscklaw/hkstock-digest','louiscklaw/Appimage', 'louiscklaw/kicad_config']
+        var repo_list = raw_repo_list.map(x => x.slug)
+        console.log('repo_list',repo_list)
 
-        return fetchRepoLastBuildStatus(repo_list, travis_token)
+        fetchRepoLastBuildStatus(repo_list, travis_token)
           .then( repos_results => {
+            console.log('repos_results',repos_results)
             return repos_results.filter(repo_result => repo_result.length > 0)
           } )
+          .then( failed_list => {
+            console.log('failed_list', failed_list)
 
-      })
-      .then( failed_list => {
-        let output={}
-        failed_list.forEach(failed_by_repo_name => {
-          var repo_name = getRepoNameFromBuildsLink(failed_by_repo_name[0])
-          var failed_list = failed_by_repo_name
-          last_builds_failed[repo_name]=failed_list
-          output[repo_name]=failed_list
-        })
-        return output
-      })
-      .then((failed_list) => {
-        setLastBuildsFailed(failed_list)
-        // setChunkedRepoName(chunkArray(Object.keys(failed_list), 6))
-        setShowRepoName(chunkArray(Object.keys(failed_list), 6))
-      })
+            let output=reassemble_failed_list(failed_list)
+            setLastBuildsFailed(output)
+            setShowRepoName(chunkArray(Object.keys(output), 6))
+
+          })
+
+
+      }
+
     }
-  },[travis_token])
+  },[travis_token, raw_repo_list])
 
   React.useEffect(()=>{
     // debug:
@@ -119,6 +148,15 @@ function ListUserRepoPage(props){
     setShowRepoName(chunkArray(repo_to_show, 6))
 
   },[repo_filter, last_builds_failed])
+
+  React.useEffect(()=>{
+    LoadRepoFromTravis()
+
+    setInterval(() => {
+      console.log('refresh happening')
+      LoadRepoFromTravis()
+    }, refresh_interval);
+  },[])
 
   return(
     <>
