@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'gatsby'
 
-import GlobalContext from '../contexts/global'
+import GlobalContext from '../../contexts/global'
 
 function ItemlistFailedBranch(props){
   let {travis_token, setTravisToken} = React.useContext(GlobalContext)
