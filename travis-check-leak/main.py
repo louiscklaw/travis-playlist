@@ -30,7 +30,8 @@ SKIP_LIST=[
 print('SCAN_DIR:"{}"'.format(SCAN_DIR))
 
 def checkLeak(should_not_appear, filepath_to_check):
-  command = ['grep', '-ri', '{}'.format(should_not_appear), filepath_to_check]
+  command_string = 'grep -ri --exclude-dir=node_modules "{}" {}'.format(should_not_appear, filepath_to_check)
+  command = shlex.split(command_string)
   # print(' '.join(command))
 
   if (checkPythonVersionFullfill('3.7')):

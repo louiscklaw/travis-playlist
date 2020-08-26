@@ -66,16 +66,27 @@ async function getUserAllRepoWithToken(travis_token_in, fetch_one_page_only){
     var fetch_result = await fetchWithTokenReturnJson(fetch_url,travis_token_in)
     var pagination = fetch_result[ '@pagination' ]
 
-    keep_going = pagination.next
-    let next_href = pagination.next ? pagination.next[ '@href' ] : null
+    if ( typeof fetch_result['@type'] != 'undefined'){
+      if (fetch_result['@type'] == 'error'){
+        alert('error found on fetching result')
+        alert(travis_token_in)
+        keep_going=false
+      }
+    }
 
-    // console.log(next_href)
-    fetch_url = `https://api.travis-ci.com${next_href}`
+    if (typeof pagination == 'undefined'){
+      keep_going = false
+    }else{
+      keep_going = pagination.next
+      let next_href = pagination.next ? pagination.next[ '@href' ] : null
+      // console.log(next_href)
+      fetch_url = `https://api.travis-ci.com${next_href}`
 
-    all_repos = [
-      ...all_repos,
-      ...fetch_result.repositories
-    ]
+      all_repos = [
+        ...all_repos,
+        ...fetch_result.repositories
+      ]
+    }
 
     if (fetch_one_page_only == true) {
       console.log('fetch_one_page_only is on')
@@ -102,7 +113,11 @@ function filterLogic(json_in){
   var json_result = json_in
   var branches  = json_result.branches
   var last_builds = branches.map(branch => branch.last_build)
-  var last_builds_with_fail = last_builds.filter( last_build => last_build.state !='passed')
+
+  var last_builds_with_fail = last_builds.filter( last_build => last_build.state =='failed')
+  var last_builds_with_cancelled = last_builds.filter( last_build => last_build.state !='passed')
+
+  console.log('findme last_build',last_builds)
 
   return last_builds_with_fail
 }
