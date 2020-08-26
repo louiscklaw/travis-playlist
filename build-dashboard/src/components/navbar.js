@@ -7,12 +7,35 @@ import withReactContent from 'sweetalert2-react-content'
 // import TravisTokenForm from './TravisTokenForm'
 import SettingModal from './setting_modal'
 
+import GlobalContext from '../contexts/global'
+import ItemlistFailedBranch from './nav/item_list_failed_branch'
+
 var PORTFOLIO_PAGE='https://louiscklaw.github.io/'
 
 function Navbar(props){
   // let {openSettingModal} = React.useContext(ModalContext)
 
   let setting_modal_ref = React.useRef()
+  let [setting_button_class, setSettingButtonClass] = React.useState('button is-primary')
+
+  let {travis_token, setTravisToken} = React.useContext(GlobalContext)
+
+  const checkTravisTokenExist = () => {
+    return travis_token != null
+  }
+
+  const showTravisTokenStatus = () => {
+    // change button color by token is saved into client local storage or not
+    if ( typeof travis_token != 'undefined' ){
+      setSettingButtonClass('button is-primary')
+    }else{
+      setSettingButtonClass('button is-warning')
+    }
+  }
+
+  React.useEffect(()=>{
+    showTravisTokenStatus()
+  },[travis_token])
 
   const openModal = () => {
     setting_modal_ref.current.classList.add('is-active')
@@ -96,9 +119,7 @@ function Navbar(props){
               branch fail statistics
             </Link>
 
-            <Link to="/list_failed_branch_live" className="navbar-item">
-              list failed branch (Live)
-            </Link>
+            <ItemlistFailedBranch />
 
             <Link to="/documentation" className="navbar-item">
               documentation
@@ -122,12 +143,12 @@ function Navbar(props){
             <div className="navbar-item">
               <div className="buttons">
 
-                <a className="button is-primary" onClick={(e)=>{openModal(e)}}>
+                <a className={setting_button_class} onClick={(e)=>{openModal(e)}}>
                   <i class="fas fa-cogs"></i>
                 </a>
 
 
-                <a className="button is-primary" onClick={(e)=>{helloSwalReactContent(e)}}>
+                <a className={"button is-primary"} onClick={(e)=>{helloSwalReactContent(e)}}>
                   <i className="fas fa-user-plus"></i>
                   <strong>Sign up</strong>
                 </a>

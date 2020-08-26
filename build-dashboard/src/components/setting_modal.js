@@ -2,13 +2,17 @@ import React from 'react'
 
 import TravisTokenForm from './TravisTokenForm'
 // import ModalContext from '../contexts/modal'
-import GlobalContext from '../contexts/modal'
+import GlobalContext from '../contexts/global'
 
 function SettingModal(props){
   let {setting_modal_ref}=props
-  let [travis_token, setTravisToken] = React.useState()
 
+  let {travis_token, setTravisToken} = React.useContext(GlobalContext)
+
+  let test_global_context = React.useContext(GlobalContext)
   const closeSettingModal = ()=>{
+    localStorage.setItem('current_travis_token', travis_token)
+    setTravisToken(travis_token)
     setting_modal_ref.current.classList.remove('is-active')
   }
 
@@ -22,10 +26,6 @@ function SettingModal(props){
     localStorage.setItem('current_travis_token', travis_token)
     closeSettingModal()
   }
-
-  React.useEffect(()=>{
-    setTravisToken(localStorage.getItem('current_travis_token'))
-  },[])
 
   return(
     <>
