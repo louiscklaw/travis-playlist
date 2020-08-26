@@ -72,7 +72,7 @@ function ListOfFailedBranchPage(props){
         <Navbar />
         <section className="section">
           <div className="container">
-            {JSON.stringify(live_user_repo)}
+            {/* {JSON.stringify(live_user_repo)} */}
             <div className="columns is-desktop">
               <div className="column">
                 <ListOfFailedBranchHeading num_fails={num_fails} num_repos={num_repos} />
