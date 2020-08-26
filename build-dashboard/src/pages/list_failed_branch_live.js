@@ -70,7 +70,7 @@ function ListUserRepoPage(props){
 
   let [test_debug, setTestDebug] = React.useState()
 
-  let [refresh_interval, setRefreshInterval] = React.useState(1 * minutes)
+  let [refresh_interval, setRefreshInterval] = React.useState(3 * minutes)
 
   let [raw_repo_list, setRawRepoList] = React.useState({})
 
@@ -82,7 +82,7 @@ function ListUserRepoPage(props){
   function LoadRepoFromTravis(){
     console.log('load repo from travis')
     Promise.all([
-      getUserAllRepoWithToken(travis_token, true)
+      getUserAllRepoWithToken(travis_token)
     ])
     .then(values => {
       setRawRepoList(values[0])
