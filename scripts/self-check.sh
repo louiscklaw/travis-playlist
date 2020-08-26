@@ -8,5 +8,6 @@ scripts/pre-commit.sh
 scripts/docker-lint.sh &
 scripts/travis-lint.sh &
 scripts/test-travis-build-merger.sh &
+scripts/build-dashboard.sh &
 
 wait
