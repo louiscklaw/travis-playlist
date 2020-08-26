@@ -4,12 +4,19 @@ import {Link} from 'gatsby'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-import ModalContext from '../contexts/modal'
+// import TravisTokenForm from './TravisTokenForm'
+import SettingModal from './setting_modal'
 
 var PORTFOLIO_PAGE='https://louiscklaw.github.io/'
 
 function Navbar(props){
-  let {openSettingModal} = React.useContext(ModalContext)
+  // let {openSettingModal} = React.useContext(ModalContext)
+
+  let setting_modal_ref = React.useRef()
+
+  const openModal = () => {
+    setting_modal_ref.current.classList.add('is-active')
+  }
 
   const helloSwalReactContent = (e) => {
     e.preventDefault()
@@ -114,9 +121,12 @@ function Navbar(props){
             </div>
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-primary" onClick={(e)=>{openSettingModal(e)}}>
+
+                <a className="button is-primary" onClick={(e)=>{openModal(e)}}>
                   <i class="fas fa-cogs"></i>
                 </a>
+
+
                 <a className="button is-primary" onClick={(e)=>{helloSwalReactContent(e)}}>
                   <i className="fas fa-user-plus"></i>
                   <strong>Sign up</strong>
@@ -132,11 +142,12 @@ function Navbar(props){
 
 
         </div>
-
       </nav>
+
+      <SettingModal setting_modal_ref={setting_modal_ref} />
+
     </>
   )
 }
-
 
 export default Navbar

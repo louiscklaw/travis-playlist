@@ -1,7 +1,8 @@
 import React , { createContext } from 'react'
 
 const default_value ={
-  saveTravisToken:() => {}
+  saveTravisToken:() => {},
+  setTravisToken:()=>{}
 }
 
 const GlobalContext = createContext(default_value);
@@ -10,6 +11,7 @@ function GlobalContextProvider(props){
 
   let [hello, setHello] = React.useState('world')
   let [travis_token, setTravisToken] = React.useState()
+  let [stored_travis_token, setStoredTravisToken] = React.useState()
 
   const sayHello = () => {
     console.log('say hello')
@@ -52,7 +54,8 @@ function GlobalContextProvider(props){
       hello, setHello,
       sayHello,
       travis_token, setTravisToken,
-      saveTravisToken
+      saveTravisToken,
+      stored_travis_token, setStoredTravisToken
       }}>
 
       { props.children }
