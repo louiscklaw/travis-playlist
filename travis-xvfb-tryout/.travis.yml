@@ -8,5 +8,6 @@ sudo: required
 jobs:
   include:
     - stage: Build
+      name: (tarvis-xvfb-tryout/.travis.yml)
       script:
         - echo helloworld
