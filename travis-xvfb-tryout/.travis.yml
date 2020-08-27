@@ -7,26 +7,14 @@ sudo: required
 
 jobs:
   include:
-      - os: linux
-        dist: focal
+    # - os: linux
+    #   dist: focal
 
-      - os: linux
-        dist: bionic
-
-      - os: linux
-        dist: xenial
-
-      - os: linux
-        dist: trusty
-
-jobs:
-  include:
-    - stage: Build
+    # - os: linux
+    #   dist: bionic
+    - stage: Unit_test
       name: (tarvis-xvfb-tryout/.travis.yml)
-      script:
-        - echo helloworld
-
-    - stage: Build1
-      name: (tarvis-xvfb-tryout/.travis.yml)
+      os: linux
+      dist: xenial
       script:
         - echo helloworld
