@@ -1,5 +1,4 @@
 # https://docs.travis-ci.com/user/gui-and-headless-browsers/
-language: node_js
 sudo: required
 
 jobs:
