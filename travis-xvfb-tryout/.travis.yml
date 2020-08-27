@@ -1,0 +1,11 @@
+sudo: required
+os: linux
+
+jobs:
+  include:
+    - stage: Unit_test (travis-xvfb-tryout/.travis.yml)
+      script:
+        #Display Firefox
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+        - sleep 3 # give xvfb some time to start
