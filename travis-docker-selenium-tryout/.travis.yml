@@ -27,5 +27,6 @@ jobs:
 
         - cd travis-docker-selenium-tryout
         -   pipenv sync
+        -   pipenv run python3 ./test.py
         -   echo helloworld
         - cd ..
