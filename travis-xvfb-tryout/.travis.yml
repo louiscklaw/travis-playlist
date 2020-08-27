@@ -7,8 +7,6 @@ sudo: required
 
 jobs:
   include:
-    - stage: Build
-      name: (tarvis-xvfb-tryout/.travis.yml)
       # NOTE: proved not working
       # - os: linux
       #   dist: focal
@@ -24,5 +22,8 @@ jobs:
       - os: linux
         dist: trusty
 
-    script:
-      - echo helloworld
+  include:
+    - stage: Build
+      name: (tarvis-xvfb-tryout/.travis.yml)
+      script:
+        - echo helloworld
