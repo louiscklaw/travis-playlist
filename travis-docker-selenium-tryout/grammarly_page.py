@@ -6,8 +6,8 @@ class GrammarlyLogin(PageObject):
     username = PageElement(css='input[type="email"]')
     password = PageElement(css='input[type="password"]')
     login = PageElement(css='button[type="submit"]')
-    uri = 'https://www.grammarly.com'
-    signin_uri = '/signin'
+    uri = 'https://louiscklaw.github.io/html-example-page/'
+    signin_uri = '/signin.html'
 
     def make_login(self, username, password):
         self.get(self.uri + self.signin_uri)
