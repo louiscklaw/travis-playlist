@@ -9,5 +9,20 @@ jobs:
   include:
     - stage: Build
       name: (tarvis-xvfb-tryout/.travis.yml)
+      # NOTE: proved not working
+      # - os: linux
+      #   dist: focal
+
+      # NOTE: proved not working
+      # - os: linux
+      #   dist: bionic
+
+      # NOTE: proved not working
+      # - os: linux
+      #   dist: xenial
+
+      - os: linux
+        dist: trusty
+
       script:
         - echo helloworld
