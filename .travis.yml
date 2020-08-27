@@ -24,10 +24,8 @@ import:
   # - .travis-merger.yml
 
   - helloworld/.travis.yml
-
   # meta build list
   - scripts/.travis.yml
-
   - travis-branch-cleanup-cron/.travis.yml
   - travis-pipenv-tryout/.travis.yml
   # - travis-broadcast/.travis.yml
@@ -47,9 +45,7 @@ import:
   # - travis-test-markdown/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
-
   - build-dashboard/.travis.yml
-
   # - bash_travis_yml_template/.travis.yml
   - docker_travis_yml_template/.travis.yml
   # - travis-daily-snapshot/.travis.yml
