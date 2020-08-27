@@ -3,14 +3,17 @@ sudo: required
 
 jobs:
   include:
-    - os: linux
-      dist: focal
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: focal
 
-    - os: linux
-      dist: bionic
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: bionic
 
-    - os: linux
-      dist: xenial
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: xenial
 
     - os: linux
       dist: trusty
