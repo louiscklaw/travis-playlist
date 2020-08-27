@@ -27,3 +27,8 @@ jobs:
       name: (tarvis-xvfb-tryout/.travis.yml)
       script:
         - echo helloworld
+
+    - stage: Build1
+      name: (tarvis-xvfb-tryout/.travis.yml)
+      script:
+        - echo helloworld
