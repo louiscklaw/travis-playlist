@@ -8,10 +8,6 @@ jobs:
 
       os: linux
 
-      language: python
-      python:
-          - "2.7"
-
       services:
           - docker
 
@@ -25,4 +21,7 @@ jobs:
       # install:
           # - pip install -r requirements.txt
       script:
-          - echo helloworld
+        - cd travis-docker-selenium-tryout
+        -   pipenv sync
+        -   echo helloworld
+        - cd ..
