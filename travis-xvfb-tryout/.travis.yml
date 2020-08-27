@@ -19,7 +19,7 @@ jobs:
       dist: trusty
 
 
-script:
-  #Display Firefox
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+    script:
+      #Display Firefox
+      - export DISPLAY=:99.0
+      - sh -e /etc/init.d/xvfb start
