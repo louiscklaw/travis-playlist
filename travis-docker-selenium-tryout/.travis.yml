@@ -8,6 +8,7 @@ jobs:
       sudo: required
 
       os: linux
+      dist: focal
 
       services:
           - docker
