@@ -26,7 +26,7 @@ class GrammarlyGeneralTest(unittest.TestCase):
     def test_login(self):
         page_login = GrammarlyLogin(self.driver)
         page_login.make_login('za2217279@mvrht.net', 'test123')
-        assert self.driver.current_url == "https://louiscklaw.github.io/html-example-page/signin.html"
+        assert self.driver.current_url == "https://louiscklaw.github.io/html-example-page/signin_ok.html"
 
     # def test_make_new_doc(self):
     #     page_login = GrammarlyLogin(self.driver)
