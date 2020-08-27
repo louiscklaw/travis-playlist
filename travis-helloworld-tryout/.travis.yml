@@ -6,13 +6,17 @@ group: stable
 jobs:
   include:
     - os: linux
-      dist: trusty
+      dist: focal
 
     - os: linux
       dist: bionic
 
     - os: linux
-      dist: focal
+      dist: xenial
+
+    - os: linux
+      dist: trusty
+
 
 script:
   #Display Firefox
