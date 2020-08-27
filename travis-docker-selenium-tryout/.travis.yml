@@ -3,8 +3,26 @@ jobs:
   include:
     - stage: Unit_test
       name: travis-docker-selenium-tryout/.travis.yml
+
       sudo: required
+
       os: linux
+
+      language: python
+      python:
+          - "2.7"
+
+      services:
+          - docker
+
+      before_install:
+          - docker pull selenium/node-firefox:3.8.1-francium
+          - docker pull selenium/hub:3.8.1-francium
+          - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
+          - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
+
+      # command to install dependencies
+      # install:
+          # - pip install -r requirements.txt
       script:
-        #Display Firefox
-        - echo 'helloworld'
+          - echo helloworld
