@@ -19,6 +19,8 @@ jobs:
       - os: linux
         dist: trusty
 
+jobs:
+  include:
     - stage: Build
       name: (tarvis-xvfb-tryout/.travis.yml)
       script:
