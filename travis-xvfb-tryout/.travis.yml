@@ -18,3 +18,10 @@ jobs:
       dist: xenial
       script:
         - echo helloworld
+
+    - stage: Unit_test
+      name: (tarvis-xvfb-tryout/.travis.yml)
+      os: linux
+      dist: bionic
+      script:
+        - echo helloworld
