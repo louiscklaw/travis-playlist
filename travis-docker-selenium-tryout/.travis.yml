@@ -28,5 +28,5 @@ jobs:
         - cd travis-docker-selenium-tryout
         -   pipenv sync
         -   pipenv run which python3
-        -   pipenv run python3 ./test.py
+        -   pipenv run python3 ./tests.py
         - cd ..
