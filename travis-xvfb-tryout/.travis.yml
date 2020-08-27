@@ -1,27 +1,12 @@
-# https://docs.travis-ci.com/user/gui-and-headless-browsers/
+# https://docs.travis-ci.com/user/docker/
+# https://docs.travis-ci.com/user/environment-variables/
+# https://docs.travis-ci.com/user/job-lifecycle/
+
+# You can import up to 25 other configs in total.
 sudo: required
 
 jobs:
   include:
-    - stage: Unit_test
-      name: (tarvis-xvfb-tryout/.travis.yml)
-      # NOTE: proved not working
-      # - os: linux
-      #   dist: focal
-
-      # NOTE: proved not working
-      # - os: linux
-      #   dist: bionic
-
-      # NOTE: proved not working
-      # - os: linux
-      #   dist: xenial
-
-      - os: linux
-        dist: trusty
-
-
-        script:
-          #Display Firefox
-          - export DISPLAY=:99.0
-          - sh -e /etc/init.d/xvfb start
+    - stage: Build
+      script:
+        - echo helloworld
