@@ -3,6 +3,8 @@ sudo: required
 
 jobs:
   include:
+    - stage: Unit_test
+      name: (tarvis-xvfb-tryout/.travis.yml)
     # NOTE: proved not working
     # - os: linux
     #   dist: focal
@@ -19,7 +21,7 @@ jobs:
       dist: trusty
 
 
-    script:
-      #Display Firefox
-      - export DISPLAY=:99.0
-      - sh -e /etc/init.d/xvfb start
+      script:
+        #Display Firefox
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
