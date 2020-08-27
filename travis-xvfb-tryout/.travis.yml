@@ -1,0 +1,25 @@
+# https://docs.travis-ci.com/user/gui-and-headless-browsers/
+sudo: required
+
+jobs:
+  include:
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: focal
+
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: bionic
+
+    # NOTE: proved not working
+    # - os: linux
+    #   dist: xenial
+
+    - os: linux
+      dist: trusty
+
+
+script:
+  #Display Firefox
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
