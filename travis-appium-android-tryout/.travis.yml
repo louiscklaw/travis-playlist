@@ -1,0 +1,10 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: (travis-appium-android-tryout/.travis.yml)
+      sudo: required
+      os: linux
+      script:
+        #Display Firefox
+        - echo 'helloworld'
