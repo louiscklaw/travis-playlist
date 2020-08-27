@@ -2,8 +2,17 @@ language: node_js
 sudo: required
 
 group: stable
-dist: trusty
-os: linux
+
+jobs:
+  include:
+    - os: linux
+      dist: trusty
+
+    - os: linux
+      dist: bionic
+
+    - os: linux
+      dist: focal
 
 script:
   #Display Firefox

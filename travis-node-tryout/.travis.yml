@@ -10,5 +10,7 @@ jobs:
     - stage: Build
       script:
         - cd travis-node-tryout
-        - ./build.sh
+        -   yarn
+        -   yarn test
+        -   yarn build
         - cd ..
