@@ -1,13 +1,11 @@
+language": node_js
+sudo": required
 
-dist: xenial
-
-services:
-  - xvfb
-
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+group: stable
+dist: trusty
+os: linux
 
 script:
-  - echo helloworld
+  #Display Firefox
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
