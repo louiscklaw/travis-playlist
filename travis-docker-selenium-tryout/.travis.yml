@@ -11,13 +11,13 @@ jobs:
       dist: focal
 
       services:
-          - docker
+        - docker
 
       before_install:
-          - docker pull selenium/node-firefox:3.8.1-francium
-          - docker pull selenium/hub:3.8.1-francium
-          - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
-          - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
+        - docker pull selenium/node-firefox:3.8.1-francium
+        - docker pull selenium/hub:3.8.1-francium
+        - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
+        - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
 
       script:
         - sudo apt-get update
