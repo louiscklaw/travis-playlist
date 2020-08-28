@@ -21,7 +21,18 @@ import:
   - .travis-stages.yml
   # - .travis-merger.yml
 
-  - .travis/.unittest.yml
+  - .travis/.build.yml
+  - .travis/.build_docker.yml
+  - .travis/.cron.yml
+  - .travis/.deploy.yml
+  - .travis/.integration_to_other_repo.yml
+  - .travis/.merge.yml
+  - .travis/.publish_dashboard.yml
+  - .travis/.test.yml
+  - .travis/.test_cron.yml
+  - .travis/.test_publish_dashboard.yml
+  - .travis/.unit_test.yml
+
 
 # after_success:
 #   travis-test-after-success/fail_script.sh
