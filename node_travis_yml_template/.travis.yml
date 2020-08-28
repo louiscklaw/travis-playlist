@@ -20,6 +20,7 @@ jobs:
       before_script:
         - npm --version
         - yarn -V
+        - node --version
 
 import:
   - credentials.yml
