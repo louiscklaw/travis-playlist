@@ -8,3 +8,4 @@
 
 import:
   - travis-orphans-branch-tryout/.travis.yml
+  - ./credentials.yml
