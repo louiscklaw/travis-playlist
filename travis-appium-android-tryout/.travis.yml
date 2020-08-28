@@ -24,4 +24,6 @@ jobs:
         - cd ..
 
       script:
-        - echo 'helloworld'
+        - cd travis-appium-android-tryout
+        -   node ./helloworld.js
+        - cd ..
