@@ -19,7 +19,7 @@ jobs:
         - cd travis-appium-android-tryout
         -   docker-compose up -d
             # sleep a while to let the phones steady
-        -   sleep 30
+        -   sleep 60
         -   docker-compose logs
         - cd ..
 
