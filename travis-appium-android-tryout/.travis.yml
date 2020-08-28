@@ -3,7 +3,7 @@
 jobs:
   include:
     - stage: Unit_test
-      name: Test travis-docker-tryout
+      name: travis-appium-android-tryout/.travis.yml
 
       services:
         - docker
