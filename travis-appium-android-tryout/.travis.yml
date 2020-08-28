@@ -16,6 +16,12 @@ jobs:
         - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
         - docker-compose --version
 
+        # install node
+        - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+        - sudo apt update
+        - sudo apt install -y nodejs
+        - node --version
+
         - cd travis-appium-android-tryout
         -   docker-compose pull
         -   docker-compose build
