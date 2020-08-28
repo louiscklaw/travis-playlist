@@ -56,6 +56,7 @@ import:
   - travis-list-failed-branch/.travis.yml
   - travis-xvfb-tryout/.travis.yml
   - travis-docker-selenium-tryout/.travis.yml
+  - node_travis_yml_template/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh
