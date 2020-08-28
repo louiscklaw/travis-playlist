@@ -1,0 +1,34 @@
+{
+  "folders": [ {
+      "path": "."
+    },
+    {
+      "path": "../bash_travis_yml_template"
+    },
+    {
+      "path": "../docker_travis_yml_template"
+    },
+    {
+      "path": "../bash_travis_yml_template"
+    },
+    {
+      "path": "../docker_travis_yml_template"
+    },
+    {
+      "path": "../firebase_travis_yml_template"
+    },
+    {
+      "path": "../next_travis_yml_template"
+    },
+    {
+      "path": "../node_travis_yml_template"
+    },
+    {
+      "path": "../python_travis_yml_template"
+    },
+    {
+      "path": "../react_travis_yml_template"
+    }
+  ],
+  "settings": {}
+}
