@@ -5,6 +5,10 @@ jobs:
     - stage: Unit_test
       name: travis-appium-android-tryout/.travis.yml
 
+      language: node_js
+      node_js:
+        - 12
+
       services:
         - docker
 
@@ -15,12 +19,6 @@ jobs:
         - sudo chmod +x /usr/local/bin/docker-compose
         - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
         - docker-compose --version
-
-        # install node
-        - curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-        - sudo apt update
-        - sudo apt install -y nodejs
-        - node --version
 
         - cd travis-appium-android-tryout
         -   docker-compose pull
