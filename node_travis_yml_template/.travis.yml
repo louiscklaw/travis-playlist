@@ -22,7 +22,7 @@ jobs:
         - yarn -V
         - node --version
 
-import:
-  - credentials.yml
-  - .travis-merger.yml
-  - .travis-stages.yml
+# import:
+#   - credentials.yml
+#   - .travis-merger.yml
+#   - .travis-stages.yml
