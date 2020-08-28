@@ -9,4 +9,6 @@ reset
 
 set -ex
 
-docker-compose up
+docker-compose up -d
+
+sleep 30

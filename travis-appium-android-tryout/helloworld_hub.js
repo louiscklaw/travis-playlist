@@ -7,7 +7,7 @@ function searchTextOnGoogle() {
   const capabilities = {
     platformName: "Android",
     platformVersion: "7.1.1",
-    browserName: 'android',
+    browserName: 'android'
     // app: "/root/apk_pool/ApiDemos-debug.apk",
   }
 
