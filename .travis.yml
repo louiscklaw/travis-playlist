@@ -5,4 +5,4 @@
 # You can import up to 25 other configs in total.
 
 import:
-  node_travis_yml_template/.travis.yml
+  - node_travis_yml_template/.travis.yml
