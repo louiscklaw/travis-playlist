@@ -54,6 +54,7 @@ import:
   - travis-xvfb-tryout/.travis.yml
   - travis-docker-selenium-tryout/.travis.yml
   - travis-orphans-branch-tryout/.travis.yml
+  - travis-youtube-upload-tryout/.travis.yml
 
 
 after_success:
