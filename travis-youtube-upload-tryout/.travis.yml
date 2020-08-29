@@ -2,6 +2,6 @@
 jobs:
   include:
     - stage: Unit_test
-      name: Sanity test (helloworld/.travis.yml)
+      name: travis-youtube-upload-tryout/.travis.yml
       script:
         - echo "helloworld"
