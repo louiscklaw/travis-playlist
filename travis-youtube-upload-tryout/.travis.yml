@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: Sanity test (helloworld/.travis.yml)
+      script:
+        - echo "helloworld"
