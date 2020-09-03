@@ -2,8 +2,15 @@
 
 jobs:
   include:
-    - stage: Test_cron
-      name: Test travis-failed-rebuild-tryout
+    # - stage: Test_cron
+    #   name: Test travis-failed-rebuild-tryout
+    #   script:
+    #     - cd travis-failed-rebuild-tryout
+    #     - yarn
+    #     - node './index.js'
+
+    - stage: Cron
+      name: Cron travis-failed-rebuild-tryout
       script:
         - cd travis-failed-rebuild-tryout
         - yarn

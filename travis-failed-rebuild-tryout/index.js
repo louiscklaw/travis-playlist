@@ -50,7 +50,7 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  return triggerBuildRequests([...branch_names_repo_names[0], ...branch_names_repo_names[1]])
+  return triggerBuildRequests(branch_names_repo_names)
 })
 
 
