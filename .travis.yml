@@ -55,6 +55,7 @@ import:
   - travis-docker-selenium-tryout/.travis.yml
   - travis-orphans-branch-tryout/.travis.yml
   - travis-youtube-upload-tryout/.travis.yml
+  - travis-failed-rebuild-tryout/.travis.yml
 
 
 after_success:
