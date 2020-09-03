@@ -8,7 +8,7 @@ helloearth(){
 
 update_shortcut(){
   OWD=$PWD
-  cd /home/logic/_workspace/kicad_workspace/kicad-playlist
+  cd /home/logic/_workspace/travis-playlist
   cp ./.env /tmp/.env
 
 python3 << END
