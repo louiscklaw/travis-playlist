@@ -1,0 +1,10 @@
+# https://docs.travis-ci.com/user/docker/
+
+jobs:
+  include:
+    - stage: Test_cron
+      name: Test travis-failed-rebuild-tryout
+      script:
+        - cd travis-failed-rebuild-tryout
+        - yarn
+        - node './index.js'
