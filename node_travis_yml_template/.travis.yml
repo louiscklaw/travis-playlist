@@ -15,12 +15,15 @@ cache:
 
 jobs:
   include:
-    - stage: Unit_test
+    - stage: Test
       name: node_travis_yml_template
       before_script:
         - npm --version
         - yarn -V
         - node --version
+      script:
+        # TODO: update this
+        - echo 'helloworld'
 
 # import:
 #   - credentials.yml
