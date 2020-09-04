@@ -1,0 +1,30 @@
+# https://docs.travis-ci.com/user/docker/
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: travis-appium-android-tryout/.travis.yml
+
+      services:
+        - docker
+
+      install:
+        # install docker compose
+        - sudo rm -rf /usr/local/bin/docker-compose
+        - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        - sudo chmod +x /usr/local/bin/docker-compose
+        - sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+        - docker-compose --version
+
+        - cd travis-appium-android-tryout
+        -   docker-compose up -d
+            # sleep a while to let the phones steady
+        -   sleep 60
+        -   docker-compose logs
+        - cd ..
+
+      script:
+        - cd travis-appium-android-tryout
+        -   yarn
+        -   node ./helloworld.js
+        - cd ..
