@@ -8,6 +8,7 @@ import traceback
 from pprint import pprint
 import shlex
 from subprocess import run, PIPE, Popen
+from multiprocessing import Pool
 
 from tqdm import tqdm, trange
 
@@ -46,10 +47,13 @@ def checkLeak(should_not_appear, filepath_to_check):
   terms_found = result.stdout != b''
 
   if terms_found:
+    print('filepath_to_check', filepath_to_check)
     print('command: ',' '.join(result.args))
-    print(result.stdout)
+    # print(result.stdout)
     # print('{}:{}, {}, {}'.format(word, result.returncode, result.stdout, result.args))
     raise 'leakage found'
+
+def paralllel_check_leak(c): return checkLeak(*c)
 
 def readCredentialFile(filepath):
   file_content = open(filepath,'r').readlines()
@@ -109,21 +113,19 @@ def printBanner(text, text1):
 
 
 def main():
-    should_not_appear = list(credentialValue())
+  should_not_appear = list(credentialValue())
 
-    printBanner('scanning for sensitive words', SCAN_DIR)
-    print('scan start')
+  printBanner('scanning for sensitive words', SCAN_DIR)
+  print('scan start')
 
-    for word in tqdm(should_not_appear):
-      if word not in SKIP_LIST:
-        try:
-          checkLeak(word, SCAN_DIR)
+  should_not_appear_after_skip_list = filter(lambda x: x not in SKIP_LIST, should_not_appear)
 
-        except Exception as e:
-          print('sensitive word found')
-          raise e
+  p = Pool(99)
+  p.map(paralllel_check_leak, [(word, SCAN_DIR) for word in tqdm(should_not_appear_after_skip_list)])
+  p.close()
+  p.join()
 
-    print('scan done')
+  print('scan done, thanks')
 
 if __name__ == '__main__':
   main()

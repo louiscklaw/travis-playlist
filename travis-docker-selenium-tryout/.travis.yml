@@ -1,0 +1,32 @@
+# https://github.com/anselmos/grammarly-selenium-automation
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: travis-docker-selenium-tryout/.travis.yml
+
+      sudo: required
+
+      os: linux
+      dist: focal
+
+      services:
+        - docker
+
+      before_install:
+        - docker pull selenium/node-firefox:3.8.1-francium
+        - docker pull selenium/hub:3.8.1-francium
+        - docker run -d -p 4444:4444 --name selenium-hub selenium/hub:3.8.1-francium
+        - docker run -d --link selenium-hub:hub --name selenium-node-firefox -v /dev/shm:/dev/shm selenium/node-firefox:3.8.1-francium
+
+      script:
+        - sudo apt-get update
+        - sudo apt-get install -y python3 python3-pip python3-dev python3-wheel python3-setuptools
+        - pip3 install --user pipenv
+        - python3 -V
+
+        - cd travis-docker-selenium-tryout
+        -   pipenv sync
+        -   pipenv run which python3
+        -   pipenv run python3 ./tests.py
+        - cd ..

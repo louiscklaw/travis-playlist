@@ -1,0 +1,25 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: (travis-helloworld-tryout/.travis.yml)
+      sudo: required
+      os: linux
+      env:
+
+      script:
+        #Display Firefox
+        - export TMP_DIR=$(mktemp -d)
+        - cd $TMP_DIR
+        -   git clone --depth=1 https://$GITHUB_TOKEN@github.com/louiscklaw/travis-playlist.git .
+
+        -   git checkout --orphan test-orphan
+
+        -   rm .git/index
+        -   git clean -fdx
+        -   echo 1 > helloworld
+        -   git add helloworld
+        -   git commit -m"testing orphan branch,"
+        -   git push -f -u origin test-orphan
+
+        - cd -
