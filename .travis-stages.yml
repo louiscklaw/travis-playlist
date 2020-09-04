@@ -14,6 +14,9 @@ stages:
   - name: Test_publish_dashboard
     if: branch = develop
 
+  - name: Publish
+    if: branch = master
+
   - name: Publish_dashboard
     if: branch = master
 
