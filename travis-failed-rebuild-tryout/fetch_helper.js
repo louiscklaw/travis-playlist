@@ -62,7 +62,7 @@ const conv_repo_name_to_slug = (repo_name) => repo_name.replace('/','%2F')
 const getRequestBody = (branch_name) => {return {
   request: {
     branch: branch_name,
-    messages: "rebuild triggered by travis-failed-rebuild-tryout"
+    message: "this build is triggered by travis-failed-rebuild-tryout"
   }
 }}
 

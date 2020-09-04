@@ -5,7 +5,8 @@ set -ex
 
 body='{
 "request": {
-  "branch":"tests/add-installLigblib2-sh"
+  "branch":"tests/add-installLigblib2-sh",
+  "message": "test rebuild 1 2 3 "
 }
 }'
 
