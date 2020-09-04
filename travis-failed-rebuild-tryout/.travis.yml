@@ -2,7 +2,7 @@
 
 jobs:
   include:
-    - stage: Cron
+    - stage: Test_cron
       name: Test travis-failed-rebuild-tryout
       script:
         - cd travis-failed-rebuild-tryout
