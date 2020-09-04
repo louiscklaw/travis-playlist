@@ -23,11 +23,10 @@ import:
   - .travis-stages.yml
   # - .travis-merger.yml
 
-  - helloworld/.travis.yml
 
+  - helloworld/.travis.yml
   # meta build list
   - scripts/.travis.yml
-
   - travis-branch-cleanup-cron/.travis.yml
   - travis-pipenv-tryout/.travis.yml
   # - travis-broadcast/.travis.yml
@@ -47,9 +46,7 @@ import:
   # - travis-test-markdown/.travis.yml
   - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
-
   - build-dashboard/.travis.yml
-
   # - bash_travis_yml_template/.travis.yml
   - docker_travis_yml_template/.travis.yml
   # - travis-daily-snapshot/.travis.yml
@@ -57,6 +54,9 @@ import:
   - travis-xvfb-tryout/.travis.yml
   - travis-docker-selenium-tryout/.travis.yml
   - node_travis_yml_template/.travis.yml
+  - travis-orphans-branch-tryout/.travis.yml
+  - travis-youtube-upload-tryout/.travis.yml
+  - travis-failed-rebuild-tryout/.travis.yml
 
 after_success:
   travis-test-after-success/fail_script.sh

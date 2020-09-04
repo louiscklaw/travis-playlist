@@ -1,0 +1,7 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: travis-youtube-upload-tryout/.travis.yml
+      script:
+        - echo "helloworld"
