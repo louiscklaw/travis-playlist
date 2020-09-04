@@ -50,7 +50,7 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  return triggerBuildRequests(branch_names_repo_names.slice(0,5))
+  return triggerBuildRequests(branch_names_repo_names.slice(0,50))
 })
 
 
