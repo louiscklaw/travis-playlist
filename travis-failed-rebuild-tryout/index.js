@@ -1,6 +1,7 @@
 const fs = require( 'fs' )
 const process = require( 'process' )
 
+const _ = require('lodash')
 const fetch = require( 'node-fetch' )
 
 const {getFailedBranchByRepo} = require('./getFailedBranchByRepo')
@@ -50,7 +51,8 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  return triggerBuildRequests(branch_names_repo_names.slice(0,1))
+  const flatten_branch_names_repo_names = _.flatten(branch_names_repo_names)
+  return triggerBuildRequests(flatten_branch_names_repo_names)
 })
 
 
