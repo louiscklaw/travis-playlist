@@ -2,11 +2,16 @@
 
 set -ex
 
-scripts/pre-commit.sh
+git fetch --all
+
+git merge origin/develop
+git merge origin/master
+
+./scripts/pre-commit.sh
 
 # scripts/test_dashboard.sh
 # scripts/docker-lint.sh &
 # scripts/travis-lint.sh &
-scripts/test-travis-build-merger.sh &
+
 
 wait
