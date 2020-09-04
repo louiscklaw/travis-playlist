@@ -21,6 +21,9 @@ jobs:
         - npm --version
         - yarn -V
         - node --version
+      script:
+        # TODO: update this
+        - echo 'helloworld'
 
 # import:
 #   - credentials.yml
