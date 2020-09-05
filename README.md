@@ -1,5 +1,10 @@
 # travis tryout playlist
 
+### cookbook
+https://github.com/travis-ci/travis-cookbooks
+https://docs.travis-ci.com/user/build-environment-updates
+https://gist.github.com/matthew-brett/a8e875a64f1d08ffea208a1cd9c46b87
+
 ### awesome ci
 https://github.com/ligurio/awesome-ci
 
