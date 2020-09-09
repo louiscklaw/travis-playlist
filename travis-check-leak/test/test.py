@@ -34,5 +34,16 @@ class TestStringMethods(unittest.TestCase):
     result = run(shlex.split(command))
     self.assertEqual(result.returncode,0, 'should return 0 when no sensitive word found')
 
+  def test_shouldAbleToSelfUpdate(self):
+    CWD=os.getcwd()
+
+    TMP_DIR=mkdtemp()
+    command="rsync -avzh --progress {}/ {}".format(CWD, TMP_DIR)
+    result = run(shlex.split(command))
+
+    command = 'python3 main.py -u'
+    result = run(shlex.split(command),cwd=TMP_DIR)
+    self.assertEqual(result.returncode,0, 'should be able to do self update')
+
 if __name__ == '__main__':
   unittest.main()

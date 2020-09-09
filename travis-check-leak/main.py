@@ -22,6 +22,7 @@ def fullfillInputRequirement():
     print('cannot fullfill input requirement')
     print('expected usage: ')
     print('pipenv run python3 main.py <SCAN_DIR>')
+    print('pipenv run python3 main.py -u')
     print()
     sys.exit(99)
 
@@ -34,14 +35,7 @@ def checkPythonVersionFullfill( version_threshold):
   from packaging import version
   return version.parse(checkPythonVersion()) >= version.parse(version_threshold)
 
-CWD = os.getcwd()
-SCAN_DIR = CWD if len(sys.argv) < 2 else sys.argv[1]
 
-SKIP_LIST=[
-  'logickee','1','http'
-]
-
-print('SCAN_DIR:"{}"'.format(SCAN_DIR))
 
 def checkLeak(should_not_appear, filepath_to_check):
   # true = leakage found, false = leakage not found
@@ -127,6 +121,15 @@ def foo(word, number):
     return number
 
 def main():
+  SCAN_DIR = sys.argv[1]
+
+  print('SCAN_DIR:"{}"'.format(SCAN_DIR))
+
+  SKIP_LIST=[
+    'logickee','1','http'
+  ]
+
+
   should_not_appear = list(credentialValue())
 
   printBanner('scanning for sensitive words', SCAN_DIR)
@@ -156,6 +159,18 @@ def main():
     print('scan done, thanks')
     sys.exit(0)
 
+def scriptUpdate():
+  CWD=os.getcwd()
+  target_file='{}/travis-check-leak'.format(CWD)
+  command = 'rsync -avzh --progress {}/ {}'.format(
+    '/home/logic/_workspace/travis-playlist/travis-check-leak',
+    target_file
+  )
+  result = run(shlex.split(command))
+
 if __name__ == '__main__':
   fullfillInputRequirement()
-  main()
+  if (sys.argv[1] == '-u'):
+    scriptUpdate()
+  else:
+    main()
