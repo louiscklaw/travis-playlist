@@ -34,9 +34,6 @@ def checkPythonVersionFullfill( version_threshold):
   from packaging import version
   return version.parse(checkPythonVersion()) >= version.parse(version_threshold)
 
-
-fullfillInputRequirement()
-
 CWD = os.getcwd()
 SCAN_DIR = CWD if len(sys.argv) < 2 else sys.argv[1]
 
@@ -160,4 +157,5 @@ def main():
     sys.exit(0)
 
 if __name__ == '__main__':
+  fullfillInputRequirement()
   main()
