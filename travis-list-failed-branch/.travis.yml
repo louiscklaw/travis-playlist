@@ -7,8 +7,6 @@ jobs:
         -   yarn
         # -   node ./test_updateBuildFaliledList.js
         # -   node ./test_update_db.js
-
-        -   node ./update-statistics.js
         -   node ./update-failed-list.js
 
         - cd ..
