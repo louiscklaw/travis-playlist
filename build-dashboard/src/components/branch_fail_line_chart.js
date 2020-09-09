@@ -20,7 +20,7 @@ const root_config = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'number of repo',
+      label: 'number of failed repo',
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(192, 57, 43,0.4)',
