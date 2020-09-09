@@ -64,6 +64,29 @@ const root_config = {
       data: [1, 2, 3, 4, 5, 6, 7],
       pointRadius: 10,
       pointHoverRadius: 15
+    },
+    {
+      label: 'total umber of repo',
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: 'rgba(41,128,185 ,0.4)',
+      borderColor: 'rgba(41,128,185 ,1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(41,128,185 ,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(41,128,185 ,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [1, 2, 3, 4, 5, 6, 7],
+      pointRadius: 10,
+      pointHoverRadius: 15
     }
   ]
 };
@@ -81,6 +104,7 @@ function BranchFailLineChart(props){
         let record_times = r_json.map(x => x.t)
         let number_of_repo = r_json.map(x => x.n)
         let number_of_branch = r_json.map(x => x.f)
+        let total_repo = r_json.map(x => x.tr)
 
         setChartData({
           ...root_config,
@@ -93,6 +117,10 @@ function BranchFailLineChart(props){
             {
               ...root_config.datasets[1],
               data: number_of_branch
+            },
+            {
+              ...root_config.datasets[2],
+              data: total_repo
             }
           ]
         })
