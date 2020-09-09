@@ -8,9 +8,23 @@ import traceback
 from pprint import pprint
 import shlex
 from subprocess import run, PIPE, Popen
-from multiprocessing import Pool
+
+from multiprocessing.pool import ThreadPool
 
 from tqdm import tqdm, trange
+
+# input
+def fullfillInputRequirement():
+  if len(sys.argv) < 2:
+    print('')
+    print('error')
+    print('')
+    print('cannot fullfill input requirement')
+    print('expected usage: ')
+    print('pipenv run python3 main.py <SCAN_DIR>')
+    print()
+    sys.exit(99)
+
 
 def checkPythonVersion():
   import platform
@@ -20,6 +34,8 @@ def checkPythonVersionFullfill( version_threshold):
   from packaging import version
   return version.parse(checkPythonVersion()) >= version.parse(version_threshold)
 
+
+fullfillInputRequirement()
 
 CWD = os.getcwd()
 SCAN_DIR = CWD if len(sys.argv) < 2 else sys.argv[1]
@@ -31,6 +47,8 @@ SKIP_LIST=[
 print('SCAN_DIR:"{}"'.format(SCAN_DIR))
 
 def checkLeak(should_not_appear, filepath_to_check):
+  # true = leakage found, false = leakage not found
+
   command_string = 'grep -ri --exclude-dir=node_modules "{}" {}'.format(should_not_appear, filepath_to_check)
   command = shlex.split(command_string)
   # print(' '.join(command))
@@ -41,17 +59,13 @@ def checkLeak(should_not_appear, filepath_to_check):
     # e.g. 3.6 for ubuntu 18.04
     result = run(command, stdout=PIPE)
 
-    # DEBUG:
-    # print(result.stdout)
-
-  terms_found = result.stdout != b''
-
-  if terms_found:
-    print('filepath_to_check', filepath_to_check)
-    print('command: ',' '.join(result.args))
+  if result.returncode == 0:
     # print(result.stdout)
     # print('{}:{}, {}, {}'.format(word, result.returncode, result.stdout, result.args))
-    raise 'leakage found'
+    return (True, should_not_appear)
+  else:
+    return (False,result.returncode)
+    # raise 'leakage found'
 
 def paralllel_check_leak(c): return checkLeak(*c)
 
@@ -111,6 +125,9 @@ def printBanner(text, text1):
   print('^'*76)
   print('\n'*1)
 
+def foo(word, number):
+    print (word * number)
+    return number
 
 def main():
   should_not_appear = list(credentialValue())
@@ -120,12 +137,27 @@ def main():
 
   should_not_appear_after_skip_list = filter(lambda x: x not in SKIP_LIST, should_not_appear)
 
-  p = Pool(99)
-  p.map(paralllel_check_leak, [(word, SCAN_DIR) for word in tqdm(should_not_appear_after_skip_list)])
-  p.close()
-  p.join()
+  pool = ThreadPool(5)
 
-  print('scan done, thanks')
+  results = []
+  # should_not_appear_after_skip_list
+  for word in tqdm(should_not_appear_after_skip_list):
+      results.append(pool.apply_async(checkLeak, args=(word, SCAN_DIR)))
+
+  pool.close()
+  pool.join()
+
+  results = [r.get() for r in results]
+  (tf_result, word_found) = zip(*results)
+
+  if any(tf_result):
+    pprint(list(filter(lambda x: x[0]==True, results)))
+    raise "leak found"
+    sys.exit(999)
+
+  else:
+    print('scan done, thanks')
+    sys.exit(0)
 
 if __name__ == '__main__':
   main()
