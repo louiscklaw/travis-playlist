@@ -1,9 +1,8 @@
 jobs:
   include:
-    # TODO: move to Cron stage
-    - stage: Test_cron
+    - stage: Cron
       name: daily snapshot (travis-daily-snapshot/.travis.yml)
       script:
         - cd travis-daily-snapshot
-        -   node ./index.js
+        -   node ./update-statistics.js
         - cd ..

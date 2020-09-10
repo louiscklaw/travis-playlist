@@ -19,7 +19,7 @@ const {addRecord, updateBuildFaliledList} = require('./update_db')
 
 // getRepoNamesFromUser( 'louiscklaw' )
 var last_builds_failed={}
-
+var number_of_repo=0
 
 function hello(repo_list){
   // console.log(repo_list)
@@ -30,18 +30,25 @@ function hello(repo_list){
 
 Promise.all( [
   // getRepoNamesFromUser( 'louiscklaw', true )
-  getRepoNamesFromUser( 'louiscklaw', true )
+  getRepoNamesFromUser( 'louiscklaw' )
 ] )
-  .then( values => {
-    var repo_list = values[0].map(x => x.slug)
+  .then( async values => {
+    var repo_list = values[0]
+    var repo_slug = repo_list.map(x => x.slug)
 
-    return hello( repo_list )
+
+    var test = await hello( repo_slug )
     .then( repos_results => {
       return repos_results.filter(repo_result => repo_result.length > 0)
     } )
+
+    number_of_repo = repo_list.length
+
+    return [test,number_of_repo]
   })
-  .then( failed_list => {
-    // console.log(haha)
+  .then( values => {
+    var failed_list = values[0]
+
     failed_list.forEach(failed_by_repo_name => {
       var repo_name = getRepoNameFromBuildsLink(failed_by_repo_name[0])
       var failed_list = failed_by_repo_name
@@ -52,6 +59,5 @@ Promise.all( [
   .then(() => {
     // NOTE: need to update db by hubdb one by one (hubdb)
     console.log('updating statistics ... ')
-    console.log(runStatistics(last_builds_failed))
-    // addRecord(runStatistics(last_builds_failed))
+    addRecord(runStatistics(last_builds_failed, number_of_repo))
   })
