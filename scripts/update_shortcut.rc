@@ -3,7 +3,7 @@
 # set -x
 
 helloearth(){
-  echo /home/logic/_workspace/preactjs-playlist/scripts/update_shortcut.rc
+  echo /home/logic/_workspace/travis-playlist/scripts/update_shortcut.rc
 }
 
 update_shortcut(){
@@ -21,6 +21,8 @@ from pprint import pprint
 new_command_template='''
 new_from_##PROJ_NAME##(){
   new_from ##PROJ_DIR_NAME##
+  pipenv run python3 main.py
+  ./run.sh
 }
 '''
 

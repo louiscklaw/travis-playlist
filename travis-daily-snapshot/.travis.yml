@@ -6,3 +6,10 @@ jobs:
         - cd travis-daily-snapshot
         -   node ./update-statistics.js
         - cd ..
+
+    - stage: Test_cron
+      name: daily snapshot (travis-daily-snapshot/.travis.yml)
+      script:
+        - cd travis-daily-snapshot
+        -   node ./update-statistics.js
+        - cd ..
