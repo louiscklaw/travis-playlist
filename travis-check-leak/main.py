@@ -144,10 +144,11 @@ def main():
   pool.close()
   pool.join()
 
-  pprint(results)
 
 
   results = [r.get() for r in results]
+  pprint(SCAN_DIR)
+  pprint(results)
   (tf_result, word_found) = zip(*results)
 
   if any(tf_result):
