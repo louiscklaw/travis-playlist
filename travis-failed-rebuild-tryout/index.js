@@ -17,11 +17,12 @@ function getFailedBuild(repo_list){
 }
 
 function triggerBuildRequest(repo, branch){
+  console.log('triggerBuildRequest', repo, branch)
   return triggerBuildOnTravis(repo,branch)
 }
 
 function triggerBuildRequests(repos_and_branches){
-  console.log(repos_and_branches)
+  // console.log(repos_and_branches)
   return Promise.all(
     repos_and_branches.map( (xx) => {
 
