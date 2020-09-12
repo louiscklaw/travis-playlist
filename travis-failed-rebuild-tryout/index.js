@@ -25,19 +25,20 @@ function triggerBuildRequests(repos_and_branches){
   // console.log(repos_and_branches)
   return Promise.all(
     repos_and_branches.map( (xx) => {
+      xx.map(xxx => {
+        console.log(xxx.repo_name)
+        console.log(xxx.branch_name)
 
-      // console.log(xx.repo_name)
-      // console.log(xx.branch_anme)
-      var test = triggerBuildRequest(`louiscklaw/${xx.repo_name}`, xx.branch_name)
-      return test
+        var test = triggerBuildRequest(`louiscklaw/${xxx.repo_name}`, xxx.branch_name)
+        return test
 
+      })
     })
   )
   .then( responses_of_all_requests => {
-
+    // dummy step to let process done before exit loop
   })
 }
-
 
 Promise.all( [
   getRepoNamesFromUser( 'louiscklaw' )
