@@ -23,29 +23,42 @@ function hello(repo_list){
 
 // getRepoNamesFromUser( 'louiscklaw' )
 var last_builds_failed={}
+var number_of_repo=0
 
 Promise.all( [
     getRepoNamesFromUser( 'louiscklaw' )
   ] )
-  .then( values => {
-    var repo_list = values[0].map(x => x.slug)
+  .then( async values => {
+    var repo_list = values[0]
+    var repo_slug = repo_list.map(x => x.slug)
 
-    return hello( repo_list )
-      .then( repos_results => {
-        return repos_results.filter(repo_result => repo_result.length > 0)
-      } )
+    var test = await hello( repo_slug )
+    .then( repos_results => {
+      return repos_results.filter(repo_result => repo_result.length > 0)
+    } )
+
+    number_of_repo = repo_list.length
+
+    return [test,number_of_repo]
+
   } )
-  .then( failed_list => {
-    // console.log(haha)
+  // .then(values=>{
+  //   var failed_list = values[0]
+  //   var count_of_repos = values[1]
+  //   console.log(count_of_repos)
+  // })
+
+  .then( values => {
+    var failed_list = values[0]
+
     failed_list.forEach(failed_by_repo_name => {
       var repo_name = getRepoNameFromBuildsLink(failed_by_repo_name[0])
       var failed_list = failed_by_repo_name
       last_builds_failed[repo_name]=failed_list
     })
+
   } )
   .then( () => {
-    runStatistics(last_builds_failed)
-
-
-    fs.writeFileSync('./answer.json',JSON.stringify(last_builds_failed),{encoding:'utf-8'})
+    runStatistics(last_builds_failed, number_of_repo)
+    // fs.writeFileSync('./answer.json',JSON.stringify(last_builds_failed),{encoding:'utf-8'})
   })

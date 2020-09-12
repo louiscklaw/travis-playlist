@@ -13,7 +13,6 @@ function countSubTotal(json_in){
     flatten_all_branches=[...flatten_all_branches, ...x]
   })
 
-
   let record_time = new Date().toISOString()
 
   return {
@@ -43,8 +42,11 @@ function readTestFile(){
   return fs.readFileSync('./answer.json',{encoding: 'utf-8'})
 }
 
-function runStatistics(json_in){
-  appendToMasterRecord(countSubTotal(json_in))
+function runStatistics(json_in, total_repo){
+  return {
+    ...countSubTotal(json_in),
+    total_repo
+  }
 }
 
 function test(){

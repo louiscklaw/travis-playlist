@@ -19,7 +19,7 @@ async function fetchRepos( url ) {
       .then( r => r.json() )
 }
 
-async function getRepoNamesFromUser( username_in ) {
+async function getRepoNamesFromUser( username_in , fetch_first_page_only=false ) {
   var all_repos = []
 
   var fetch_url = `https://api.travis-ci.com/owner/${username_in}/repos`
@@ -38,7 +38,9 @@ async function getRepoNamesFromUser( username_in ) {
       ...all_repos,
       ...fetch_result.repositories
     ]
-
+    if (fetch_first_page_only){
+      keep_going=false
+    }
   }
 
   return all_repos

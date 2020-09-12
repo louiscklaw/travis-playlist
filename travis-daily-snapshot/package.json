@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "hubdb": "^1.1.2",
     "node-fetch": "^2.6.0"
   }
 }
