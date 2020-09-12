@@ -47,6 +47,7 @@ def checkLeak(should_not_appear, filepath_to_check):
   # true = leakage found, false = leakage not found
 
   command_string = 'grep -ri --exclude-dir=node_modules "{}" {}'.format(should_not_appear, filepath_to_check)
+  print(command_string)
   command = shlex.split(command_string)
   # print(' '.join(command))
 
