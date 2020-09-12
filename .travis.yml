@@ -21,7 +21,7 @@ script:
 import:
   - credentials.yml
   - .travis-stages.yml
-  # - .travis-merger.yml
+  - .travis-merger.yml
 
 
   - helloworld/.travis.yml
