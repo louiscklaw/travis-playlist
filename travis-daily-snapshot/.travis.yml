@@ -4,6 +4,7 @@ jobs:
       name: daily snapshot (travis-daily-snapshot/.travis.yml)
       script:
         - cd travis-daily-snapshot
+        -   yarn
         -   node ./update-statistics.js
         - cd ..
 
@@ -11,5 +12,6 @@ jobs:
       name: daily snapshot (travis-daily-snapshot/.travis.yml)
       script:
         - cd travis-daily-snapshot
+        -   yarn
         -   node ./update-statistics.js
         - cd ..
