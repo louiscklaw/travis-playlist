@@ -135,8 +135,6 @@ def main():
 
   should_not_appear_after_skip_list = filter(lambda x: x not in SKIP_LIST, should_not_appear)
 
-
-
   pool = ThreadPool(5)
 
   results = []
@@ -147,18 +145,13 @@ def main():
   pool.close()
   pool.join()
 
-  print('should_not_appear_after_skip_list')
-  print(list(should_not_appear_after_skip_list))
-
   results = [r.get() for r in results]
-  pprint(SCAN_DIR)
-  pprint(results)
   (tf_result, word_found) = zip(*results)
 
   if any(tf_result):
     pprint(list(filter(lambda x: x[0]==True, results)))
     raise "leak found"
-    sys.exit(999)
+    sys.exit(-1)
 
   else:
     print('scan done, thanks')
