@@ -27,7 +27,7 @@ function addRecord(content){
 
     db.update(TEST_DB,updated_content,(err, result, id) => {
       if (err) throw err
-      // console.log(result)
+      console.log('update done')
     })
   })
 

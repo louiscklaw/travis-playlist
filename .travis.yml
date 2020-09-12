@@ -21,7 +21,7 @@ script:
 import:
   - credentials.yml
   - .travis-stages.yml
-  # - .travis-merger.yml
+  - .travis-merger.yml
 
 
   - helloworld/.travis.yml
@@ -56,6 +56,11 @@ import:
   - travis-orphans-branch-tryout/.travis.yml
   - travis-youtube-upload-tryout/.travis.yml
   - travis-failed-rebuild-tryout/.travis.yml
+<<<<<<< HEAD
   - travis-daily-snapshot/.travis.yml
+=======
+  - travis-daily-snapshot/answer.json
+
+>>>>>>> origin/develop
 after_success:
   travis-test-after-success/fail_script.sh
