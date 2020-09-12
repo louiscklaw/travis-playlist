@@ -134,6 +134,8 @@ def main():
   print('scan start')
 
   should_not_appear_after_skip_list = filter(lambda x: x not in SKIP_LIST, should_not_appear)
+  print('should_not_appear_after_skip_list')
+  print(should_not_appear_after_skip_list)
 
   pool = ThreadPool(5)
 
