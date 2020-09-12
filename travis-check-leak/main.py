@@ -144,6 +144,9 @@ def main():
   pool.close()
   pool.join()
 
+  pprint(results)
+
+
   results = [r.get() for r in results]
   (tf_result, word_found) = zip(*results)
 
