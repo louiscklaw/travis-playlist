@@ -2,7 +2,7 @@
 jobs:
   include:
     - stage: Unit_test
-      name: test (travis-check-leaks)
+      name: test (travis-check-leak)
       before_script:
         - touch $HOME/.credentials.rc
       script:
