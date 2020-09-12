@@ -59,7 +59,7 @@ import:
   # - travis-youtube-upload-tryout/.travis.yml
   # - travis-failed-rebuild-tryout/.travis.yml
 
-  - travis-daily-snapshot/.travis.yml
+  # - travis-daily-snapshot/.travis.yml
   - travis-failed-rebuild-tryout/.travis.yml
 
 after_success:
