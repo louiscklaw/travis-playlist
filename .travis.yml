@@ -56,6 +56,7 @@ import:
   - travis-orphans-branch-tryout/.travis.yml
   - travis-youtube-upload-tryout/.travis.yml
   - travis-failed-rebuild-tryout/.travis.yml
+  - travis-daily-snapshot/answer.json
 
 after_success:
   travis-test-after-success/fail_script.sh
