@@ -44,7 +44,7 @@ import:
   # - travis-pydrive-tryout/.travis.yml
   # - travis-wget/.travis.yml
   # - travis-test-markdown/.travis.yml
-  - travis-build-merger/.travis.yml
+  # - travis-build-merger/.travis.yml
   - Integration_to_other_repo/.travis.yml
   - build-dashboard/.travis.yml
   # - bash_travis_yml_template/.travis.yml
