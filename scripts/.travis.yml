@@ -21,10 +21,10 @@ jobs:
         -   rsync -avzh ../travis-check-leak/ .
         -   pipenv --rm || true
         -   pipenv sync
-        -   pipenv run python3 main.py $TRAVIS_BUILD_DIR
+        -   pipenv run python3 main.py $TEST_SCAN_DIR
         - cd ..
 
-        - scripts/test_check_leak.sh $TRAVIS_BUILD_DIR
+        - scripts/test_check_leak.sh $TEST_SCAN_DIR
         # - mkdir -p .travis
         # - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-check-leak/check-leak.py .travis/check-leak.py
         # - python3 .travis/check-leak.py
