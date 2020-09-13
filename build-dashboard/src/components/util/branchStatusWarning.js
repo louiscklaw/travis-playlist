@@ -1,5 +1,5 @@
 let background_warning = {
-  backgroundColor: 'rgba(243, 156, 18,1.0)'
+  backgroundColor: 'rgba(243, 156, 18,0.6)'
 }
 
 let font_color_warning = {}

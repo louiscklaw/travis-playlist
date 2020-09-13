@@ -1,6 +1,6 @@
 
 let background_danger = {
-  backgroundColor: 'rgba(231, 76, 60,1.0)'
+  backgroundColor: 'rgba(231, 76, 60,0.6)'
 }
 
 let font_color_danger = {

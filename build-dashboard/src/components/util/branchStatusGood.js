@@ -1,6 +1,6 @@
 
 let background_good = {
-  backgroundColor: 'rgba(39, 174, 96,1.0)'
+  backgroundColor: 'rgba(39, 174, 96,0.6)'
 }
 
 let font_color_good = {
