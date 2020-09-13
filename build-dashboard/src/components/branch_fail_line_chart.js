@@ -38,7 +38,7 @@ const root_config = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [ 1, 2, 3, 4, 5, 6, 7 ],
+      data: Array(99).fill(0),
       pointRadius: 10,
       pointHoverRadius: 15
     },
@@ -61,7 +61,7 @@ const root_config = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [1, 2, 3, 4, 5, 6, 7],
+      data: Array(99).fill(0),
       pointRadius: 10,
       pointHoverRadius: 15
     },
@@ -84,7 +84,7 @@ const root_config = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [1, 2, 3, 4, 5, 6, 7],
+      data: Array(99).fill(0),
       pointRadius: 10,
       pointHoverRadius: 15
     }
