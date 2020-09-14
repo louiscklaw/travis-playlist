@@ -45,7 +45,7 @@ stages:
     if: branch =~ /.*build-dashboard.*/
 
   # update-stages.py start
-
+  
   # stages for failed-build-report-tryout, test_failed-build-report-tryout
   - name: test_failed-build-report-tryout
     if: branch =~ /.*failed-build-report-tryout.*/
