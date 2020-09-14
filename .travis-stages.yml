@@ -3,6 +3,9 @@
 stages:
   - name: Build_docker
 
+  - name: test_travis-failed-rebuild
+    if: branch =~ /.*travis-failed-rebuild.*/
+
   - name: test_helloworld_tryout
     if: branch =~ /.*helloworld-tryout.*/
 
@@ -39,6 +42,3 @@ stages:
 
   - name: Test_publish_dashboard
     if: branch =~ /.*build-dashboard.*/
-
-  - name: test_travis-failed-rebuild
-    if: branch =~ /.*travis-failed-rebuild.*/
