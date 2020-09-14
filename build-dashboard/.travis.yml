@@ -41,3 +41,19 @@ jobs:
         -   yarn build --prefix-paths
         -   rsync -azh public/ ../gh-pages
         - cd ..
+
+      # if: branch = master
+    - stage: Unit_test
+      name: test building travis dashboard(no deploy here)
+
+      script:
+        # get data from db branch
+
+        - cd build-dashboard
+        -   rm -rf ../gh-pages/*
+        -   mkdir -p ../gh-pages
+        -   yarn
+        -   yarn clean
+        -   yarn build --prefix-paths
+        -   rsync -azh public/ ../gh-pages
+        - cd ..
