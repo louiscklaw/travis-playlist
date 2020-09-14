@@ -9,6 +9,11 @@ const {getRepoNameFromBuildsLink}= require('./common')
 const { getRepoNamesFromUser } = require( './getRepoByUsername' )
 const { triggerBuildOnTravis} = require('./src/lib/triggerBuildOnTravis')
 
+const LOCAL_TEST = process.env['CI'] ? false : true
+
+// if local_test fetch first page only, fetch all on formal ci build (e.g. build on travis)
+const FETCH_FIRST_PAGE_ONLY = LOCAL_TEST
+
 function getFailedBuild(repo_list){
   // console.log(repo_list)
   return Promise.all(
@@ -24,22 +29,19 @@ function triggerBuildRequests(repos_and_branches){
   console.log(repos_and_branches)
   return Promise.all(
     repos_and_branches.map( (xx) => {
-
-      // console.log(xx.repo_name)
-      // console.log(xx.branch_anme)
       var test = triggerBuildRequest(`louiscklaw/${xx.repo_name}`, xx.branch_name)
       return test
 
     })
   )
   .then( responses_of_all_requests => {
-
+    return responses_of_all_requests
   })
 }
 
 
 Promise.all( [
-  getRepoNamesFromUser( 'louiscklaw', true )
+  getRepoNamesFromUser( 'louiscklaw', FETCH_FIRST_PAGE_ONLY )
 ] )
 .then( values => {
   var repo_list = values[0].map(x => x.slug)
@@ -50,7 +52,23 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  return triggerBuildRequests([...branch_names_repo_names][0])
+  console.log([...branch_names_repo_names])
+  process.exit()
+
+  if (LOCAL_TEST){
+    return triggerBuildRequests([
+      [
+        { branch_name: 'master',
+        repo_name: 'travis-playlist' }
+      ],
+      [
+        { branch_name: 'develop',
+        repo_name: 'travis-playlist' }
+      ]
+    ])
+  }else{
+    return triggerBuildRequests([...branch_names_repo_names])
+  }
 })
 
 
