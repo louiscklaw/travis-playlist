@@ -1,7 +1,7 @@
 const fetch = require( 'node-fetch' )
 
 function fetchTravisRequestBuild( url_in , req_body ) {
-  console.log(url_in)
+  console.log(`trigger rebuild with url: ${url_in}`)
   return fetch( url_in, {
       headers: {
         'Travis-API-Version': 3,
