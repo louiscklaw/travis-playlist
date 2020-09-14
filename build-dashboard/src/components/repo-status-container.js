@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-import TestRepoStatus from './test-repo-status'
+// import TestRepoStatus from './test-repo-status'
 import RepoStatus from './repo-status'
 import RepoListLoading from './repo-list-loading'
 
@@ -10,7 +10,7 @@ import './repo-status-container.css'
 import {MAX_GITHUB_PAGE_TO_FETCH} from '../../config'
 import sample from './sample.json'
 
-function ReposStatus(props){
+function AllReposStatus(props){
   return(
     <div className="repos-status">
       {
@@ -103,7 +103,7 @@ class RepoStatusContainer extends React.Component{
       <div style={{margin: 'auto'}}>
         <div className="repo-status-container">
           {
-            this.state.is_loading ? <RepoListLoading repos_loaded={100}/>: <ReposStatus repos={this.state.github_repos} />
+            this.state.is_loading ? <RepoListLoading repos_loaded={100}/>: <AllReposStatus repos={this.state.github_repos} />
           }
         </div>
       </div>
