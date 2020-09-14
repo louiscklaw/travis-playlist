@@ -5,3 +5,8 @@ jobs:
       name: Sanity test (helloworld/.travis.yml)
       script:
         - echo "helloworld"
+
+    - stage: test_helloworld_tryout
+      name: Sanity test (helloworld/.travis.yml)
+      script:
+        - echo "helloworld"

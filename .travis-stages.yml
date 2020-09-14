@@ -3,10 +3,20 @@
 stages:
   - name: Build_docker
 
+  - name: test_helloworld_tryout
+    if: branch =~ /.*helloworld-tryout.*/
+
   - name: Unit_test
+    if: branch =~ /.*feature.*/
+
   - name: Test
+    if: branch =~ /.*develop.*/
+
   - name: Build
+    if: branch =~ /.*develop.*/
+
   - name: Deploy
+    if: branch =~ /.*master.*/
 
   - name: Integration_to_other_repo
     if: branch = develop

@@ -24,7 +24,7 @@ import:
   - .travis-merger.yml
 
 
-  - helloworld/.travis.yml
+  - helloworld-tryout/.travis.yml
   # meta build list
   - scripts/.travis.yml
   - travis-branch-cleanup-cron/.travis.yml
