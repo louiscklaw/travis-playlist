@@ -8,6 +8,7 @@ stages:
 
   - name: Unit_test
     if: branch =~ /.*feature.*/
+    if: branch =~ /.*develop.*/
 
   - name: Test
     if: branch =~ /.*develop.*/
