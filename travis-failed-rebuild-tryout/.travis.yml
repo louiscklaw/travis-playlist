@@ -15,3 +15,10 @@ jobs:
         - cd travis-failed-rebuild-tryout
         - yarn
         - node './index.js'
+
+    - stage: test_travis-failed-rebuild
+      name: test_travis-failed-rebuild
+      script:
+        - cd travis-failed-rebuild-tryout
+        - yarn
+        - node './index.js'

@@ -28,4 +28,6 @@ stages:
 
   - name: Cron
     if: type = cron
+
+  - name: test_travis-failed-rebuild
     if: branch =~ /.*travis-failed-rebuild.*/
