@@ -20,7 +20,7 @@ stages:
   # cron job on master branch publish dashboard
   - name: Publish_dashboard
     if: branch = master
-    if: branch =~ /^.*logic/
+    if: branch =~ /.*dashboard.*/
 
 
 
