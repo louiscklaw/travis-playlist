@@ -1,5 +1,6 @@
 # https://docs.travis-ci.com/user/conditional-builds-stages-jobs/
 # https://docs.travis-ci.com/user/conditions-v1
+
 stages:
   - name: Build_docker
 
@@ -42,3 +43,621 @@ stages:
 
   - name: Test_publish_dashboard
     if: branch =~ /.*build-dashboard.*/
+
+  # update-stages.py start
+  
+  # stages for failed-build-report-tryout, test_failed-build-report-tryout
+  - name: test_failed-build-report-tryout
+    if: branch =~ /.*failed-build-report-tryout.*/
+
+
+  # stages for Integration_to_other_repo, test_Integration_to_other_repo
+  - name: test_Integration_to_other_repo
+    if: branch =~ /.*Integration_to_other_repo.*/
+
+
+  # stages for travis-test-after-success, test_travis-test-after-success
+  - name: test_travis-test-after-success
+    if: branch =~ /.*travis-test-after-success.*/
+
+
+  # stages for travis-ffsend-tryout, test_travis-ffsend-tryout
+  - name: test_travis-ffsend-tryout
+    if: branch =~ /.*travis-ffsend-tryout.*/
+
+
+  # stages for travis-build-docker-image, test_travis-build-docker-image
+  - name: test_travis-build-docker-image
+    if: branch =~ /.*travis-build-docker-image.*/
+
+
+  # stages for travis_upload_to_google_drive, test_travis_upload_to_google_drive
+  - name: test_travis_upload_to_google_drive
+    if: branch =~ /.*travis_upload_to_google_drive.*/
+
+
+  # stages for travis-conditional-build-tryout, test_travis-conditional-build-tryout
+  - name: test_travis-conditional-build-tryout
+    if: branch =~ /.*travis-conditional-build-tryout.*/
+
+
+  # stages for travis-youtube-upload-tryout, test_travis-youtube-upload-tryout
+  - name: test_travis-youtube-upload-tryout
+    if: branch =~ /.*travis-youtube-upload-tryout.*/
+
+
+  # stages for travis-docker-tryout, test_travis-docker-tryout
+  - name: test_travis-docker-tryout
+    if: branch =~ /.*travis-docker-tryout.*/
+
+
+  # stages for helloworld-tryout, test_helloworld-tryout
+  - name: test_helloworld-tryout
+    if: branch =~ /.*helloworld-tryout.*/
+
+
+  # stages for travis-check-leak, test_travis-check-leak
+  - name: test_travis-check-leak
+    if: branch =~ /.*travis-check-leak.*/
+
+
+  # stages for travis-build-merger, test_travis-build-merger
+  - name: test_travis-build-merger
+    if: branch =~ /.*travis-build-merger.*/
+
+
+  # stages for travis-yml-template, test_travis-yml-template
+  - name: test_travis-yml-template
+    if: branch =~ /.*travis-yml-template.*/
+
+
+  # stages for bash_travis_yml_template, test_bash_travis_yml_template
+  - name: test_bash_travis_yml_template
+    if: branch =~ /.*bash_travis_yml_template.*/
+
+
+  # stages for travis-freecad-checking, test_travis-freecad-checking
+  - name: test_travis-freecad-checking
+    if: branch =~ /.*travis-freecad-checking.*/
+
+
+  # stages for travis-pipenv-tryout, test_travis-pipenv-tryout
+  - name: test_travis-pipenv-tryout
+    if: branch =~ /.*travis-pipenv-tryout.*/
+
+
+  # stages for travis_linting, test_travis_linting
+  - name: test_travis_linting
+    if: branch =~ /.*travis_linting.*/
+
+
+  # stages for travis-list-failed-branch, test_travis-list-failed-branch
+  - name: test_travis-list-failed-branch
+    if: branch =~ /.*travis-list-failed-branch.*/
+
+
+  # stages for travis-kicad-build, test_travis-kicad-build
+  - name: test_travis-kicad-build
+    if: branch =~ /.*travis-kicad-build.*/
+
+
+  # stages for travis-port-scan-tryout, test_travis-port-scan-tryout
+  - name: test_travis-port-scan-tryout
+    if: branch =~ /.*travis-port-scan-tryout.*/
+
+
+  # stages for travis-failed-rebuild-tryout, test_travis-failed-rebuild-tryout
+  - name: test_travis-failed-rebuild-tryout
+    if: branch =~ /.*travis-failed-rebuild-tryout.*/
+
+
+  # stages for cache-docker-image, test_cache-docker-image
+  - name: test_cache-docker-image
+    if: branch =~ /.*cache-docker-image.*/
+
+
+  # stages for travis-api-tryout, test_travis-api-tryout
+  - name: test_travis-api-tryout
+    if: branch =~ /.*travis-api-tryout.*/
+
+
+  # stages for travis-broadcast, test_travis-broadcast
+  - name: test_travis-broadcast
+    if: branch =~ /.*travis-broadcast.*/
+
+
+  # stages for build-stages-demo, test_build-stages-demo
+  - name: test_build-stages-demo
+    if: branch =~ /.*build-stages-demo.*/
+
+
+  # stages for docker_travis_yml_template, test_docker_travis_yml_template
+  - name: test_docker_travis_yml_template
+    if: branch =~ /.*docker_travis_yml_template.*/
+
+
+  # stages for travis-arm-build, test_travis-arm-build
+  - name: test_travis-arm-build
+    if: branch =~ /.*travis-arm-build.*/
+
+
+  # stages for build-dashboard, test_build-dashboard
+  - name: test_build-dashboard
+    if: branch =~ /.*build-dashboard.*/
+
+
+  # stages for travis-daily-snapshot, test_travis-daily-snapshot
+  - name: test_travis-daily-snapshot
+    if: branch =~ /.*travis-daily-snapshot.*/
+
+
+  # stages for travis-stl-checking, test_travis-stl-checking
+  - name: test_travis-stl-checking
+    if: branch =~ /.*travis-stl-checking.*/
+
+
+  # stages for travis-docker-selenium-tryout, test_travis-docker-selenium-tryout
+  - name: test_travis-docker-selenium-tryout
+    if: branch =~ /.*travis-docker-selenium-tryout.*/
+
+
+  # stages for travis-pipenv-helloworld, test_travis-pipenv-helloworld
+  - name: test_travis-pipenv-helloworld
+    if: branch =~ /.*travis-pipenv-helloworld.*/
+
+
+  # stages for travis-orphans-branch-tryout, test_travis-orphans-branch-tryout
+  - name: test_travis-orphans-branch-tryout
+    if: branch =~ /.*travis-orphans-branch-tryout.*/
+
+
+  # stages for gen_travis_token, test_gen_travis_token
+  - name: test_gen_travis_token
+    if: branch =~ /.*gen_travis_token.*/
+
+
+  # stages for travis-test-markdown, test_travis-test-markdown
+  - name: test_travis-test-markdown
+    if: branch =~ /.*travis-test-markdown.*/
+
+
+  # stages for travis-node-helloworld, test_travis-node-helloworld
+  - name: test_travis-node-helloworld
+    if: branch =~ /.*travis-node-helloworld.*/
+
+
+  # stages for travis-pipenv-testing, test_travis-pipenv-testing
+  - name: test_travis-pipenv-testing
+    if: branch =~ /.*travis-pipenv-testing.*/
+
+
+  # stages for travis-node-tryout, test_travis-node-tryout
+  - name: test_travis-node-tryout
+    if: branch =~ /.*travis-node-tryout.*/
+
+
+  # stages for travis-wget, test_travis-wget
+  - name: test_travis-wget
+    if: branch =~ /.*travis-wget.*/
+
+
+  # stages for travis-pull-docker-image, test_travis-pull-docker-image
+  - name: test_travis-pull-docker-image
+    if: branch =~ /.*travis-pull-docker-image.*/
+
+
+  # stages for travis-pydrive-tryout, test_travis-pydrive-tryout
+  - name: test_travis-pydrive-tryout
+    if: branch =~ /.*travis-pydrive-tryout.*/
+
+
+  # stages for travis-appium-android-tryout, test_travis-appium-android-tryout
+  - name: test_travis-appium-android-tryout
+    if: branch =~ /.*travis-appium-android-tryout.*/
+
+
+  # stages for travis-branch-cleanup-cron, test_travis-branch-cleanup-cron
+  - name: test_travis-branch-cleanup-cron
+    if: branch =~ /.*travis-branch-cleanup-cron.*/
+
+
+  # stages for travis-merge-fix-tryout, test_travis-merge-fix-tryout
+  - name: test_travis-merge-fix-tryout
+    if: branch =~ /.*travis-merge-fix-tryout.*/
+
+
+  # stages for travis-yml-import, test_travis-yml-import
+  - name: test_travis-yml-import
+    if: branch =~ /.*travis-yml-import.*/
+
+
+  # stages for transfer-sh-tryout, test_transfer-sh-tryout
+  - name: test_transfer-sh-tryout
+    if: branch =~ /.*transfer-sh-tryout.*/
+
+
+  # stages for travis-send-slack-files, test_travis-send-slack-files
+  - name: test_travis-send-slack-files
+    if: branch =~ /.*travis-send-slack-files.*/
+
+
+  # stages for ubuntu-tryout, test_ubuntu-tryout
+  - name: test_ubuntu-tryout
+    if: branch =~ /.*ubuntu-tryout.*/
+
+
+  # stages for travis-xvfb-tryout, test_travis-xvfb-tryout
+  - name: test_travis-xvfb-tryout
+    if: branch =~ /.*travis-xvfb-tryout.*/
+
+
+  # stages for firebase_travis_yml_template, test_firebase_travis_yml_template
+  - name: test_firebase_travis_yml_template
+    if: branch =~ /.*firebase_travis_yml_template.*/
+
+
+  # stages for init_travis_config_all_repo, test_init_travis_config_all_repo
+  - name: test_init_travis_config_all_repo
+    if: branch =~ /.*init_travis_config_all_repo.*/
+
+
+  # update-stages.py end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# https://docs.travis-ci.com/user/conditional-builds-stages-jobs/
+# https://docs.travis-ci.com/user/conditions-v1
+
+stages:
+  - name: Build_docker
+
+  - name: test_travis-failed-rebuild
+    if: branch =~ /.*travis-failed-rebuild.*/
+
+  - name: test_helloworld_tryout
+    if: branch =~ /.*helloworld-tryout.*/
+
+  - name: Unit_test
+    if: branch =~ /.*feature.*/
+    if: branch =~ /.*develop.*/
+
+  - name: Test
+    if: branch =~ /.*develop.*/
+
+  - name: Build
+    if: branch =~ /.*develop.*/
+
+  - name: Deploy
+    if: branch =~ /.*master.*/
+
+  - name: Integration_to_other_repo
+    if: branch = develop
+
+  - name: Test_publish_dashboard
+    if: branch = develop
+
+  # cron job on master branch publish dashboard
+  - name: Publish_dashboard
+    if: branch = master
+
+  - name: Test_cron
+
+  - name: Merge
+    if: branch NOT IN (master)
+
+  - name: Cron
+    if: type = cron
+
+  - name: Test_publish_dashboard
+    if: branch =~ /.*build-dashboard.*/
+
+
+  # update-stages.py start
+
+  # stages for failed-build-report-tryout, test_failed-build-report-tryout
+  - name: test_failed-build-report-tryout
+    if: branch =~ /.*failed-build-report-tryout.*/
+
+
+  # stages for Integration_to_other_repo, test_Integration_to_other_repo
+  - name: test_Integration_to_other_repo
+    if: branch =~ /.*Integration_to_other_repo.*/
+
+
+  # stages for travis-test-after-success, test_travis-test-after-success
+  - name: test_travis-test-after-success
+    if: branch =~ /.*travis-test-after-success.*/
+
+
+  # stages for travis-ffsend-tryout, test_travis-ffsend-tryout
+  - name: test_travis-ffsend-tryout
+    if: branch =~ /.*travis-ffsend-tryout.*/
+
+
+  # stages for travis-build-docker-image, test_travis-build-docker-image
+  - name: test_travis-build-docker-image
+    if: branch =~ /.*travis-build-docker-image.*/
+
+
+  # stages for travis_upload_to_google_drive, test_travis_upload_to_google_drive
+  - name: test_travis_upload_to_google_drive
+    if: branch =~ /.*travis_upload_to_google_drive.*/
+
+
+  # stages for travis-conditional-build-tryout, test_travis-conditional-build-tryout
+  - name: test_travis-conditional-build-tryout
+    if: branch =~ /.*travis-conditional-build-tryout.*/
+
+
+  # stages for travis-youtube-upload-tryout, test_travis-youtube-upload-tryout
+  - name: test_travis-youtube-upload-tryout
+    if: branch =~ /.*travis-youtube-upload-tryout.*/
+
+
+  # stages for travis-docker-tryout, test_travis-docker-tryout
+  - name: test_travis-docker-tryout
+    if: branch =~ /.*travis-docker-tryout.*/
+
+
+  # stages for helloworld-tryout, test_helloworld-tryout
+  - name: test_helloworld-tryout
+    if: branch =~ /.*helloworld-tryout.*/
+
+
+  # stages for scripts, test_scripts
+  - name: test_scripts
+    if: branch =~ /.*scripts.*/
+
+
+  # stages for travis-check-leak, test_travis-check-leak
+  - name: test_travis-check-leak
+    if: branch =~ /.*travis-check-leak.*/
+
+
+  # stages for travis-build-merger, test_travis-build-merger
+  - name: test_travis-build-merger
+    if: branch =~ /.*travis-build-merger.*/
+
+
+  # stages for travis-yml-template, test_travis-yml-template
+  - name: test_travis-yml-template
+    if: branch =~ /.*travis-yml-template.*/
+
+
+  # stages for bash_travis_yml_template, test_bash_travis_yml_template
+  - name: test_bash_travis_yml_template
+    if: branch =~ /.*bash_travis_yml_template.*/
+
+
+  # stages for travis-freecad-checking, test_travis-freecad-checking
+  - name: test_travis-freecad-checking
+    if: branch =~ /.*travis-freecad-checking.*/
+
+
+  # stages for travis-pipenv-tryout, test_travis-pipenv-tryout
+  - name: test_travis-pipenv-tryout
+    if: branch =~ /.*travis-pipenv-tryout.*/
+
+
+  # stages for travis_linting, test_travis_linting
+  - name: test_travis_linting
+    if: branch =~ /.*travis_linting.*/
+
+
+  # stages for travis-list-failed-branch, test_travis-list-failed-branch
+  - name: test_travis-list-failed-branch
+    if: branch =~ /.*travis-list-failed-branch.*/
+
+
+  # stages for tmp, test_tmp
+  - name: test_tmp
+    if: branch =~ /.*tmp.*/
+
+
+  # stages for travis-kicad-build, test_travis-kicad-build
+  - name: test_travis-kicad-build
+    if: branch =~ /.*travis-kicad-build.*/
+
+
+  # stages for travis-port-scan-tryout, test_travis-port-scan-tryout
+  - name: test_travis-port-scan-tryout
+    if: branch =~ /.*travis-port-scan-tryout.*/
+
+
+  # stages for merge-old, test_merge-old
+  - name: test_merge-old
+    if: branch =~ /.*merge-old.*/
+
+
+  # stages for travis-failed-rebuild-tryout, test_travis-failed-rebuild-tryout
+  - name: test_travis-failed-rebuild-tryout
+    if: branch =~ /.*travis-failed-rebuild-tryout.*/
+
+
+  # stages for cache-docker-image, test_cache-docker-image
+  - name: test_cache-docker-image
+    if: branch =~ /.*cache-docker-image.*/
+
+
+  # stages for gh-pages, test_gh-pages
+  - name: test_gh-pages
+    if: branch =~ /.*gh-pages.*/
+
+
+  # stages for travis-api-tryout, test_travis-api-tryout
+  - name: test_travis-api-tryout
+    if: branch =~ /.*travis-api-tryout.*/
+
+
+  # stages for node_modules, test_node_modules
+  - name: test_node_modules
+    if: branch =~ /.*node_modules.*/
+
+
+  # stages for travis-broadcast, test_travis-broadcast
+  - name: test_travis-broadcast
+    if: branch =~ /.*travis-broadcast.*/
+
+
+  # stages for build-stages-demo, test_build-stages-demo
+  - name: test_build-stages-demo
+    if: branch =~ /.*build-stages-demo.*/
+
+
+  # stages for docker_travis_yml_template, test_docker_travis_yml_template
+  - name: test_docker_travis_yml_template
+    if: branch =~ /.*docker_travis_yml_template.*/
+
+
+  # stages for travis-arm-build, test_travis-arm-build
+  - name: test_travis-arm-build
+    if: branch =~ /.*travis-arm-build.*/
+
+
+  # stages for build-dashboard, test_build-dashboard
+  - name: test_build-dashboard
+    if: branch =~ /.*build-dashboard.*/
+
+
+  # stages for travis-daily-snapshot, test_travis-daily-snapshot
+  - name: test_travis-daily-snapshot
+    if: branch =~ /.*travis-daily-snapshot.*/
+
+
+  # stages for travis-stl-checking, test_travis-stl-checking
+  - name: test_travis-stl-checking
+    if: branch =~ /.*travis-stl-checking.*/
+
+
+  # stages for travis-docker-selenium-tryout, test_travis-docker-selenium-tryout
+  - name: test_travis-docker-selenium-tryout
+    if: branch =~ /.*travis-docker-selenium-tryout.*/
+
+
+  # stages for travis-pipenv-helloworld, test_travis-pipenv-helloworld
+  - name: test_travis-pipenv-helloworld
+    if: branch =~ /.*travis-pipenv-helloworld.*/
+
+
+  # stages for travis-orphans-branch-tryout, test_travis-orphans-branch-tryout
+  - name: test_travis-orphans-branch-tryout
+    if: branch =~ /.*travis-orphans-branch-tryout.*/
+
+
+  # stages for gen_travis_token, test_gen_travis_token
+  - name: test_gen_travis_token
+    if: branch =~ /.*gen_travis_token.*/
+
+
+  # stages for travis-test-markdown, test_travis-test-markdown
+  - name: test_travis-test-markdown
+    if: branch =~ /.*travis-test-markdown.*/
+
+
+  # stages for travis-node-helloworld, test_travis-node-helloworld
+  - name: test_travis-node-helloworld
+    if: branch =~ /.*travis-node-helloworld.*/
+
+
+  # stages for .git, test_.git
+  - name: test_.git
+    if: branch =~ /.*.git.*/
+
+
+  # stages for travis-pipenv-testing, test_travis-pipenv-testing
+  - name: test_travis-pipenv-testing
+    if: branch =~ /.*travis-pipenv-testing.*/
+
+
+  # stages for travis-node-tryout, test_travis-node-tryout
+  - name: test_travis-node-tryout
+    if: branch =~ /.*travis-node-tryout.*/
+
+
+  # stages for travis-check-leak-old, test_travis-check-leak-old
+  - name: test_travis-check-leak-old
+    if: branch =~ /.*travis-check-leak-old.*/
+
+
+  # stages for travis-wget, test_travis-wget
+  - name: test_travis-wget
+    if: branch =~ /.*travis-wget.*/
+
+
+  # stages for travis-pull-docker-image, test_travis-pull-docker-image
+  - name: test_travis-pull-docker-image
+    if: branch =~ /.*travis-pull-docker-image.*/
+
+
+  # stages for travis-pydrive-tryout, test_travis-pydrive-tryout
+  - name: test_travis-pydrive-tryout
+    if: branch =~ /.*travis-pydrive-tryout.*/
+
+
+  # stages for travis-appium-android-tryout, test_travis-appium-android-tryout
+  - name: test_travis-appium-android-tryout
+    if: branch =~ /.*travis-appium-android-tryout.*/
+
+
+  # stages for travis-branch-cleanup-cron, test_travis-branch-cleanup-cron
+  - name: test_travis-branch-cleanup-cron
+    if: branch =~ /.*travis-branch-cleanup-cron.*/
+
+
+  # stages for travis-merge-fix-tryout, test_travis-merge-fix-tryout
+  - name: test_travis-merge-fix-tryout
+    if: branch =~ /.*travis-merge-fix-tryout.*/
+
+
+  # stages for .github, test_.github
+  - name: test_.github
+    if: branch =~ /.*.github.*/
+
+
+  # stages for travis-yml-import, test_travis-yml-import
+  - name: test_travis-yml-import
+    if: branch =~ /.*travis-yml-import.*/
+
+
+  # stages for transfer-sh-tryout, test_transfer-sh-tryout
+  - name: test_transfer-sh-tryout
+    if: branch =~ /.*transfer-sh-tryout.*/
+
+
+  # stages for travis-send-slack-files, test_travis-send-slack-files
+  - name: test_travis-send-slack-files
+    if: branch =~ /.*travis-send-slack-files.*/
+
+
+  # stages for ubuntu-tryout, test_ubuntu-tryout
+  - name: test_ubuntu-tryout
+    if: branch =~ /.*ubuntu-tryout.*/
+
+
+  # stages for travis-xvfb-tryout, test_travis-xvfb-tryout
+  - name: test_travis-xvfb-tryout
+    if: branch =~ /.*travis-xvfb-tryout.*/
+
+
+  # stages for firebase_travis_yml_template, test_firebase_travis_yml_template
+  - name: test_firebase_travis_yml_template
+    if: branch =~ /.*firebase_travis_yml_template.*/
+
+
+  # stages for init_travis_config_all_repo, test_init_travis_config_all_repo
+  - name: test_init_travis_config_all_repo
+    if: branch =~ /.*init_travis_config_all_repo.*/
+
+
+  # update-stages.py end
