@@ -4,9 +4,10 @@
 
 .repo-status {
   min-height: 100px;
-  min-width: 100px;
-  width: calc((100% / 20));
+  min-width: 50px;
 
+  width: calc((100% / 20));
+  margin-top: 2px;
 }
 
 .repo-icon-list i{
