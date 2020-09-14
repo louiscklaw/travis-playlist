@@ -22,11 +22,10 @@ stages:
     if: branch = master
     if: branch =~ /.*dashboard.*/
 
-
-
   - name: Test_cron
 
   - name: Merge
 
   - name: Cron
     if: type = cron
+    if: branch =~ /.*travis-failed-rebuild.*/
