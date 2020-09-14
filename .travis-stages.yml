@@ -25,13 +25,9 @@ stages:
   - name: Test_publish_dashboard
     if: branch = develop
 
-  - name: Publish
-    if: branch = master
-
   # cron job on master branch publish dashboard
   - name: Publish_dashboard
     if: branch = master
-
 
   - name: Test_cron
 
