@@ -27,7 +27,7 @@ jobs:
             # branch: master
 
       # if: branch = master
-    - stage: Test_publish_dashboard
+    - stage: test_build-dashboard
       name: test building travis dashboard(no deploy here)
 
       script:
