@@ -8,6 +8,7 @@ const { getFailedSlugByRepo } = require('./getFailedSlugByRepo')
 const {getRepoNameFromBuildsLink}= require('./common')
 const { getRepoNamesFromUser } = require( './getRepoByUsername' )
 const { triggerBuildOnTravis} = require('./src/lib/triggerBuildOnTravis')
+const { triggerBuildRequests } = require('./src/lib/triggerBuildRequests')
 
 const LOCAL_TEST = process.env['CI'] ? false : true
 
@@ -19,24 +20,6 @@ function getFailedBuild(repo_list){
   return Promise.all(
     repo_list.map(repo => getFailedSlugByRepo(repo))
   )
-}
-
-function triggerBuildRequest(repo, branch){
-  return triggerBuildOnTravis(repo,branch)
-}
-
-function triggerBuildRequests(repos_and_branches){
-  console.log(repos_and_branches)
-  return Promise.all(
-    repos_and_branches.map( (xx) => {
-      var test = triggerBuildRequest(`louiscklaw/${xx.repo_name}`, xx.branch_name)
-      return test
-
-    })
-  )
-  .then( responses_of_all_requests => {
-    return responses_of_all_requests
-  })
 }
 
 
@@ -52,11 +35,8 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  console.log([...branch_names_repo_names])
-  process.exit()
-
   if (LOCAL_TEST){
-    return triggerBuildRequests([
+    return triggerBuildOnTravis([
       [
         { branch_name: 'master',
         repo_name: 'travis-playlist' }
@@ -67,7 +47,7 @@ Promise.all( [
       ]
     ])
   }else{
-    return triggerBuildRequests([...branch_names_repo_names])
+    return triggerBuildOnTravis([...branch_names_repo_names])
   }
 })
 
