@@ -3,11 +3,12 @@
 }
 
 .repo-status {
-  min-height: 100px;
-  min-width: 50px;
+  min-height: 80px;
+  min-width: 80px;
 
-  width: calc((100% / 20));
-  margin-top: 2px;
+  width: calc(100% / 20);
+  margin-top: 1px;
+  margin-left: 1px;
 }
 
 .repo-icon-list i{

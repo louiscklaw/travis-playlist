@@ -1,8 +1,8 @@
 .repos-status {
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  width: 98vw;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  width: 99%;
   margin: auto;
 
 }
