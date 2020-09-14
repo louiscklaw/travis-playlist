@@ -20,7 +20,7 @@ stages:
   # cron job on master branch publish dashboard
   - name: Publish_dashboard
     if: branch = master
-    if: branch =~ /.*dashboard.*/
+
 
   - name: Test_cron
 
@@ -28,6 +28,9 @@ stages:
 
   - name: Cron
     if: type = cron
+
+  - name: Test_publish_dashboard
+    if: branch =~ /.*build-dashboard.*/
 
   - name: test_travis-failed-rebuild
     if: branch =~ /.*travis-failed-rebuild.*/
