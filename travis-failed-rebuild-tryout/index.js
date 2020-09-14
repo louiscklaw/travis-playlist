@@ -35,20 +35,24 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  if (LOCAL_TEST){
-    return triggerBuildOnTravis([
-      [
-        { branch_name: 'master',
-        repo_name: 'travis-playlist' }
-      ],
-      [
-        { branch_name: 'develop',
-        repo_name: 'travis-playlist' }
-      ]
-    ])
-  }else{
-    return triggerBuildOnTravis([...branch_names_repo_names])
-  }
+  var test_list=[
+    [
+      { branch_name: 'master',
+      repo_name: 'travis-playlist' }
+    ],
+    [
+      { branch_name: 'develop',
+      repo_name: 'travis-playlist' }
+    ]
+  ]
+  var list_to_process = LOCAL_TEST ? test_list : [...branch_names_repo_names]
+
+  return list_to_process.map(x => {
+    return x.map( xx => {
+      return triggerBuildOnTravis(xx.repo_name, xx.branch_name)
+    })
+  })
+
 })
 
 
