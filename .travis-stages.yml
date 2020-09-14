@@ -2,50 +2,9 @@
 # https://docs.travis-ci.com/user/conditions-v1
 
 stages:
-  - name: Build_docker
-
-  - name: test_travis-failed-rebuild
-    if: branch =~ /.*travis-failed-rebuild.*/
-
-  - name: test_helloworld_tryout
-    if: branch =~ /.*helloworld-tryout.*/
-
-  - name: Unit_test
-    if: branch =~ /.*feature.*/
-    if: branch =~ /.*develop.*/
-
-  - name: Test
-    if: branch =~ /.*develop.*/
-
-  - name: Build
-    if: branch =~ /.*develop.*/
-
-  - name: Deploy
-    if: branch =~ /.*master.*/
-
-  - name: Integration_to_other_repo
-    if: branch = develop
-
-  - name: Test_publish_dashboard
-    if: branch = develop
-
-  # cron job on master branch publish dashboard
-  - name: Publish_dashboard
-    if: branch = master
-
-  - name: Test_cron
-
-  - name: Merge
-    if: branch NOT IN (master)
-
-  - name: Cron
-    if: type = cron
-
-  - name: Test_publish_dashboard
-    if: branch =~ /.*build-dashboard.*/
 
   # update-stages.py start
-  
+
   # stages for failed-build-report-tryout, test_failed-build-report-tryout
   - name: test_failed-build-report-tryout
     if: branch =~ /.*failed-build-report-tryout.*/
@@ -302,3 +261,46 @@ stages:
 
 
   # update-stages.py end
+
+
+  - name: Build_docker
+
+  - name: test_travis-failed-rebuild
+    if: branch =~ /.*travis-failed-rebuild.*/
+
+  - name: test_helloworld_tryout
+    if: branch =~ /.*helloworld-tryout.*/
+
+  - name: Unit_test
+    if: branch =~ /.*feature.*/
+    if: branch =~ /.*develop.*/
+
+  - name: Test
+    if: branch =~ /.*develop.*/
+
+  - name: Build
+    if: branch =~ /.*develop.*/
+
+  - name: Deploy
+    if: branch =~ /.*master.*/
+
+  - name: Integration_to_other_repo
+    if: branch = develop
+
+  - name: Test_publish_dashboard
+    if: branch = develop
+
+  # cron job on master branch publish dashboard
+  - name: Publish_dashboard
+    if: branch = master
+
+  - name: Test_cron
+
+  - name: Merge
+    if: branch NOT IN (master)
+
+  - name: Cron
+    if: type = cron
+
+  - name: Test_publish_dashboard
+    if: branch =~ /.*build-dashboard.*/
