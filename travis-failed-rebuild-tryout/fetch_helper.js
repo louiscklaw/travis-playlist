@@ -8,27 +8,6 @@ function sayHelloworld(){
   console.log(`helloworld from ${__filename}`)
 }
 
-function fetchTravisRequestBuild( url_in , req_body ) {
-
-	// const response = await fetch('https://httpbin.org/post', {
-	// 	method: 'post',
-	// 	body: JSON.stringify(body),
-	// 	headers: {'Content-Type': 'application/json'}
-	// });
-	// const json = await response.json();
-
-  return fetch( url_in, {
-      headers: {
-        'Travis-API-Version': 3,
-        'Authorization': `token ${process.env.TRAVIS_AUTH_TOKEN}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      method: 'post',
-      body: JSON.stringify(req_body)
-    } )
-}
-
 function fetchTravisRequestBuildProxied( url_in , req_body ) {
 
 	// const response = await fetch('https://httpbin.org/post', {
@@ -65,16 +44,6 @@ const getRequestBody = (branch_name) => {return {
     messages: "rebuild triggered by travis-failed-rebuild-tryout"
   }
 }}
-
-function triggerBuildOnTravis(repo_name, branch_name){
-  const repo_slug = conv_repo_name_to_slug(repo_name)
-  const travis_url = travis_request_url(repo_slug)
-  const req_body = getRequestBody(branch_name)
-
-  return fetchTravisRequestBuild(travis_url, req_body)
-    .then( r => r.json())
-
-}
 
 // triggerBuildOnTravis('louiscklaw/dotfiles', 'tests/add-installLigblib2-sh')
 

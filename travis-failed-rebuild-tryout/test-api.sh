@@ -5,7 +5,7 @@ set -ex
 
 body='{
 "request": {
-  "branch":"tests/add-installLigblib2-sh"
+  "branch":"master"
 }
 }'
 
@@ -15,4 +15,4 @@ curl -s -X POST \
   -H "Content-Type: application/json" \
   -H "Travis-API-Version: 3" \
   -d "$body" \
-  https://api.travis-ci.com/repo/louiscklaw%2Fdotfiles/requests
+  https://api.travis-ci.com/repo/louiscklaw%2Ftravis-playlist/requests

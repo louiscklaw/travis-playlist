@@ -7,7 +7,7 @@ const {getFailedBranchByRepo} = require('./getFailedBranchByRepo')
 const { getFailedSlugByRepo } = require('./getFailedSlugByRepo')
 const {getRepoNameFromBuildsLink}= require('./common')
 const { getRepoNamesFromUser } = require( './getRepoByUsername' )
-const { triggerBuildOnTravis} = require('./fetch_helper')
+const { triggerBuildOnTravis} = require('./src/lib/triggerBuildOnTravis')
 
 function getFailedBuild(repo_list){
   // console.log(repo_list)
@@ -39,7 +39,7 @@ function triggerBuildRequests(repos_and_branches){
 
 
 Promise.all( [
-  getRepoNamesFromUser( 'louiscklaw' )
+  getRepoNamesFromUser( 'louiscklaw', true )
 ] )
 .then( values => {
   var repo_list = values[0].map(x => x.slug)
@@ -50,7 +50,7 @@ Promise.all( [
   } )
 } )
 .then( branch_names_repo_names => {
-  return triggerBuildRequests([...branch_names_repo_names])
+  return triggerBuildRequests([...branch_names_repo_names][0])
 })
 
 
