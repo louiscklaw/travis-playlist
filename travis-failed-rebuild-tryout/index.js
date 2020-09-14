@@ -52,7 +52,7 @@ Promise.all( [
   var list_to_process = LOCAL_TEST ? test_list : flattenRepoList(branch_names_repo_names)
   var filtered_list = list_to_process.filter(x => repo_skip_list.indexOf(x) == -1)
 
-  return test_list
+  return filtered_list
 
 })
 .then(filtered_list => {
