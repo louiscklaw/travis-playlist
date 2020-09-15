@@ -57,14 +57,14 @@ Promise.all( [
 })
 .then(filtered_list => {
   console.log(filtered_list)
-  Promise.all([
-    filtered_list.map(x => {
-      triggerBuildOnTravis(`louiscklaw/${x.repo_name}`, x.branch_name)
-    })
-  ])
-  .then( values => {
-    return values[0]
-  })
+  // Promise.all([
+  //   filtered_list.map(x => {
+  //     triggerBuildOnTravis(`louiscklaw/${x.repo_name}`, x.branch_name)
+  //   })
+  // ])
+  // .then( values => {
+  //   return values[0]
+  // })
 })
 
 
