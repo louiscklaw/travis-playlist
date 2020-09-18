@@ -61,14 +61,15 @@ Promise.all( [
 })
 .then(filtered_list => {
   console.log(filtered_list)
+  const list_without_travis = filtered_list.filter( x => x.search('travis') == -1)
   const num_build_to_test = 30
-  const filtered_list_length = filtered_list.length
+  const filtered_list_length = list_without_travis.length
   const random_int_max = filtered_list_length-num_build_to_test
 
   const random_build_start = Math.floor( Math.random() * random_int_max )
   const random_build_end = random_build_start+num_build_to_test
 
-  const failed_build_to_retry = filtered_list.slice( random_build_start, random_build_end )
+  const failed_build_to_retry = list_without_travis.slice( random_build_start, random_build_end )
   // console.log(filtered_list_length)
   // console.log(random_build_start)
   // console.log(num_build_to_test)
