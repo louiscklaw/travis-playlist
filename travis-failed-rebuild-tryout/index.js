@@ -46,7 +46,11 @@ Promise.all( [
 .then( branch_names_repo_names => {
   var test_list=[
     { branch_name: 'master', repo_name: 'travis-playlist' },
-    { branch_name: 'develop', repo_name: 'travis-playlist' }
+    { branch_name: 'develop', repo_name: 'travis-playlist' },
+    { branch_name: 'master', repo_name: 'react-playlist' },
+    { branch_name: 'develop', repo_name: 'react-playlist' },
+    { branch_name: 'master', repo_name: 'python-playlist' },
+    { branch_name: 'develop', repo_name: 'python-playlist' }
   ]
 
   var list_to_process = LOCAL_TEST ? test_list : flattenRepoList(branch_names_repo_names)
@@ -57,14 +61,28 @@ Promise.all( [
 })
 .then(filtered_list => {
   console.log(filtered_list)
-  // Promise.all([
-  //   filtered_list.map(x => {
-  //     triggerBuildOnTravis(`louiscklaw/${x.repo_name}`, x.branch_name)
-  //   })
-  // ])
-  // .then( values => {
-  //   return values[0]
-  // })
+  const num_build_to_test = 30
+  const filtered_list_length = filtered_list.length
+  const random_int_max = filtered_list_length-num_build_to_test
+
+  const random_build_start = Math.floor( Math.random() * random_int_max )
+  const random_build_end = random_build_start+num_build_to_test
+
+  const failed_build_to_retry = filtered_list.slice( random_build_start, random_build_end )
+  // console.log(filtered_list_length)
+  // console.log(random_build_start)
+  // console.log(num_build_to_test)
+  // console.log('failed_build_to_retry', failed_build_to_retry)
+
+  Promise.all( [
+    failed_build_to_retry.map( x => {
+        triggerBuildOnTravis( `louiscklaw/${x.repo_name}`, x.branch_name )
+      } )
+    ] )
+    .then( values => {
+      return values[ 0 ]
+    } )
+
 })
 
 
